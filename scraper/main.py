@@ -34,29 +34,32 @@ def run_full_scrape(dry_run: bool, limit: int | None = None) -> int:
     skipped_missing = 0
 
     for i, title in enumerate(titles):
-        if (i + 1) % 50 == 0:
-            print(f"  Processing {i + 1}/{len(titles)}...")
-
         try:
             time.sleep(RATE_LIMIT_SECONDS)
             wikitext = api.fetch_infobox_content(title)
             if not wikitext:
+                print(f"  [{i + 1}/{len(titles)}] {title}: skipped (no infobox)")
                 skipped_missing += 1
                 continue
 
             char, skip_reason = parser.parse_character(wikitext, title, canon_arcs, arcs_data)
             if skip_reason == "filler":
+                print(f"  [{i + 1}/{len(titles)}] {title}: skipped (filler)")
                 skipped_filler += 1
                 continue
             if skip_reason == "missing_data":
+                print(f"  [{i + 1}/{len(titles)}] {title}: skipped (missing data)")
                 skipped_missing += 1
                 continue
 
             if char and char["id"] not in seen_ids:
                 seen_ids.add(char["id"])
                 characters.append(char)
+                print(f"  [{i + 1}/{len(titles)}] {title}: added")
+            else:
+                print(f"  [{i + 1}/{len(titles)}] {title}: skipped (duplicate)")
         except requests.RequestException as e:
-            print(f"  Skipped {title}: {e}", file=sys.stderr)
+            print(f"  [{i + 1}/{len(titles)}] {title}: skipped ({e})", file=sys.stderr)
             skipped_missing += 1
 
     characters.sort(key=lambda c: c["id"])
