@@ -149,6 +149,9 @@ def get_arc_for_chapter(chapter: int, arcs_data: list[dict] | None = None) -> st
     return None
 
 
+ALLOWED_SERIES = {"naruto", "shippuden"}
+
+
 def _load_canon_arcs_data() -> list[dict]:
     import json
     data_dir = Path(__file__).resolve().parent.parent / "data"
@@ -160,4 +163,15 @@ def _load_canon_arcs_data() -> list[dict]:
     with open(canon_path) as f:
         data = json.load(f)
 
-    return data.get("arcs", [])
+    arcs = data.get("arcs", [])
+
+    for arc in arcs:
+        if arc.get("canonical"):
+            series = arc.get("series", "")
+            if series not in ALLOWED_SERIES:
+                raise ValueError(
+                    f"canon-arcs.json: arc '{arc.get('id')}' has canonical=true "
+                    f"but series='{series}' (must be one of {sorted(ALLOWED_SERIES)})"
+                )
+
+    return arcs
