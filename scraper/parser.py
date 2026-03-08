@@ -202,14 +202,14 @@ def _extract_status(params: dict[str, str]) -> str | None:
     return None
 
 
-def _extract_debut_arc(params: dict[str, str]) -> str | None:
+def _extract_debut_arc(params: dict[str, str], arcs_data: list[dict]) -> str | None:
     for key in ("manga_debut", "mangadebut", "debut_manga", "debutmanga"):
         if key in params:
             val = params[key].strip()
             match = re.search(r"\d+", val)
             if match:
                 chapter = int(match.group())
-                return api.get_arc_for_chapter(chapter)
+                return api.get_arc_for_chapter(chapter, arcs_data)
     return None
 
 
@@ -240,7 +240,12 @@ def _extract_species(params: dict[str, str], classification: str) -> list[str]:
     return sorted(result)
 
 
-def parse_character(wikitext: str, page_title: str) -> tuple[dict[str, Any] | None, str | None]:
+def parse_character(
+    wikitext: str,
+    page_title: str,
+    canon_arcs: set[str],
+    arcs_data: list[dict],
+) -> tuple[dict[str, Any] | None, str | None]:
     params = _parse_infobox_params(wikitext)
     if not params:
         return None, "missing_data"

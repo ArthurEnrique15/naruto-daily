@@ -14,7 +14,8 @@ OUTPUT_PATH = DATA_DIR / "characters.json"
 
 
 def run_full_scrape(dry_run: bool, limit: int | None = None) -> int:
-    canon_arcs = api.load_canon_arcs()
+    arcs_data = api.load_canon_arcs_data()
+    canon_arcs = {a["name"] for a in arcs_data if a.get("canonical", False)}
     if not canon_arcs:
         print("Error: No canonical arcs found. Ensure data/canon-arcs.json exists.", file=sys.stderr)
         return 1
@@ -39,7 +40,7 @@ def run_full_scrape(dry_run: bool, limit: int | None = None) -> int:
             skipped_missing += 1
             continue
 
-        char, skip_reason = parser.parse_character(wikitext, title)
+        char, skip_reason = parser.parse_character(wikitext, title, canon_arcs, arcs_data)
         if skip_reason == "filler":
             skipped_filler += 1
             continue
@@ -68,12 +69,15 @@ def run_full_scrape(dry_run: bool, limit: int | None = None) -> int:
 
 
 def run_single_character(name: str) -> int:
+    arcs_data = api.load_canon_arcs_data()
+    canon_arcs = {a["name"] for a in arcs_data if a.get("canonical", False)}
+
     wikitext = api.fetch_infobox_content(name)
     if not wikitext:
         print(f"No infobox found for '{name}'", file=sys.stderr)
         return 1
 
-    char, skip_reason = parser.parse_character(wikitext, name)
+    char, skip_reason = parser.parse_character(wikitext, name, canon_arcs, arcs_data)
     if char:
         print(json.dumps(char, indent=2))
         return 0
@@ -107,6 +111,7 @@ def run_validate_only() -> int:
         if missing:
             print(f"  [{i}] {char.get('name', '?')}: missing fields {missing}", file=sys.stderr)
             errors += 1
+            continue
 
     if errors:
         print(f"\nValidation failed with {errors} error(s).", file=sys.stderr)
