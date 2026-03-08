@@ -1,0 +1,283 @@
+[
+  {
+    "id": "a",
+    "name": "A",
+    "imageUrl": "https://static.wikia.nocookie.net/naruto/images/7/70/A.png/revision/latest?cb=20141016130545",
+    "village": [
+      "Kumogakure"
+    ],
+    "rank": "Kage",
+    "kekkeiGenkai": [],
+    "natureTypes": [],
+    "jutsuTypes": [
+      "Ninjutsu"
+    ],
+    "status": "Deceased",
+    "debutArc": "Fourth Shinobi World War: Confrontation",
+    "gender": "Male",
+    "species": [
+      "Human"
+    ]
+  },
+  {
+    "id": "abiru",
+    "name": "Abiru",
+    "imageUrl": "https://static.wikia.nocookie.net/naruto/images/7/72/Abiru_new.png/revision/latest?cb=20220224034653",
+    "village": [
+      "Sunagakure"
+    ],
+    "rank": "Academy Student",
+    "kekkeiGenkai": [],
+    "natureTypes": [],
+    "jutsuTypes": [
+      "Ninjutsu"
+    ],
+    "status": "Alive",
+    "debutArc": "Konoha Crush Arc",
+    "gender": "Male",
+    "species": [
+      "Human"
+    ]
+  },
+  {
+    "id": "ada",
+    "name": "Ada",
+    "imageUrl": "https://static.wikia.nocookie.net/naruto/images/f/f6/Ada_Infobox_Image.png/revision/latest?cb=20230226102229",
+    "village": [
+      "Kara",
+      "Konohagakure"
+    ],
+    "rank": "N/A",
+    "kekkeiGenkai": [],
+    "natureTypes": [],
+    "jutsuTypes": [
+      "Ninjutsu"
+    ],
+    "status": "Alive",
+    "debutArc": "Chunin Exams Arc",
+    "gender": "Female",
+    "species": [
+      "Human"
+    ]
+  },
+  {
+    "id": "agara",
+    "name": "Agara",
+    "imageUrl": "https://static.wikia.nocookie.net/naruto/images/7/71/Agara.png/revision/latest?cb=20220218133634",
+    "village": [
+      "Takigakure"
+    ],
+    "rank": "Chunin",
+    "kekkeiGenkai": [],
+    "natureTypes": [],
+    "jutsuTypes": [
+      "Ninjutsu"
+    ],
+    "status": "Deceased",
+    "debutArc": "Pain's Assault",
+    "gender": "Male",
+    "species": [
+      "Human"
+    ]
+  },
+  {
+    "id": "agari",
+    "name": "Agari",
+    "imageUrl": "https://static.wikia.nocookie.net/naruto/images/5/5c/Agari.png/revision/latest?cb=20150221142340",
+    "village": [
+      "Land of Waves"
+    ],
+    "rank": "N/A",
+    "kekkeiGenkai": [],
+    "natureTypes": [],
+    "jutsuTypes": [
+      "Ninjutsu"
+    ],
+    "status": "Alive",
+    "debutArc": "Land of Waves Arc",
+    "gender": "Female",
+    "species": [
+      "Human"
+    ]
+  },
+  {
+    "id": "ageha",
+    "name": "Ageha",
+    "imageUrl": "https://static.wikia.nocookie.net/naruto/images/4/4b/Ageha.png/revision/latest?cb=20150221141938",
+    "village": [
+      "Land of Waves"
+    ],
+    "rank": "N/A",
+    "kekkeiGenkai": [],
+    "natureTypes": [],
+    "jutsuTypes": [
+      "Ninjutsu"
+    ],
+    "status": "Alive",
+    "debutArc": "Land of Waves Arc",
+    "gender": "Female",
+    "species": [
+      "Human"
+    ]
+  },
+  {
+    "id": "ahiko",
+    "name": "Ahiko",
+    "imageUrl": "https://static.wikia.nocookie.net/naruto/images/7/7c/Ahiko.png/revision/latest?cb=20211021205724",
+    "village": [],
+    "rank": "N/A",
+    "kekkeiGenkai": [],
+    "natureTypes": [],
+    "jutsuTypes": [
+      "Ninjutsu"
+    ],
+    "status": "Alive",
+    "debutArc": "Itachi Pursuit Mission",
+    "gender": "Male",
+    "species": [
+      "Human"
+    ]
+  },
+  {
+    "id": "ajisai",
+    "name": "Ajisai",
+    "imageUrl": "https://static.wikia.nocookie.net/naruto/images/b/bf/AjisaiProfile.png/revision/latest?cb=20241130211548",
+    "village": [
+      "Amegakure"
+    ],
+    "rank": "Chunin",
+    "kekkeiGenkai": [],
+    "natureTypes": [],
+    "jutsuTypes": [
+      "Ninjutsu"
+    ],
+    "status": "Deceased",
+    "debutArc": "Tale of Jiraiya the Gallant",
+    "gender": "Female",
+    "species": [
+      "Human"
+    ]
+  },
+  {
+    "id": "akamaru",
+    "name": "Akamaru",
+    "imageUrl": "https://static.wikia.nocookie.net/naruto/images/0/09/Akamaru_p1.png/revision/latest?cb=20140705090523",
+    "village": [
+      "Allied Shinobi Forces",
+      "Konohagakure"
+    ],
+    "rank": "N/A",
+    "kekkeiGenkai": [],
+    "natureTypes": [],
+    "jutsuTypes": [
+      "Ninjutsu"
+    ],
+    "status": "Alive",
+    "debutArc": "Chunin Exams Arc",
+    "gender": "Male",
+    "species": [
+      "Human"
+    ]
+  },
+  {
+    "id": "akane",
+    "name": "Akane",
+    "imageUrl": "https://static.wikia.nocookie.net/naruto/images/a/aa/Akane.png/revision/latest?cb=20150221142705",
+    "village": [
+      "Land of Waves"
+    ],
+    "rank": "N/A",
+    "kekkeiGenkai": [],
+    "natureTypes": [],
+    "jutsuTypes": [
+      "Ninjutsu"
+    ],
+    "status": "Alive",
+    "debutArc": "Land of Waves Arc",
+    "gender": "Male",
+    "species": [
+      "Human"
+    ]
+  },
+  {
+    "id": "akatsuchi",
+    "name": "Akatsuchi",
+    "imageUrl": "https://static.wikia.nocookie.net/naruto/images/1/16/Akatsuchi_Part_II.png/revision/latest?cb=20190209014302",
+    "village": [
+      "Allied Shinobi Forces",
+      "Iwagakure"
+    ],
+    "rank": "Jonin",
+    "kekkeiGenkai": [],
+    "natureTypes": [
+      "Earth"
+    ],
+    "jutsuTypes": [
+      "Ninjutsu"
+    ],
+    "status": "Alive",
+    "debutArc": "Fated Battle Between Brothers",
+    "gender": "Male",
+    "species": [
+      "Human"
+    ]
+  },
+  {
+    "id": "akebi-sanzu",
+    "name": "Akebi Sanzu",
+    "imageUrl": "https://static.wikia.nocookie.net/naruto/images/8/82/Akebi.png/revision/latest?cb=20221121114045",
+    "village": [],
+    "rank": "N/A",
+    "kekkeiGenkai": [],
+    "natureTypes": [],
+    "jutsuTypes": [
+      "Ninjutsu"
+    ],
+    "status": "Deceased",
+    "debutArc": "Chunin Exams Arc",
+    "gender": "Female",
+    "species": [
+      "Human"
+    ]
+  },
+  {
+    "id": "akino",
+    "name": "Akino",
+    "imageUrl": "https://static.wikia.nocookie.net/naruto/images/7/7b/Akino2.png/revision/latest?cb=20150216130950",
+    "village": [
+      "Konohagakure"
+    ],
+    "rank": "N/A",
+    "kekkeiGenkai": [],
+    "natureTypes": [],
+    "jutsuTypes": [
+      "Ninjutsu"
+    ],
+    "status": "Alive",
+    "debutArc": "Land of Waves Arc",
+    "gender": "Male",
+    "species": [
+      "Human"
+    ]
+  },
+  {
+    "id": "akita-inuzuka",
+    "name": "Akita Inuzuka",
+    "imageUrl": "https://static.wikia.nocookie.net/naruto/images/f/fc/Akita.png/revision/latest?cb=20210126075434",
+    "village": [
+      "Konohagakure"
+    ],
+    "rank": "N/A",
+    "kekkeiGenkai": [],
+    "natureTypes": [],
+    "jutsuTypes": [
+      "Ninjutsu"
+    ],
+    "status": "Alive",
+    "debutArc": "Land of Waves Arc",
+    "gender": "Female",
+    "species": [
+      "Human"
+    ]
+  }
+]
