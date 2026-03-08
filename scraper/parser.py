@@ -72,8 +72,8 @@ def _parse_infobox_params(wikitext: str) -> dict[str, str]:
     return params
 
 
-def _slug(name: str) -> str:
-    normalized = unicodedata.normalize("NFKD", name)
+def _slug(text: str) -> str:
+    normalized = unicodedata.normalize("NFKD", text)
     ascii_text = normalized.encode("ascii", "ignore").decode("ascii")
     slug = ascii_text.lower().replace(" ", "-")
     slug = re.sub(r"[^a-z0-9-]", "", slug)
@@ -258,6 +258,9 @@ def parse_character(
     if not name:
         return None, "missing_data"
 
+    if "(" in page_title:
+        name = page_title
+
     status = _extract_status(params)
     if status is None:
         return None, "missing_data"
@@ -272,7 +275,7 @@ def parse_character(
     classification = params.get("classification", "")
 
     character = {
-        "id": _slug(name),
+        "id": _slug(page_title),
         "name": name,
         "imageUrl": _extract_image(params),
         "village": _extract_village(params),
