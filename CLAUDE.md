@@ -95,8 +95,82 @@ npm run validate-data  # Validate characters.json against schema
 - Feedback colors: green = correct, yellow = partial, gray = wrong
 
 ### Git
-- Branch naming: `feat/`, `fix/`, `chore/`, `docs/`
+- Branch naming: `type/description-in-kebab-case` (e.g. `feat/web-scraper`, `fix/seed-calculation`, `chore/update-scraper-docs`)
 - Commits: conventional commits format (`feat: add classic mode`, `fix: seed calculation`)
+
+## Branch & PR Workflow
+
+Every feature or change must use a dedicated branch. Follow this workflow:
+
+### 1. Create branch
+```bash
+git checkout main
+git pull
+git checkout -b feat/web-scraper   # type/description-in-kebab-case
+```
+
+Branch naming: `type/description-in-kebab-case` — e.g. `feat/web-scraper`, `fix/seed-calculation`, `chore/update-scraper-docs`
+
+### 2. Commit by context
+Group changes logically and commit each group with a single-line conventional commit message:
+- `feat: add scraper API client`
+- `feat: add infobox parser`
+- `fix: handle nested templates in wikitext`
+- `chore: add .gitignore for Python`
+
+Use one commit per logical change.
+
+### 3. Push and create PR
+```bash
+git push -u origin feat/short-description
+gh pr create --title "feat: short description" --body "## Summary
+- Bullet 1: what changed
+- Bullet 2: what changed
+- Bullet 3: what changed"
+```
+
+### 4. Conventional commits
+Prefixes match branch types: `feat`, `fix`, `chore`, `docs`, `refactor`, `test`. Single line, imperative mood.
+
+## Review Agent
+
+When reviewing a pull request, use the Superpowers **requesting-code-review** skill:
+
+### 1. Load the skill
+```
+mcp_superpowers_read_skill(skill_name: "requesting-code-review")
+```
+
+### 2. Get PR context
+```bash
+# When on the PR branch:
+BASE_SHA=$(git rev-parse origin/main)   # or the PR's base branch
+HEAD_SHA=$(git rev-parse HEAD)         # PR branch tip
+```
+
+### 3. Run code review
+Follow the skill workflow. Provide:
+- **WHAT_WAS_IMPLEMENTED**: Summary of PR changes
+- **PLAN_OR_REQUIREMENTS**: What the feature/PR should do (from PR description or linked issue)
+- **BASE_SHA** / **HEAD_SHA**: Commit range to review
+- **DESCRIPTION**: Brief summary
+
+### 4. Add comments to the PR
+Post findings as PR comments. Use `gh`:
+```bash
+gh pr comment <PR_NUMBER> --body "## Code Review
+
+**Critical:** ...
+**Important:** ...
+**Minor:** ..."
+```
+
+Or add inline comments on specific lines via GitHub web UI or API.
+
+### 5. Severity handling
+- **Critical**: Must fix before merge
+- **Important**: Fix before proceeding
+- **Minor**: Note for later; optional to fix
 
 ## Key Design Decisions
 
