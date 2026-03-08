@@ -86,6 +86,7 @@ npm run validate-data  # Validate characters.json against schema
 - **NEVER modify `data/characters.json` manually** — regenerate via scraper
 - **NEVER add filler-only characters** — only characters from canonical manga arcs
 - Canonical arc whitelist: `data/canon-arcs.json`
+- **Franchise scope**: only Naruto Part I and Naruto Shippuden (manga ch 1-700). Boruto, movie-only, and filler-only characters are excluded. The `series` field in `canon-arcs.json` enforces this at scraper load time.
 - All string values in English, lowercase-normalized where applicable
 - Array fields (e.g., `naturTypes`, `jutsuTypes`) must be sorted alphabetically
 

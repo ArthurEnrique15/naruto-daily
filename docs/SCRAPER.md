@@ -16,10 +16,18 @@ Access methods:
    - Can list category members, fetch page content, query infobox data
 2. **HTML scraping** (fallback) — BeautifulSoup for fields not exposed via API
 
+## Franchise Scope
+
+Only **Naruto Part I** (manga ch 1–238) and **Naruto Shippuden** (manga ch 239–700) are in scope.
+Boruto, movie-only, and filler arcs are excluded by design. The `series` field in `canon-arcs.json`
+enforces this: the loader aborts with a `ValueError` if any canonical arc has a `series` value
+other than `"naruto"` or `"shippuden"`.
+
 ## Flow
 
 ```
 1. Load canon-arcs.json
+   ├── Validate: every canonical arc must have series ∈ {"naruto", "shippuden"}
    └── Build set of canonical arc names
 
 2. Fetch character list
