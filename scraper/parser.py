@@ -47,6 +47,7 @@ def _parse_infobox_params(wikitext: str) -> dict[str, str]:
                 val = " ".join(current_val).strip()
                 val = re.sub(r"\[\[([^\]|]+)\|([^\]]+)\]\]", r"\2", val)
                 val = re.sub(r"\[\[([^\]]+)\]\]", r"\1", val)
+                val = re.sub(r"\{\{Translation\|([^}|]+)\}\}", r"\1", val)
                 val = re.sub(r"\{\{[^}]+\}\}", "", val).strip()
                 if val:
                     params[current_key] = val
@@ -63,6 +64,7 @@ def _parse_infobox_params(wikitext: str) -> dict[str, str]:
         val = " ".join(current_val).strip()
         val = re.sub(r"\[\[([^\]|]+)\|([^\]]+)\]\]", r"\2", val)
         val = re.sub(r"\[\[([^\]]+)\]\]", r"\1", val)
+        val = re.sub(r"\{\{Translation\|([^}|]+)\}\}", r"\1", val)
         val = re.sub(r"\{\{[^}]+\}\}", "", val).strip()
         if val:
             params[current_key] = val
