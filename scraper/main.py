@@ -8,6 +8,7 @@ from pathlib import Path
 import requests
 
 import api
+import constants
 import parser
 
 RATE_LIMIT_SECONDS = 1
@@ -104,7 +105,9 @@ def run_validate_only() -> int:
         print("Error: characters.json must be a JSON array.", file=sys.stderr)
         return 1
 
+    canon_arcs = api.load_canon_arcs()
     required = {"id", "name", "imageUrl", "village", "rank", "kekkeiGenkai", "natureTypes", "jutsuTypes", "status", "debutArc", "gender", "species"}
+    array_fields = ("village", "kekkeiGenkai", "natureTypes", "jutsuTypes", "species")
     errors = 0
 
     for i, char in enumerate(data):
@@ -118,6 +121,46 @@ def run_validate_only() -> int:
             print(f"  [{i}] {char.get('name', '?')}: missing fields {missing}", file=sys.stderr)
             errors += 1
             continue
+
+        name = char.get("name", "?")
+
+        if char.get("rank") not in constants.RANK_VALUES:
+            print(f"  [{i}] {name}: invalid rank '{char.get('rank')}'", file=sys.stderr)
+            errors += 1
+
+        if char.get("status") not in constants.STATUS_VALUES:
+            print(f"  [{i}] {name}: invalid status '{char.get('status')}'", file=sys.stderr)
+            errors += 1
+
+        if char.get("debutArc") not in canon_arcs:
+            print(f"  [{i}] {name}: debutArc '{char.get('debutArc')}' not in canon-arcs.json", file=sys.stderr)
+            errors += 1
+
+        if char.get("gender") not in constants.GENDER_VALUES:
+            print(f"  [{i}] {name}: invalid gender '{char.get('gender')}'", file=sys.stderr)
+            errors += 1
+
+        enum_checks = {
+            "kekkeiGenkai": constants.KKG_CATEGORIES,
+            "natureTypes": constants.NATURE_TYPES,
+            "jutsuTypes": constants.JUTSU_TYPES,
+            "species": constants.SPECIES_VALUES,
+        }
+        for field in array_fields:
+            arr = char.get(field)
+            if not isinstance(arr, list):
+                print(f"  [{i}] {name}: {field} must be array", file=sys.stderr)
+                errors += 1
+                continue
+            if arr != sorted(arr):
+                print(f"  [{i}] {name}: {field} not sorted alphabetically", file=sys.stderr)
+                errors += 1
+            valid_values = enum_checks.get(field)
+            if valid_values:
+                for v in arr:
+                    if v not in valid_values:
+                        print(f"  [{i}] {name}: invalid {field} '{v}'", file=sys.stderr)
+                        errors += 1
 
     if errors:
         print(f"\nValidation failed with {errors} error(s).", file=sys.stderr)
