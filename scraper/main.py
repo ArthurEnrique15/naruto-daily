@@ -5,6 +5,8 @@ import sys
 import time
 from pathlib import Path
 
+import requests
+
 import api
 import parser
 
@@ -34,23 +36,27 @@ def run_full_scrape(dry_run: bool, limit: int | None = None) -> int:
         if (i + 1) % 50 == 0:
             print(f"  Processing {i + 1}/{len(titles)}...")
 
-        time.sleep(RATE_LIMIT_SECONDS)
-        wikitext = api.fetch_infobox_content(title)
-        if not wikitext:
-            skipped_missing += 1
-            continue
+        try:
+            time.sleep(RATE_LIMIT_SECONDS)
+            wikitext = api.fetch_infobox_content(title)
+            if not wikitext:
+                skipped_missing += 1
+                continue
 
-        char, skip_reason = parser.parse_character(wikitext, title, canon_arcs, arcs_data)
-        if skip_reason == "filler":
-            skipped_filler += 1
-            continue
-        if skip_reason == "missing_data":
-            skipped_missing += 1
-            continue
+            char, skip_reason = parser.parse_character(wikitext, title, canon_arcs, arcs_data)
+            if skip_reason == "filler":
+                skipped_filler += 1
+                continue
+            if skip_reason == "missing_data":
+                skipped_missing += 1
+                continue
 
-        if char and char["id"] not in seen_ids:
-            seen_ids.add(char["id"])
-            characters.append(char)
+            if char and char["id"] not in seen_ids:
+                seen_ids.add(char["id"])
+                characters.append(char)
+        except requests.RequestException as e:
+            print(f"  Skipped {title}: {e}", file=sys.stderr)
+            skipped_missing += 1
 
     characters.sort(key=lambda c: c["id"])
 
