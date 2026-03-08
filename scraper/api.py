@@ -122,13 +122,18 @@ def resolve_image_url(image_name: str) -> str:
     return url if url else "/placeholder.png"
 
 
+def load_canon_arcs_data() -> list[dict]:
+    return _load_canon_arcs_data()
+
+
 def load_canon_arcs() -> set[str]:
     arcs_data = _load_canon_arcs_data()
     return {a["name"] for a in arcs_data if a.get("canonical", False)}
 
 
-def get_arc_for_chapter(chapter: int) -> str | None:
-    arcs_data = _load_canon_arcs_data()
+def get_arc_for_chapter(chapter: int, arcs_data: list[dict] | None = None) -> str | None:
+    if arcs_data is None:
+        arcs_data = _load_canon_arcs_data()
     for arc in arcs_data:
         if not arc.get("canonical", False):
             continue
