@@ -7,11 +7,15 @@ API_URL = "https://naruto.fandom.com/api.php"
 USER_AGENT = "NarutoDailyScraper/1.0 (https://github.com/naruto-daily)"
 RATE_LIMIT_SECONDS = 1
 
+_session: requests.Session | None = None
+
 
 def _get_session() -> requests.Session:
-    session = requests.Session()
-    session.headers.update({"User-Agent": USER_AGENT})
-    return session
+    global _session
+    if _session is None:
+        _session = requests.Session()
+        _session.headers.update({"User-Agent": USER_AGENT})
+    return _session
 
 
 def fetch_category_members(category: str = "Category:Characters", limit: int = 500) -> list[str]:
