@@ -89,6 +89,7 @@ def resolve_image_url(image_name: str) -> str:
     if not image_name or image_name.strip() == "":
         return "/placeholder.png"
 
+    time.sleep(RATE_LIMIT_SECONDS)
     session = _get_session()
     if ";" in image_name:
         image_name = image_name.split(";")[0].strip()
