@@ -143,12 +143,14 @@ type Species = 'Human' | 'Jinchuriki' | 'Clone' | 'Bijuu' | 'Otsutsuki' |
       "id": "land-of-waves",
       "name": "Land of Waves Arc",
       "manga_chapters": "1-33",
+      "series": "naruto",
       "canonical": true
     },
     {
       "id": "chunin-exams",
       "name": "Chunin Exams Arc",
       "manga_chapters": "34-115",
+      "series": "naruto",
       "canonical": true
     }
   ]
@@ -161,7 +163,12 @@ type Species = 'Human' | 'Jinchuriki' | 'Clone' | 'Bijuu' | 'Otsutsuki' |
 | `id` | string | Kebab-case slug |
 | `name` | string | Display name (matches `character.debutArc`) |
 | `manga_chapters` | string | Chapter range (informational) |
+| `series` | string | Franchise scope: `"naruto"` (Part I, ch 1-238) or `"shippuden"` (Part II, ch 239-700) |
 | `canonical` | boolean | `true` = included in game; `false` = filler, excluded |
 
 > **Note:** Only arcs with `"canonical": true` are used as valid `debutArc` values.
 > The scraper ignores characters whose debut arc has `"canonical": false`.
+
+> **Franchise constraint:** Only Naruto Part I and Naruto Shippuden arcs are in scope (manga ch 1-700).
+> Boruto, movie-only, and filler arcs must never have `canonical: true`. The scraper will abort with a
+> `ValueError` if any canonical arc has a `series` value other than `"naruto"` or `"shippuden"`.

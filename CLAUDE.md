@@ -86,6 +86,7 @@ npm run validate-data  # Validate characters.json against schema
 - **NEVER modify `data/characters.json` manually** — regenerate via scraper
 - **NEVER add filler-only characters** — only characters from canonical manga arcs
 - Canonical arc whitelist: `data/canon-arcs.json`
+- **Franchise scope**: only Naruto Part I and Naruto Shippuden (manga ch 1-700). Boruto, movie-only, and filler-only characters are excluded. The `series` field in `canon-arcs.json` enforces this at scraper load time.
 - All string values in English, lowercase-normalized where applicable
 - Array fields (e.g., `naturTypes`, `jutsuTypes`) must be sorted alphabetically
 
@@ -95,8 +96,102 @@ npm run validate-data  # Validate characters.json against schema
 - Feedback colors: green = correct, yellow = partial, gray = wrong
 
 ### Git
-- Branch naming: `feat/`, `fix/`, `chore/`, `docs/`
+- Branch naming: `type/description-in-kebab-case` (e.g. `feat/web-scraper`, `fix/seed-calculation`, `chore/update-scraper-docs`)
 - Commits: conventional commits format (`feat: add classic mode`, `fix: seed calculation`)
+
+## Branch & PR Workflow
+
+Every feature or change must use a dedicated branch. Follow this workflow:
+
+### 1. Create branch
+```bash
+git checkout main
+git pull
+git checkout -b feat/web-scraper   # type/description-in-kebab-case
+```
+
+Branch naming: `type/description-in-kebab-case` — e.g. `feat/web-scraper`, `fix/seed-calculation`, `chore/update-scraper-docs`
+
+### 2. Commit by context
+Group changes logically and commit each group with a single-line conventional commit message:
+- `feat: add scraper API client`
+- `feat: add infobox parser`
+- `fix: handle nested templates in wikitext`
+- `chore: add .gitignore for Python`
+
+Use one commit per logical change.
+
+### 3. Push and create PR
+```bash
+git push -u origin feat/short-description
+gh pr create --title "feat: short description" --body "## Summary
+- Bullet 1: what changed
+- Bullet 2: what changed
+- Bullet 3: what changed"
+```
+
+### 4. Conventional commits
+Prefixes match branch types: `feat`, `fix`, `chore`, `docs`, `refactor`, `test`. Single line, imperative mood.
+
+## Review Agent
+
+When reviewing a pull request, use the Superpowers **requesting-code-review** skill:
+
+### 1. Load the skill
+```
+mcp_superpowers_read_skill(skill_name: "requesting-code-review")
+```
+
+### 2. Get PR context
+```bash
+# When on the PR branch:
+BASE_SHA=$(git rev-parse origin/main)   # or the PR's base branch
+HEAD_SHA=$(git rev-parse HEAD)         # PR branch tip
+```
+
+### 3. Run code review
+Follow the skill workflow. Provide:
+- **WHAT_WAS_IMPLEMENTED**: Summary of PR changes
+- **PLAN_OR_REQUIREMENTS**: What the feature/PR should do (from PR description or linked issue)
+- **BASE_SHA** / **HEAD_SHA**: Commit range to review
+- **DESCRIPTION**: Brief summary
+
+### 4. Add comments to the PR
+Use `gh api` to post a formal PR review with inline comments (not just a plain comment):
+
+```bash
+gh api repos/{owner}/{repo}/pulls/{PR_NUMBER}/reviews \
+  --method POST \
+  --field commit_id="<HEAD_SHA>" \
+  --field event="COMMENT" \
+  --field body="## Code Review — by Claude
+  ...overall summary...
+  🤖 *Made by Claude (via Claude Code)*" \
+  --field "comments[][path]=path/to/file.py" \
+  --field "comments[][line]=<line_number>" \
+  --field "comments[][body]=**Severity: issue description**
+  ...details...
+  🤖 *Made by Claude (via Claude Code)*"
+```
+
+**Rules:**
+- Always use `event="COMMENT"` — GitHub does not allow `REQUEST_CHANGES` on your own PRs
+- Every comment (overall body and each inline comment) must end with `🤖 *Made by Claude (via Claude Code)*` to identify the author
+- Prefer inline comments on specific lines over generic PR-level comments
+- Post inline comments alongside the overall review in a single API call (use multiple `--field "comments[]..."` entries)
+
+### 5. Severity handling
+- **Critical**: Must fix before merge
+- **Important**: Fix before proceeding
+- **Minor**: Note for later; optional to fix
+
+### 6. Resolving PR comments
+When addressing review feedback:
+- **Commit each change separately** — one logical fix per commit (e.g. `fix: add rate limiting to resolve_image_url`)
+- **Push after all changes** — push the branch when done
+- **Resolve all comments** — mark each PR comment as resolved on GitHub
+- **Reply when needed** — if a resolution is not valid or needs more explanation, reply to the comment with context
+- **Reply identifier** — always end replies with `🤖 *Made by Claude (via Claude Code)*` to identify the author
 
 ## Key Design Decisions
 
