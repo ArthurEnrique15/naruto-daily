@@ -1,21 +1,21 @@
 {
   "arcs": [
-    { "id": "land-of-waves", "name": "Land of Waves Arc", "manga_chapters": "1-33", "canonical": true },
-    { "id": "chunin-exams", "name": "Chunin Exams Arc", "manga_chapters": "34-115", "canonical": true },
-    { "id": "konoha-crush", "name": "Konoha Crush Arc", "manga_chapters": "116-138", "canonical": true },
-    { "id": "search-for-tsunade", "name": "Search for Tsunade Arc", "manga_chapters": "139-171", "canonical": true },
-    { "id": "sasuke-recovery-mission", "name": "Sasuke Recovery Mission", "manga_chapters": "172-238", "canonical": true },
-    { "id": "kazekage-rescue-mission", "name": "Kazekage Rescue Mission", "manga_chapters": "239-281", "canonical": true },
-    { "id": "tenchi-bridge", "name": "Tenchi Bridge Reconnaissance Mission", "manga_chapters": "282-310", "canonical": true },
-    { "id": "akatsuki-suppression", "name": "Akatsuki Suppression Mission", "manga_chapters": "311-342", "canonical": true },
-    { "id": "itachi-pursuit", "name": "Itachi Pursuit Mission", "manga_chapters": "343-402", "canonical": true },
-    { "id": "tale-of-jiraiya", "name": "Tale of Jiraiya the Gallant", "manga_chapters": "403-449", "canonical": true },
-    { "id": "fated-battle-between-brothers", "name": "Fated Battle Between Brothers", "manga_chapters": "450-479", "canonical": true },
-    { "id": "pains-assault", "name": "Pain's Assault", "manga_chapters": "480-503", "canonical": true },
-    { "id": "five-kage-summit", "name": "Five Kage Summit", "manga_chapters": "504-534", "canonical": true },
-    { "id": "fourth-shinobi-world-war-countdown", "name": "Fourth Shinobi World War: Countdown", "manga_chapters": "535-573", "canonical": true },
-    { "id": "fourth-shinobi-world-war-confrontation", "name": "Fourth Shinobi World War: Confrontation", "manga_chapters": "574-676", "canonical": true },
-    { "id": "fourth-shinobi-world-war-climax", "name": "Fourth Shinobi World War: Climax", "manga_chapters": "677-680", "canonical": true },
-    { "id": "birth-of-the-ten-tails-jinchuriki", "name": "Birth of the Ten-Tails' Jinchuriki", "manga_chapters": "681-699", "canonical": true }
+    { "id": "land-of-waves", "name": "Land of Waves Arc", "manga_chapters": "1-33", "series": "naruto", "canonical": true },
+    { "id": "chunin-exams", "name": "Chunin Exams Arc", "manga_chapters": "34-115", "series": "naruto", "canonical": true },
+    { "id": "konoha-crush", "name": "Konoha Crush Arc", "manga_chapters": "116-138", "series": "naruto", "canonical": true },
+    { "id": "search-for-tsunade", "name": "Search for Tsunade Arc", "manga_chapters": "139-171", "series": "naruto", "canonical": true },
+    { "id": "sasuke-recovery-mission", "name": "Sasuke Recovery Mission", "manga_chapters": "172-238", "series": "naruto", "canonical": true },
+    { "id": "kazekage-rescue-mission", "name": "Kazekage Rescue Mission", "manga_chapters": "239-281", "series": "shippuden", "canonical": true },
+    { "id": "tenchi-bridge", "name": "Tenchi Bridge Reconnaissance Mission", "manga_chapters": "282-310", "series": "shippuden", "canonical": true },
+    { "id": "akatsuki-suppression", "name": "Akatsuki Suppression Mission", "manga_chapters": "311-342", "series": "shippuden", "canonical": true },
+    { "id": "itachi-pursuit", "name": "Itachi Pursuit Mission", "manga_chapters": "343-402", "series": "shippuden", "canonical": true },
+    { "id": "tale-of-jiraiya", "name": "Tale of Jiraiya the Gallant", "manga_chapters": "403-449", "series": "shippuden", "canonical": true },
+    { "id": "fated-battle-between-brothers", "name": "Fated Battle Between Brothers", "manga_chapters": "450-479", "series": "shippuden", "canonical": true },
+    { "id": "pains-assault", "name": "Pain's Assault", "manga_chapters": "480-503", "series": "shippuden", "canonical": true },
+    { "id": "five-kage-summit", "name": "Five Kage Summit", "manga_chapters": "504-534", "series": "shippuden", "canonical": true },
+    { "id": "fourth-shinobi-world-war-countdown", "name": "Fourth Shinobi World War: Countdown", "manga_chapters": "535-573", "series": "shippuden", "canonical": true },
+    { "id": "fourth-shinobi-world-war-confrontation", "name": "Fourth Shinobi World War: Confrontation", "manga_chapters": "574-676", "series": "shippuden", "canonical": true },
+    { "id": "fourth-shinobi-world-war-climax", "name": "Fourth Shinobi World War: Climax", "manga_chapters": "677-680", "series": "shippuden", "canonical": true },
+    { "id": "birth-of-the-ten-tails-jinchuriki", "name": "Birth of the Ten-Tails' Jinchuriki", "manga_chapters": "681-699", "series": "shippuden", "canonical": true }
   ]
 }
