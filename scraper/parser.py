@@ -181,7 +181,9 @@ def _extract_nature_types(params: dict[str, str]) -> list[str]:
 
 def _extract_jutsu_types(params: dict[str, str], classification: str) -> list[str]:
     result = set()
-    combined = " ".join(params.values()).lower()
+    jutsu_keys = ("jutsu", "jutsu_list", "jutsulist", "techniques")
+    text_parts = [params[k] for k in jutsu_keys if k in params and params[k]]
+    combined = (" ".join(text_parts) if text_parts else " ".join(params.values())).lower()
     for pattern, jtype in constants.JUTSU_PATTERNS:
         if pattern in combined and jtype not in result:
             result.add(jtype)
