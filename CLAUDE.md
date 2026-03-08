@@ -156,21 +156,41 @@ Follow the skill workflow. Provide:
 - **DESCRIPTION**: Brief summary
 
 ### 4. Add comments to the PR
-Post findings as PR comments. Use `gh`:
-```bash
-gh pr comment <PR_NUMBER> --body "## Code Review
+Use `gh api` to post a formal PR review with inline comments (not just a plain comment):
 
-**Critical:** ...
-**Important:** ...
-**Minor:** ..."
+```bash
+gh api repos/{owner}/{repo}/pulls/{PR_NUMBER}/reviews \
+  --method POST \
+  --field commit_id="<HEAD_SHA>" \
+  --field event="COMMENT" \
+  --field body="## Code Review — by Claude
+  ...overall summary...
+  🤖 *Made by Claude (via Claude Code)*" \
+  --field "comments[][path]=path/to/file.py" \
+  --field "comments[][line]=<line_number>" \
+  --field "comments[][body]=**Severity: issue description**
+  ...details...
+  🤖 *Made by Claude (via Claude Code)*"
 ```
 
-Or add inline comments on specific lines via GitHub web UI or API.
+**Rules:**
+- Always use `event="COMMENT"` — GitHub does not allow `REQUEST_CHANGES` on your own PRs
+- Every comment (overall body and each inline comment) must end with `🤖 *Made by Claude (via Claude Code)*` to identify the author
+- Prefer inline comments on specific lines over generic PR-level comments
+- Post inline comments alongside the overall review in a single API call (use multiple `--field "comments[]..."` entries)
 
 ### 5. Severity handling
 - **Critical**: Must fix before merge
 - **Important**: Fix before proceeding
 - **Minor**: Note for later; optional to fix
+
+### 6. Resolving PR comments
+When addressing review feedback:
+- **Commit each change separately** — one logical fix per commit (e.g. `fix: add rate limiting to resolve_image_url`)
+- **Push after all changes** — push the branch when done
+- **Resolve all comments** — mark each PR comment as resolved on GitHub
+- **Reply when needed** — if a resolution is not valid or needs more explanation, reply to the comment with context
+- **Reply identifier** — always end replies with `🤖 *Made by Claude (via Claude Code)*` to identify the author
 
 ## Key Design Decisions
 

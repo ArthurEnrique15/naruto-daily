@@ -262,11 +262,10 @@ def parse_character(
     if status is None:
         return None, "missing_data"
 
-    debut_arc = _extract_debut_arc(params)
+    debut_arc = _extract_debut_arc(params, arcs_data)
     if not debut_arc:
         return None, "missing_data"
 
-    canon_arcs = api.load_canon_arcs()
     if debut_arc not in canon_arcs:
         return None, "filler"
 
