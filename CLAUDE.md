@@ -68,6 +68,10 @@ cd scraper && python main.py --dry-run # Test without writing files
 npm run validate-data  # Validate characters.json against schema
 ```
 
+## Plans
+
+Whenever the user asks to create a plan, create a `.md` file for it in `docs/plans/` following the naming convention `YYYY-MM-DD-<feature-name>.md`. This is the default path for all implementation plans.
+
 ## Conventions
 
 ### TypeScript
