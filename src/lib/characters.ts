@@ -14,7 +14,7 @@ export function getAllCharacters(): Character[] {
 
 export function getPaginatedCharacters(
   page: number,
-  pageSize: number = 20
+  pageSize: number = 12
 ): { characters: Character[]; total: number; totalPages: number } {
   const all = getAllCharacters();
   const total = all.length;
