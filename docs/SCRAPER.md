@@ -23,6 +23,11 @@ Boruto, movie-only, and filler arcs are excluded by design. The `series` field i
 enforces this: the loader aborts with a `ValueError` if any canonical arc has a `series` value
 other than `"naruto"` or `"shippuden"`.
 
+Two complementary filters prevent Boruto characters from leaking in:
+
+- **Boruto string check**: If the `manga_debut` infobox field contains `"Boruto"` (case-insensitive), the character is rejected immediately before any chapter number lookup. This prevents false positives where a Boruto chapter number (e.g. `"56 (Boruto)"`) coincidentally falls within the Naruto chapter range and would otherwise map to a canonical Naruto arc.
+- **Chapter-to-arc lookup**: Even without the string qualifier, every chapter number must map to a canonical arc in `canon-arcs.json` to pass.
+
 ## Flow
 
 ```
