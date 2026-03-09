@@ -114,7 +114,7 @@ python main.py --validate-only
 ### Output
 
 - Writes `../data/characters.json` relative to `scraper/`
-- Prints a summary: total fetched, skipped (filler), skipped (missing data), written
+- Prints a summary: total fetched, skipped (boruto), skipped (filler), skipped (missing data), written
 - Exits with code `0` on success, `1` on critical error
 
 ## Dependencies

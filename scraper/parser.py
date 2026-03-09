@@ -5,6 +5,8 @@ from typing import Any
 import api
 import constants
 
+_BORUTO_SENTINEL = "__boruto__"
+
 
 def _parse_infobox_params(wikitext: str) -> dict[str, str]:
     params: dict[str, str] = {}
@@ -211,7 +213,7 @@ def _extract_debut_arc(params: dict[str, str], arcs_data: list[dict]) -> str | N
         if key in params:
             val = params[key].strip()
             if "boruto" in val.lower():
-                return "__boruto__"
+                return _BORUTO_SENTINEL
             match = re.search(r"\d+", val)
             if match:
                 chapter = int(match.group())
@@ -268,7 +270,7 @@ def parse_character(
         return None, "missing_data"
 
     debut_arc = _extract_debut_arc(params, arcs_data)
-    if debut_arc == "__boruto__":
+    if debut_arc == _BORUTO_SENTINEL:
         return None, "boruto"
     if not debut_arc:
         return None, "missing_data"
