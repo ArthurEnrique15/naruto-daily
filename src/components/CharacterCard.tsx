@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Character } from '@/types/character';
@@ -12,12 +11,12 @@ export function CharacterCard({ character }: CharacterCardProps) {
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-2">
         <div className="relative h-24 w-24 overflow-hidden rounded-full border">
-          <Image
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src={character.imageUrl}
             alt={character.name}
-            fill
-            className="object-cover"
-            unoptimized
+            className="h-full w-full object-cover"
+            referrerPolicy="no-referrer"
           />
         </div>
         <CardTitle className="text-center text-sm">{character.name}</CardTitle>
