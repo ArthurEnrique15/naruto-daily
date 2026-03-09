@@ -210,6 +210,8 @@ def _extract_debut_arc(params: dict[str, str], arcs_data: list[dict]) -> str | N
     for key in ("manga_debut", "mangadebut", "debut_manga", "debutmanga"):
         if key in params:
             val = params[key].strip()
+            if "boruto" in val.lower():
+                return "__boruto__"
             match = re.search(r"\d+", val)
             if match:
                 chapter = int(match.group())
@@ -266,6 +268,8 @@ def parse_character(
         return None, "missing_data"
 
     debut_arc = _extract_debut_arc(params, arcs_data)
+    if debut_arc == "__boruto__":
+        return None, "boruto"
     if not debut_arc:
         return None, "missing_data"
 
