@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Character } from '@/types/character';
 
@@ -19,7 +19,7 @@ export function CharacterCard({ character }: CharacterCardProps) {
             referrerPolicy="no-referrer"
           />
         </div>
-        <CardTitle className="text-center text-sm">{character.name}</CardTitle>
+        <h2 className="text-center text-sm font-semibold leading-none tracking-tight">{character.name}</h2>
       </CardHeader>
       <CardContent className="flex flex-col gap-2 text-xs">
         <Row label="Village" values={character.village} />
