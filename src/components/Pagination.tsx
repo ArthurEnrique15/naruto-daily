@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+import { buttonVariants } from '@/components/ui/button-variants';
+import { cn } from '@/lib/utils';
 
 interface PaginationProps {
   currentPage: number;
@@ -14,11 +15,16 @@ export function Pagination({ currentPage, totalPages, basePath }: PaginationProp
   return (
     <div className="flex items-center gap-4">
       {currentPage > 1 ? (
-        <Button asChild variant="outline" size="sm">
-          <Link href={`${basePath}?page=${prev}`}>← Previous</Link>
-        </Button>
+        <Link
+          href={`${basePath}?page=${prev}`}
+          className={cn(buttonVariants({ variant: 'outline', size: 'sm' }))}
+        >
+          ← Previous
+        </Link>
       ) : (
-        <Button variant="outline" size="sm" disabled>← Previous</Button>
+        <span className={cn(buttonVariants({ variant: 'outline', size: 'sm' }), 'pointer-events-none opacity-50')}>
+          ← Previous
+        </span>
       )}
 
       <span className="text-sm text-muted-foreground">
@@ -26,11 +32,16 @@ export function Pagination({ currentPage, totalPages, basePath }: PaginationProp
       </span>
 
       {currentPage < totalPages ? (
-        <Button asChild variant="outline" size="sm">
-          <Link href={`${basePath}?page=${next}`}>Next →</Link>
-        </Button>
+        <Link
+          href={`${basePath}?page=${next}`}
+          className={cn(buttonVariants({ variant: 'outline', size: 'sm' }))}
+        >
+          Next →
+        </Link>
       ) : (
-        <Button variant="outline" size="sm" disabled>Next →</Button>
+        <span className={cn(buttonVariants({ variant: 'outline', size: 'sm' }), 'pointer-events-none opacity-50')}>
+          Next →
+        </span>
       )}
     </div>
   );
