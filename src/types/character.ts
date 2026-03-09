@@ -1,6 +1,6 @@
-export type Rank = 'Academy Student' | 'Genin' | 'Chunin' | 'Special Jonin' | 'Jonin' | 'ANBU' | 'Kage' | 'Unknown';
+export type Rank = 'Academy Student' | 'Genin' | 'Chunin' | 'Jonin' | 'Anbu' | 'Kage' | 'N/A';
 
-export type Status = 'Alive' | 'Deceased' | 'Incapacitated' | 'Unknown';
+export type Status = 'Alive' | 'Deceased';
 
 export type Gender = 'Male' | 'Female' | 'Unknown';
 
