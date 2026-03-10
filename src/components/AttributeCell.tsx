@@ -29,7 +29,8 @@ export default function AttributeCell({ label, result }: AttributeCellProps) {
             return (
               <span
                 key={nature}
-                className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold text-white ${icon.className}`}
+                className={`inline-flex items-center justify-center w-7 h-7 text-xs font-bold text-white ${icon.className}`}
+                style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
                 title={nature}
               >
                 {icon.symbol}
@@ -40,11 +41,16 @@ export default function AttributeCell({ label, result }: AttributeCellProps) {
       )
     }
   } else if (isDebutArc && result.feedback === 'wrong' && result.direction) {
-    const arrow = result.direction === 'before' ? ' ↑' : ' ↓'
+    const arrowChar = result.direction === 'before' ? '↑' : '↓'
     const raw = Array.isArray(result.value)
       ? result.value.length > 0 ? result.value.join(', ') : '—'
       : result.value || '—'
-    displayValue = raw + arrow
+    displayValue = (
+      <div className="relative flex items-center justify-center w-full">
+        <span className="absolute text-5xl opacity-20 font-black select-none">{arrowChar}</span>
+        <span className="relative text-xs font-semibold text-center leading-tight break-words w-full">{raw}</span>
+      </div>
+    )
   } else {
     displayValue = Array.isArray(result.value)
       ? result.value.length > 0 ? result.value.join(', ') : '—'
@@ -52,9 +58,8 @@ export default function AttributeCell({ label, result }: AttributeCellProps) {
   }
 
   return (
-    <div className={`flex flex-col items-center justify-center w-28 h-16 rounded p-1 ${feedbackColors[result.feedback]}`}>
-      <span className="text-[10px] uppercase tracking-wide opacity-75">{label}</span>
-      <span className="text-xs font-semibold text-center leading-tight">{displayValue}</span>
+    <div className={`flex flex-col items-center justify-center w-24 min-h-16 rounded p-2 whitespace-normal ${feedbackColors[result.feedback]}`}>
+      <span className="text-xs font-semibold text-center leading-tight break-words w-full">{displayValue}</span>
     </div>
   )
 }

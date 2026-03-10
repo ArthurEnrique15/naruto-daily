@@ -1,5 +1,6 @@
 import { GuessResult } from '@/types/game'
 import AttributeCell from '@/components/AttributeCell'
+import CharacterAvatar from '@/components/CharacterAvatar'
 
 interface GuessRowProps {
   result: GuessResult
@@ -21,26 +22,25 @@ const ATTRIBUTES: { label: string; key: keyof Omit<GuessResult, 'character'> }[]
 export default function GuessRow({ result, isNew }: GuessRowProps) {
   return (
     <tr>
-      <td className="p-1 whitespace-nowrap">
+      <td className="p-1">
         <div
-          className={`flex items-center gap-2 ${isNew ? 'animate-reveal' : ''}`}
+          className={`relative group flex items-center justify-center ${isNew ? 'animate-reveal' : ''}`}
           style={isNew ? { animationDelay: '0ms' } : undefined}
         >
-          {result.character.imageUrl && (
-            <img
-              src={result.character.imageUrl}
-              alt={result.character.name}
-              className="w-10 h-10 rounded-full object-cover shrink-0"
-            />
-          )}
-          <span className="font-bold text-sm">{result.character.name}</span>
+          <CharacterAvatar imageUrl={result.character.imageUrl} name={result.character.name} className="w-14 h-14" />
+          {/* Styled tooltip */}
+          <div className="absolute bottom-full mb-1 left-1/2 -translate-x-1/2 z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150">
+            <div className="bg-popover text-popover-foreground text-xs font-semibold px-2 py-1 rounded shadow-lg border whitespace-nowrap">
+              {result.character.name}
+            </div>
+          </div>
         </div>
       </td>
       {ATTRIBUTES.map(({ label, key }, index) => (
         <td
           key={key}
           className={`p-1 whitespace-nowrap ${isNew ? 'animate-reveal' : ''}`}
-          style={isNew ? { animationDelay: `${(index + 1) * 120}ms` } : undefined}
+          style={isNew ? { animationDelay: `${(index + 1) * 200}ms` } : undefined}
         >
           <AttributeCell label={label} result={result[key]} />
         </td>
