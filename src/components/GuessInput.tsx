@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { Character } from '@/types/character'
+import CharacterAvatar from '@/components/CharacterAvatar'
 
 interface GuessInputProps {
   characters: Character[]
@@ -67,9 +68,7 @@ export default function GuessInput({ characters, guessedIds, onGuess, disabled }
                 onClick={() => handleSelect(char)}
                 className={`flex items-center gap-2 px-3 py-2 text-sm cursor-pointer hover:bg-accent ${alreadyGuessed ? 'opacity-40 line-through cursor-default' : ''}`}
               >
-                {char.imageUrl && (
-                  <img src={char.imageUrl} alt={char.name} className="w-6 h-6 rounded-full object-cover shrink-0" />
-                )}
+                <CharacterAvatar imageUrl={char.imageUrl} name={char.name} className="w-6 h-6" />
                 {char.name}
               </li>
             )

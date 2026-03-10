@@ -23,6 +23,7 @@ export default function CharacterAvatar({ imageUrl, name, className = '' }: Char
       src={imageUrl}
       alt={name}
       onError={() => setFailed(true)}
+      referrerPolicy="no-referrer"
       className={`rounded-md object-cover shrink-0 ${className}`}
     />
   )
