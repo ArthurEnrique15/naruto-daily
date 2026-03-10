@@ -30,6 +30,7 @@ def run_full_scrape(dry_run: bool, limit: int | None = None) -> int:
 
     characters: list[dict] = []
     seen_ids: set[str] = set()
+    skipped_boruto = 0
     skipped_filler = 0
     skipped_missing = 0
 
@@ -43,6 +44,10 @@ def run_full_scrape(dry_run: bool, limit: int | None = None) -> int:
                 continue
 
             char, skip_reason = parser.parse_character(wikitext, title, canon_arcs, arcs_data)
+            if skip_reason == "boruto":
+                print(f"  [{i + 1}/{len(titles)}] {title}: skipped (boruto)")
+                skipped_boruto += 1
+                continue
             if skip_reason == "filler":
                 print(f"  [{i + 1}/{len(titles)}] {title}: skipped (filler)")
                 skipped_filler += 1
@@ -66,6 +71,7 @@ def run_full_scrape(dry_run: bool, limit: int | None = None) -> int:
 
     print(f"\nSummary:")
     print(f"  Fetched: {len(titles)}")
+    print(f"  Skipped (boruto): {skipped_boruto}")
     print(f"  Skipped (filler): {skipped_filler}")
     print(f"  Skipped (missing data): {skipped_missing}")
     print(f"  Written: {len(characters)}")
