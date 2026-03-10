@@ -2,7 +2,7 @@ import { Character } from '@/types/character'
 import { AttributeResult, Feedback, GuessResult } from '@/types/game'
 
 function compareSet(guess: string[], target: string[]): Feedback {
-  if (guess.length === 0 && target.length === 0) return 'wrong'
+  if (guess.length === 0 && target.length === 0) return 'correct'
   const gSorted = [...guess].sort()
   const tSorted = [...target].sort()
   if (JSON.stringify(gSorted) === JSON.stringify(tSorted)) return 'correct'

@@ -27,7 +27,7 @@ export default function GuessRow({ result, isNew }: GuessRowProps) {
           className={`relative group flex items-center justify-center ${isNew ? 'animate-reveal' : ''}`}
           style={isNew ? { animationDelay: '0ms' } : undefined}
         >
-          <CharacterAvatar imageUrl={result.character.imageUrl} name={result.character.name} className="w-14 h-14" />
+          <CharacterAvatar imageUrl={result.character.imageUrl} name={result.character.name} className="w-20 h-20" />
           {/* Styled tooltip */}
           <div className="absolute bottom-full mb-1 left-1/2 -translate-x-1/2 z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150">
             <div className="bg-popover text-popover-foreground text-xs font-semibold px-2 py-1 rounded shadow-lg border whitespace-nowrap">

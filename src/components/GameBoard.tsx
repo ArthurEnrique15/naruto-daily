@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Character } from '@/types/character'
 import { GuessResult } from '@/types/game'
 import { getDailyCharacter, getRandomCharacter, getTodayDateString } from '@/lib/daily'
@@ -28,12 +28,16 @@ function restoreGuesses(characters: Character[], guessIds: string[]): GuessResul
 
 export default function GameBoard({ characters, isDev }: GameBoardProps) {
   const [target, setTarget] = useState<Character>(() => getDailyCharacter(characters))
-  const [guesses, setGuesses] = useState<GuessResult[]>(() => {
+  const [guesses, setGuesses] = useState<GuessResult[]>([])
+  const [solved, setSolved] = useState<boolean>(false)
+
+  useEffect(() => {
     const state = loadGameState()
-    if (!state) return []
-    return restoreGuesses(characters, state.guessIds)
-  })
-  const [solved, setSolved] = useState<boolean>(() => loadGameState()?.solved ?? false)
+    if (state) {
+      setGuesses(restoreGuesses(characters, state.guessIds))
+      setSolved(state.solved ?? false)
+    }
+  }, [])
 
   function handleGuess(char: Character) {
     const result = compareCharacters(char, target, arcNames)
@@ -67,7 +71,7 @@ export default function GameBoard({ characters, isDev }: GameBoardProps) {
   const plural = guessCount === 1 ? '' : 'es'
 
   return (
-    <div className="flex flex-col items-center gap-4 w-full max-w-5xl">
+    <div className="flex flex-col items-center gap-6 w-full max-w-7xl">
       {isDev && (
         <DevBanner
           currentCharacter={target}
@@ -80,15 +84,17 @@ export default function GameBoard({ characters, isDev }: GameBoardProps) {
           You got it in {guessCount} guess{plural}!
         </p>
       )}
-      <GuessInput
-        characters={characters}
-        guessedIds={guessedIds}
-        onGuess={handleGuess}
-        disabled={solved}
-      />
-      {guesses.length > 0 && (
-        <GuessTable guesses={guesses.slice().reverse()} />
-      )}
+      <div className="w-full bg-card border border-border rounded-xl shadow-sm p-6 flex flex-col gap-6">
+        <GuessInput
+          characters={characters}
+          guessedIds={guessedIds}
+          onGuess={handleGuess}
+          disabled={solved}
+        />
+        {guesses.length > 0 && (
+          <GuessTable guesses={guesses.slice().reverse()} />
+        )}
+      </div>
     </div>
   )
 }
