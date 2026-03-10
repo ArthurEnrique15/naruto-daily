@@ -5,6 +5,7 @@ export type Feedback = 'correct' | 'partial' | 'wrong'
 export interface AttributeResult {
   feedback: Feedback
   value: string | string[]
+  direction?: 'before' | 'after'
 }
 
 export interface GuessResult {

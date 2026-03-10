@@ -65,8 +65,11 @@ export default function GuessInput({ characters, guessedIds, onGuess, disabled }
               <li
                 key={char.id}
                 onClick={() => handleSelect(char)}
-                className={`px-3 py-2 text-sm cursor-pointer hover:bg-accent ${alreadyGuessed ? 'opacity-40 line-through cursor-default' : ''}`}
+                className={`flex items-center gap-2 px-3 py-2 text-sm cursor-pointer hover:bg-accent ${alreadyGuessed ? 'opacity-40 line-through cursor-default' : ''}`}
               >
+                {char.imageUrl && (
+                  <img src={char.imageUrl} alt={char.name} className="w-6 h-6 rounded-full object-cover shrink-0" />
+                )}
                 {char.name}
               </li>
             )

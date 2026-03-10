@@ -116,6 +116,15 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+@keyframes reveal {
+  0%   { transform: rotateX(90deg) scale(0.85); opacity: 0; }
+  100% { transform: rotateX(0deg) scale(1);     opacity: 1; }
+}
+
+.animate-reveal {
+  animation: reveal 0.35s ease-out both;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

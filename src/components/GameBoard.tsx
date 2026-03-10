@@ -5,9 +5,10 @@ import { Character } from '@/types/character'
 import { GuessResult } from '@/types/game'
 import { getDailyCharacter, getRandomCharacter, getTodayDateString } from '@/lib/daily'
 import { compareCharacters } from '@/lib/game'
+import { getArcNames } from '@/lib/arcs'
 import { loadGameState, saveGameState, clearGameState } from '@/lib/storage'
 import GuessInput from '@/components/GuessInput'
-import GuessRow from '@/components/GuessRow'
+import GuessTable from '@/components/GuessTable'
 import DevBanner from '@/components/DevBanner'
 
 interface GameBoardProps {
@@ -15,12 +16,14 @@ interface GameBoardProps {
   isDev: boolean
 }
 
+const arcNames = getArcNames()
+
 function restoreGuesses(characters: Character[], guessIds: string[]): GuessResult[] {
   const dailyTarget = getDailyCharacter(characters)
   return guessIds
     .map((id) => characters.find((c) => c.id === id))
     .filter((c): c is Character => c !== undefined)
-    .map((c) => compareCharacters(c, dailyTarget))
+    .map((c) => compareCharacters(c, dailyTarget, arcNames))
 }
 
 export default function GameBoard({ characters, isDev }: GameBoardProps) {
@@ -33,7 +36,7 @@ export default function GameBoard({ characters, isDev }: GameBoardProps) {
   const [solved, setSolved] = useState<boolean>(() => loadGameState()?.solved ?? false)
 
   function handleGuess(char: Character) {
-    const result = compareCharacters(char, target)
+    const result = compareCharacters(char, target, arcNames)
     const newGuesses = [...guesses, result]
     const nowSolved = char.id === target.id
     setGuesses(newGuesses)
@@ -64,7 +67,7 @@ export default function GameBoard({ characters, isDev }: GameBoardProps) {
   const plural = guessCount === 1 ? '' : 'es'
 
   return (
-    <div className="flex flex-col items-center gap-4 w-full max-w-4xl">
+    <div className="flex flex-col items-center gap-4 w-full max-w-5xl">
       {isDev && (
         <DevBanner
           currentCharacter={target}
@@ -83,11 +86,9 @@ export default function GameBoard({ characters, isDev }: GameBoardProps) {
         onGuess={handleGuess}
         disabled={solved}
       />
-      <div className="flex flex-col gap-2 w-full overflow-x-auto">
-        {guesses.slice().reverse().map((result, i) => (
-          <GuessRow key={`${result.character.id}-${i}`} result={result} />
-        ))}
-      </div>
+      {guesses.length > 0 && (
+        <GuessTable guesses={guesses.slice().reverse()} />
+      )}
     </div>
   )
 }

@@ -22,7 +22,20 @@ function exactResult(guess: string, target: string): AttributeResult {
   return { feedback: compareExact(guess, target), value: guess }
 }
 
-export function compareCharacters(guess: Character, target: Character): GuessResult {
+function arcResult(guess: string, target: string, arcNames: string[]): AttributeResult {
+  const feedback = compareExact(guess, target)
+  if (feedback === 'wrong') {
+    const guessIdx = arcNames.indexOf(guess)
+    const targetIdx = arcNames.indexOf(target)
+    if (guessIdx !== -1 && targetIdx !== -1) {
+      const direction: 'before' | 'after' = targetIdx < guessIdx ? 'before' : 'after'
+      return { feedback, value: guess, direction }
+    }
+  }
+  return { feedback, value: guess }
+}
+
+export function compareCharacters(guess: Character, target: Character, arcNames: string[] = []): GuessResult {
   return {
     character: guess,
     village: setResult(guess.village, target.village),
@@ -30,7 +43,7 @@ export function compareCharacters(guess: Character, target: Character): GuessRes
     species: setResult(guess.species, target.species),
     rank: exactResult(guess.rank, target.rank),
     status: exactResult(guess.status, target.status),
-    debutArc: exactResult(guess.debutArc, target.debutArc),
+    debutArc: arcResult(guess.debutArc, target.debutArc, arcNames),
     natureTypes: setResult(guess.natureTypes, target.natureTypes),
     kekkeiGenkai: setResult(guess.kekkeiGenkai, target.kekkeiGenkai),
     jutsuTypes: setResult(guess.jutsuTypes, target.jutsuTypes),
