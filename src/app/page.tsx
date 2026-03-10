@@ -1,8 +1,8 @@
-import { getAllCharacters } from '@/lib/characters'
+import { getActiveCharacters } from '@/lib/characters'
 import GameBoard from '@/components/GameBoard'
 
 export default function Home() {
-  const characters = getAllCharacters()
+  const characters = getActiveCharacters()
   const isDev = process.env.NODE_ENV === 'development'
   return (
     <main className="min-h-screen flex flex-col items-center gap-8 p-8">
