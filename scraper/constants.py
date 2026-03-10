@@ -136,19 +136,37 @@ GENDER_MAP = {
 SPECIES_VALUES = frozenset({
     "Human", "Jinchuriki", "Clone", "Bijuu", "Otsutsuki",
     "Cursed Seal User", "Puppet",
+    "Toad", "Snake", "Slug", "Monkey", "Ninken", "Chameleon", "Salamander",
+    "Zetsu",
 })
 
 SPECIES_MAP = {
+    # Human
     "human": "Human",
+    "mutated human": "Zetsu",
+    "artificial human": "Zetsu",
+    # Jinchuriki
     "jinchūriki": "Jinchuriki",
     "jinchuriki": "Jinchuriki",
+    # Clone / construct
     "clone": "Clone",
+    # Tailed beasts
     "bijuu": "Bijuu",
     "tailed beast": "Bijuu",
+    # Otsutsuki
     "ōtsutsuki": "Otsutsuki",
     "otsutsuki": "Otsutsuki",
+    # Augmented humans
     "cursed seal user": "Cursed Seal User",
     "puppet": "Puppet",
+    # Animal summons
+    "toad": "Toad",
+    "snake": "Snake",
+    "slug": "Slug",
+    "monkey": "Monkey",
+    "ninken": "Ninken",
+    "chameleon": "Chameleon",
+    "japanese giant salamander": "Salamander",
 }
 
 VILLAGE_ALIASES = {

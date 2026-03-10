@@ -243,7 +243,7 @@ def _extract_species(params: dict[str, str], classification: str) -> list[str]:
                 sp = constants.SPECIES_MAP.get(p_clean)
                 if sp and sp not in result:
                     result.add(sp)
-    if "jinch" in classification.lower() and "Human" not in result:
+    if "jinch" in classification.lower():
         result.add("Jinchuriki")
     if not result:
         result.add("Human")

@@ -41,7 +41,9 @@ type Status = 'Alive' | 'Deceased'
 type Gender = 'Male' | 'Female' | 'Unknown'
 
 type Species = 'Human' | 'Jinchuriki' | 'Clone' | 'Bijuu' | 'Otsutsuki' |
-               'Cursed Seal User' | 'Puppet'
+               'Cursed Seal User' | 'Puppet' |
+               'Toad' | 'Snake' | 'Slug' | 'Monkey' | 'Ninken' |
+               'Chameleon' | 'Salamander' | 'Zetsu'
 ```
 
 ## Example Record
@@ -133,6 +135,7 @@ type Species = 'Human' | 'Jinchuriki' | 'Clone' | 'Bijuu' | 'Otsutsuki' |
 ### `species` (array)
 - Multiple tags allowed (e.g. a Jinchuriki is `["Human", "Jinchuriki"]`)
 - Sorted alphabetically
+- Animal summon species (Toad, Snake, Slug, Monkey, Ninken, Chameleon, Salamander) apply to summon characters. Zetsu applies to White Zetsu, Black Zetsu, and variants.
 
 ## canon-arcs.json
 
