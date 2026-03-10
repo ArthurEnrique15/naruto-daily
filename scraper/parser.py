@@ -209,6 +209,8 @@ def _extract_status(params: dict[str, str]) -> str | None:
 
 
 def _extract_debut_arc(params: dict[str, str], arcs_data: list[dict]) -> str | None:
+    if params.get("boruto", "").strip().lower() == "yes":
+        return _BORUTO_SENTINEL
     for key in ("manga_debut", "mangadebut", "debut_manga", "debutmanga"):
         if key in params:
             val = params[key].strip()
