@@ -32,8 +32,9 @@ export async function restoreCharacter(id: string): Promise<void> {
   const index = characters.findIndex((c) => c.id === id);
   if (index === -1) return;
 
-  const { deletedAt: _, ...rest } = characters[index];
-  characters[index] = rest as Character;
+  const updated = { ...characters[index] };
+  delete updated.deletedAt;
+  characters[index] = updated;
   writeCharacters(characters);
   clearCharactersCache();
   revalidatePath('/characters');
