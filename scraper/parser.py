@@ -231,20 +231,20 @@ def _extract_gender(params: dict[str, str]) -> str:
     return "Unknown"
 
 
-def _extract_species(params: dict[str, str], classification: str) -> list[str]:
+def _extract_species(params: dict[str, str]) -> list[str]:
     result = set()
-    for key in ("species", "classification"):
-        if key in params:
-            raw = params[key]
-            raw = re.sub(r"~~[^,]+", "", raw)
-            parts = [p.strip().lower() for p in re.split(r"[,~]", raw) if p.strip()]
-            for p in parts:
-                p_clean = re.sub(r"\[\[[^\]]+\]\]", "", p).strip().lower()
-                sp = constants.SPECIES_MAP.get(p_clean)
-                if sp and sp not in result:
-                    result.add(sp)
-    if "jinch" in classification.lower():
-        result.add("Jinchuriki")
+    raw = params.get("species", "")
+    if raw:
+        raw = re.sub(r"~~[^,]+", "", raw)
+        parts = [p.strip() for p in re.split(r"[,~]", raw) if p.strip()]
+        for p in parts:
+            p_clean = re.sub(r"\[\[([^\]|]+)(?:\|[^\]]+)?\]\]", r"\1", p).strip()
+            p_lower = p_clean.lower()
+            sp = constants.SPECIES_MAP.get(p_lower)
+            if sp is None and p_clean:
+                sp = p_clean.title()
+            if sp:
+                result.add(sp)
     if not result:
         result.add("Human")
     return sorted(result)
@@ -294,7 +294,7 @@ def parse_character(
         "status": status,
         "debutArc": debut_arc,
         "gender": _extract_gender(params),
-        "species": _extract_species(params, classification),
+        "species": _extract_species(params),
     }
 
     return character, None
