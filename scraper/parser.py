@@ -186,21 +186,10 @@ def _extract_nature_types(params: dict[str, str]) -> list[str]:
     return []
 
 
-def _extract_jutsu_types(params: dict[str, str], classification: str) -> list[str]:
-    result = set()
-    jutsu_keys = ("jutsu", "jutsu_list", "jutsulist", "techniques")
-    text_parts = [params[k] for k in jutsu_keys if k in params and params[k]]
-    combined = (" ".join(text_parts) if text_parts else " ".join(params.values())).lower()
-    for pattern, jtype in constants.JUTSU_PATTERNS:
-        if pattern in combined and jtype not in result:
-            result.add(jtype)
-    if "sage" in classification.lower() or "senjutsu" in combined:
-        result.add("Senjutsu")
-    if "jinch" in classification.lower():
-        result.add("Ninjutsu")
-    if not result:
-        result.add("Ninjutsu")
-    return sorted(result)
+def _extract_jutsu_types(page_title: str, slug: str, overrides: dict[str, list[str]]) -> list[str]:
+    if slug in overrides:
+        return sorted(overrides[slug])
+    return api.fetch_jutsu_types_for_character(page_title)
 
 
 def _extract_status(params: dict[str, str]) -> str | None:
@@ -258,6 +247,7 @@ def parse_character(
     page_title: str,
     canon_arcs: set[str],
     arcs_data: list[dict],
+    jutsu_overrides: dict[str, list[str]],
 ) -> tuple[dict[str, Any] | None, str | None]:
     params = _parse_infobox_params(wikitext)
     if not params:
@@ -283,8 +273,6 @@ def parse_character(
     if debut_arc not in canon_arcs:
         return None, "filler"
 
-    classification = params.get("classification", "")
-
     character = {
         "id": _slug(page_title),
         "name": name,
@@ -293,7 +281,7 @@ def parse_character(
         "rank": _extract_rank(params),
         "kekkeiGenkai": _extract_kekkei_genkai(params),
         "natureTypes": _extract_nature_types(params),
-        "jutsuTypes": _extract_jutsu_types(params, classification),
+        "jutsuTypes": _extract_jutsu_types(page_title, _slug(page_title), jutsu_overrides),
         "status": status,
         "debutArc": debut_arc,
         "gender": _extract_gender(params),

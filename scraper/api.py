@@ -122,6 +122,34 @@ def resolve_image_url(image_name: str) -> str:
     return url if url else "/placeholder.png"
 
 
+def fetch_jutsu_types_for_character(character_name: str) -> list[str]:
+    """
+    Query Narutopedia SMW for all jutsu a character uses and return
+    the set of matching JUTSU_TYPES values (sorted), excluding cooperation techniques.
+    """
+    import constants
+    time.sleep(RATE_LIMIT_SECONDS)
+    session = _get_session()
+    resp = session.get(API_URL, params={
+        "action": "ask",
+        "query": f"[[User_tech.Page::{character_name}]]|?Jutsu_classification|limit=500",
+        "format": "json",
+    })
+    resp.raise_for_status()
+    results = resp.json().get("query", {}).get("results", {})
+    types: set[str] = set()
+    if isinstance(results, dict):
+        for v in results.values():
+            classifs = [c.get("fulltext", "") for c in v.get("printouts", {}).get("Jutsu classification", [])]
+            if "Cooperation Ninjutsu" in classifs:
+                continue
+            for classif in classifs:
+                mapped = constants.JUTSU_CLASSIFICATION_MAP.get(classif)
+                if mapped:
+                    types.add(mapped)
+    return sorted(types)
+
+
 def load_canon_arcs_data() -> list[dict]:
     return _load_canon_arcs_data()
 
