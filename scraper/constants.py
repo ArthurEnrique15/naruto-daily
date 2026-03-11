@@ -47,6 +47,9 @@ KKG_TO_CATEGORY = {
     "jōgan": "Dojutsu",
     "scientific ninja tool": "Body Enhancement",
     "cursed seal": "Body Enhancement",
+    "shikotsumyaku": "Body Enhancement",
+    "jūgo's clan's kekkei genkai": "Body Enhancement",
+    "sakon and ukon's kekkei genkai": "Body Enhancement",
 }
 
 NATURE_TYPES = frozenset({
