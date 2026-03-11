@@ -93,6 +93,10 @@ def run_single_character(name: str) -> int:
         print(f"No infobox found for '{name}'", file=sys.stderr)
         return 1
 
+    print("=== RAW WIKI INFOBOX ===")
+    print(wikitext)
+    print("=== PARSED CHARACTER ===")
+
     char, skip_reason = parser.parse_character(wikitext, name, canon_arcs, arcs_data)
     if char:
         print(json.dumps(char, indent=2))
