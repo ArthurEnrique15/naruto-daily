@@ -11,12 +11,13 @@ interface PaginationProps {
 export function Pagination({ currentPage, totalPages, basePath }: PaginationProps) {
   const prev = currentPage - 1;
   const next = currentPage + 1;
+  const sep = basePath.includes('?') ? '&' : '?';
 
   return (
     <div className="flex items-center gap-4">
       {currentPage > 1 ? (
         <Link
-          href={`${basePath}?page=${prev}`}
+          href={`${basePath}${sep}page=${prev}`}
           className={cn(buttonVariants({ variant: 'outline', size: 'sm' }))}
         >
           ← Previous
@@ -33,7 +34,7 @@ export function Pagination({ currentPage, totalPages, basePath }: PaginationProp
 
       {currentPage < totalPages ? (
         <Link
-          href={`${basePath}?page=${next}`}
+          href={`${basePath}${sep}page=${next}`}
           className={cn(buttonVariants({ variant: 'outline', size: 'sm' }))}
         >
           Next →

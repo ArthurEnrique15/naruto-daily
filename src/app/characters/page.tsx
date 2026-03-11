@@ -1,6 +1,7 @@
 import { getPaginatedCharacters } from '@/lib/characters';
 import { CharacterCard } from '@/components/CharacterCard';
 import { CharacterActions } from '@/components/CharacterActions';
+import { Pagination } from '@/components/Pagination';
 
 interface Props {
   searchParams: Promise<{ page?: string; tab?: string }>;
@@ -60,24 +61,9 @@ export default async function CharactersPage({ searchParams }: Props) {
         </div>
       )}
 
-      {/* Pagination */}
-      {totalPages > 1 && (
-        <div className="flex justify-center gap-2 mt-8">
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-            <a
-              key={p}
-              href={`/characters?tab=${tab}&page=${p}`}
-              className={`px-3 py-1 rounded border text-sm ${
-                p === page
-                  ? 'bg-primary text-primary-foreground border-primary'
-                  : 'bg-background border-border hover:bg-muted'
-              }`}
-            >
-              {p}
-            </a>
-          ))}
-        </div>
-      )}
+      <div className="mt-8 flex justify-center">
+        <Pagination currentPage={page} totalPages={totalPages} basePath={`/characters?tab=${tab}`} />
+      </div>
     </main>
   );
 }
