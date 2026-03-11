@@ -17,4 +17,5 @@ export interface Character {
   debutArc: string;
   gender: Gender;
   species: string[];
+  deletedAt?: string; // ISO timestamp, set when character is soft-deleted
 }

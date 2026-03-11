@@ -28,15 +28,9 @@ export function CharacterCard({ character }: CharacterCardProps) {
         <Row label="Status" values={[character.status]} />
         <Row label="Debut Arc" values={[character.debutArc]} />
         <Row label="Species" values={character.species} />
-        {character.natureTypes.length > 0 && (
-          <Row label="Nature Types" values={character.natureTypes} />
-        )}
-        {character.kekkeiGenkai.length > 0 && (
-          <Row label="Kekkei Genkai" values={character.kekkeiGenkai} />
-        )}
-        {character.jutsuTypes.length > 0 && (
-          <Row label="Jutsu Types" values={character.jutsuTypes} />
-        )}
+        <Row label="Nature Types" values={character.natureTypes} />
+        <Row label="Kekkei Genkai" values={character.kekkeiGenkai} />
+        <Row label="Jutsu Types" values={character.jutsuTypes} />
       </CardContent>
     </Card>
   );
@@ -46,11 +40,17 @@ function Row({ label, values }: { label: string; values: string[] }) {
   return (
     <div className="flex flex-wrap items-start gap-1">
       <span className="font-semibold text-muted-foreground">{label}:</span>
-      {values.map((v) => (
-        <Badge key={v} variant="secondary" className="text-xs">
-          {v}
+      {values.length > 0 ? (
+        values.map((v) => (
+          <Badge key={v} variant="secondary" className="text-xs">
+            {v}
+          </Badge>
+        ))
+      ) : (
+        <Badge variant="secondary" className="text-xs text-muted-foreground">
+          N/A
         </Badge>
-      ))}
+      )}
     </div>
   );
 }
