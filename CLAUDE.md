@@ -70,9 +70,19 @@ cd scraper && python main.py --limit 5                                     # lim
 npm run validate-data  # Validate characters.json against schema
 ```
 
+## UI & React Best Practices
+
+When writing or reviewing React/Next.js UI code, invoke the `vercel-react-best-practices` skill before implementing. Key rules to follow:
+- Prefer Server Components; use `'use client'` only when necessary
+- Avoid hydration mismatches — never read `localStorage`/`window` in `useState` initializers; use `useEffect`
+- Load client-only state after hydration to prevent SSR/client HTML mismatch
+- Use `whitespace-normal` in nested components to override ancestor `whitespace-nowrap`
+
 ## Plans
 
 Whenever the user asks to create a plan, create a `.md` file for it in `docs/plans/` following the naming convention `YYYY-MM-DD-<feature-name>.md`. This is the default path for all implementation plans.
+
+When executing a plan, follow every step exactly as written — including the git workflow (worktree creation, branch naming, commit order, PR creation). Do not skip or reorder steps. If a step cannot be completed, stop and explain why rather than silently skipping it.
 
 **IMPORTANT for plan agents**: At the top of every plan file, include this instruction for the executing agent:
 > Before touching any files, read `CLAUDE.md` in the project root to understand conventions, constraints, and workflow rules.
@@ -90,6 +100,7 @@ Whenever the user asks to create a plan, create a `.md` file for it in `docs/pla
 - Use shadcn/ui base components (Button, Input, Badge, Dialog, etc.)
 - Prefer Server Components; use `'use client'` only when necessary
 - Component files: PascalCase (e.g., `GuessRow.tsx`)
+- Avoid nested conditionals in render logic — extract each case into a named sub-component or helper function with early returns
 
 ### Data
 - **NEVER modify `data/characters.json` manually** — regenerate via scraper
@@ -110,37 +121,14 @@ Whenever the user asks to create a plan, create a `.md` file for it in `docs/pla
 
 ## Branch & PR Workflow
 
-Every feature or change must use a dedicated branch. Follow this workflow:
+Use the **git-workflow** skill for all feature/fix work. It covers worktree creation,
+branch naming, commit conventions, push, and PR creation.
 
-### 1. Create branch
-```bash
-git checkout main
-git pull
-git checkout -b feat/web-scraper   # type/description-in-kebab-case
-```
-
-Branch naming: `type/description-in-kebab-case` — e.g. `feat/web-scraper`, `fix/seed-calculation`, `chore/update-scraper-docs`
-
-### 2. Commit by context
-Group changes logically and commit each group with a single-line conventional commit message:
-- `feat: add scraper API client`
-- `feat: add infobox parser`
-- `fix: handle nested templates in wikitext`
-- `chore: add .gitignore for Python`
-
-Use one commit per logical change.
-
-### 3. Push and create PR
-```bash
-git push -u origin feat/short-description
-gh pr create --title "feat: short description" --body "## Summary
-- Bullet 1: what changed
-- Bullet 2: what changed
-- Bullet 3: what changed"
-```
-
-### 4. Conventional commits
-Prefixes match branch types: `feat`, `fix`, `chore`, `docs`, `refactor`, `test`. Single line, imperative mood.
+Key rules:
+- Worktrees go in `worktrees/{branch-name}` inside the repo
+- Branch naming: `type/description-in-kebab-case`
+- Commits: conventional format, one per logical change
+- Always follow every step in order — do not skip
 
 **Mandatory safety rules:**
 - **NEVER touch files in the main repository root** unless explicitly instructed to work directly in the main repo
@@ -170,7 +158,9 @@ Follow the skill workflow. Provide:
 - **BASE_SHA** / **HEAD_SHA**: Commit range to review
 - **DESCRIPTION**: Brief summary
 
-### 4. Add comments to the PR
+### 4. Add comments to the PR — MANDATORY, never skip this step
+
+**After the code review subagent returns its findings, you MUST immediately post the review to the PR via `gh api`. Do not just summarize the results in the chat — post them to GitHub.**
 Use `gh api` to post a formal PR review with inline comments (not just a plain comment):
 
 ```bash
