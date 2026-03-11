@@ -1,4 +1,5 @@
 import re
+import sys
 import unicodedata
 from typing import Any
 
@@ -157,8 +158,10 @@ def _extract_kekkei_genkai(params: dict[str, str]) -> list[str]:
             result = set()
             for p in parts:
                 cat = constants.KKG_TO_CATEGORY.get(p)
-                if cat and cat not in result:
+                if cat:
                     result.add(cat)
+                else:
+                    print(f"[WARN] Unknown kekkei genkai: {p!r}", file=sys.stderr)
             if result:
                 return sorted(result)
     return []
