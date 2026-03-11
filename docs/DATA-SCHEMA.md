@@ -40,8 +40,11 @@ type Status = 'Alive' | 'Deceased'
 
 type Gender = 'Male' | 'Female' | 'Unknown'
 
-type Species = 'Human' | 'Jinchuriki' | 'Clone' | 'Bijuu' | 'Otsutsuki' |
-               'Cursed Seal User' | 'Puppet'
+// Species reflects the wiki value directly (title-cased). No canonical enum —
+// examples: 'Human' | 'Artificial Human' | 'Celestial Being' | 'Bijuu' |
+//           'Toad' | 'Snake' | 'Slug' | 'Hawk' | 'Cursed Seal User' | ...
+// Fallback: 'Human' when the wiki has no species field.
+type Species = string
 ```
 
 ## Example Record
@@ -131,8 +134,10 @@ type Species = 'Human' | 'Jinchuriki' | 'Clone' | 'Bijuu' | 'Otsutsuki' |
 - Use `"Unknown"` for non-humanoid entities (Bijuu, etc.)
 
 ### `species` (array)
+- Pass-through from wiki: values are title-cased as-is (e.g. `["Hawk"]`, `["Artificial Human"]`, `["Toad"]`). Only diacritics and a few synonyms (e.g. "tailed beast" → "Bijuu") are normalized.
 - Multiple tags allowed (e.g. a Jinchuriki is `["Human", "Jinchuriki"]`)
 - Sorted alphabetically
+- Fallback: `["Human"]` when the wiki has no species field.
 
 ## canon-arcs.json
 

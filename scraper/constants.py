@@ -133,22 +133,10 @@ GENDER_MAP = {
     "unknown": "Unknown",
 }
 
-SPECIES_VALUES = frozenset({
-    "Human", "Jinchuriki", "Clone", "Bijuu", "Otsutsuki",
-    "Cursed Seal User", "Puppet",
-})
-
 SPECIES_MAP = {
-    "human": "Human",
     "jinchūriki": "Jinchuriki",
-    "jinchuriki": "Jinchuriki",
-    "clone": "Clone",
-    "bijuu": "Bijuu",
-    "tailed beast": "Bijuu",
     "ōtsutsuki": "Otsutsuki",
-    "otsutsuki": "Otsutsuki",
-    "cursed seal user": "Cursed Seal User",
-    "puppet": "Puppet",
+    "tailed beast": "Bijuu",
 }
 
 VILLAGE_ALIASES = {

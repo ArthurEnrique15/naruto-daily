@@ -153,7 +153,6 @@ def run_validate_only() -> int:
             "kekkeiGenkai": constants.KKG_CATEGORIES,
             "natureTypes": constants.NATURE_TYPES,
             "jutsuTypes": constants.JUTSU_TYPES,
-            "species": constants.SPECIES_VALUES,
         }
         for field in array_fields:
             arr = char.get(field)
