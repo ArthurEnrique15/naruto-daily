@@ -16,9 +16,13 @@ export default function GuessInput({ characters, guessedIds, onGuess, disabled }
   const [open, setOpen] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
+  function normalize(s: string) {
+    return s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+  }
+
   const filtered = query.trim()
     ? characters
-        .filter((c) => c.name.toLowerCase().includes(query.toLowerCase()))
+        .filter((c) => normalize(c.name).includes(normalize(query)))
         .slice(0, 8)
     : []
 
