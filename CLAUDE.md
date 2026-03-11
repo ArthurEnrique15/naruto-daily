@@ -60,9 +60,11 @@ npm run build        # Production build
 npm run lint         # ESLint
 npm run type-check   # TypeScript strict check (tsc --noEmit)
 
-# Scraper
-cd scraper && python main.py          # Run full scraper
-cd scraper && python main.py --dry-run # Test without writing files
+# Scraper — IMPORTANT restrictions for agents
+# NEVER run the full scraper to validate implementations
+# Only run for specific characters or with a limited character count:
+cd scraper && python main.py --characters "Naruto Uzumaki,Sasuke Uchiha"  # specific characters
+cd scraper && python main.py --limit 5                                     # limited count
 
 # Data validation
 npm run validate-data  # Validate characters.json against schema
@@ -71,6 +73,9 @@ npm run validate-data  # Validate characters.json against schema
 ## Plans
 
 Whenever the user asks to create a plan, create a `.md` file for it in `docs/plans/` following the naming convention `YYYY-MM-DD-<feature-name>.md`. This is the default path for all implementation plans.
+
+**IMPORTANT for plan agents**: At the top of every plan file, include this instruction for the executing agent:
+> Before touching any files, read `CLAUDE.md` in the project root to understand conventions, constraints, and workflow rules.
 
 ## Conventions
 
@@ -136,6 +141,11 @@ gh pr create --title "feat: short description" --body "## Summary
 
 ### 4. Conventional commits
 Prefixes match branch types: `feat`, `fix`, `chore`, `docs`, `refactor`, `test`. Single line, imperative mood.
+
+**Mandatory safety rules:**
+- **NEVER touch files in the main repository root** unless explicitly instructed to work directly in the main repo
+- **NEVER commit anything on the `main` branch** — all work happens on feature branches in worktrees
+- **ALWAYS use git worktrees and the git-workflow skill** for every implementation task
 
 ## Review Agent
 
