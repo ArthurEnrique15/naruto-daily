@@ -23,6 +23,12 @@ def run_full_scrape(dry_run: bool, limit: int | None = None) -> int:
         print("Error: No canonical arcs found. Ensure data/canon-arcs.json exists.", file=sys.stderr)
         return 1
 
+    overrides_path = DATA_DIR / "jutsu-type-overrides.json"
+    jutsu_overrides: dict[str, list[str]] = {}
+    if overrides_path.exists():
+        with open(overrides_path) as f:
+            jutsu_overrides = json.load(f)
+
     titles = api.fetch_category_members()
     if limit:
         titles = titles[:limit]
@@ -43,7 +49,7 @@ def run_full_scrape(dry_run: bool, limit: int | None = None) -> int:
                 skipped_missing += 1
                 continue
 
-            char, skip_reason = parser.parse_character(wikitext, title, canon_arcs, arcs_data)
+            char, skip_reason = parser.parse_character(wikitext, title, canon_arcs, arcs_data, jutsu_overrides)
             if skip_reason == "boruto":
                 print(f"  [{i + 1}/{len(titles)}] {title}: skipped (boruto)")
                 skipped_boruto += 1
@@ -88,6 +94,12 @@ def run_single_character(name: str) -> int:
     arcs_data = api.load_canon_arcs_data()
     canon_arcs = {a["name"] for a in arcs_data if a.get("canonical", False)}
 
+    overrides_path = DATA_DIR / "jutsu-type-overrides.json"
+    jutsu_overrides: dict[str, list[str]] = {}
+    if overrides_path.exists():
+        with open(overrides_path) as f:
+            jutsu_overrides = json.load(f)
+
     wikitext = api.fetch_infobox_content(name)
     if not wikitext:
         print(f"No infobox found for '{name}'", file=sys.stderr)
@@ -97,7 +109,7 @@ def run_single_character(name: str) -> int:
     print(wikitext)
     print("=== PARSED CHARACTER ===")
 
-    char, skip_reason = parser.parse_character(wikitext, name, canon_arcs, arcs_data)
+    char, skip_reason = parser.parse_character(wikitext, name, canon_arcs, arcs_data, jutsu_overrides)
     if char:
         print(json.dumps(char, indent=2))
         return 0

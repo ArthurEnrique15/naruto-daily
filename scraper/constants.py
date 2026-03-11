@@ -88,6 +88,15 @@ JUTSU_TYPES = frozenset({
     "Senjutsu", "Kenjutsu",
 })
 
+JUTSU_CLASSIFICATION_MAP = {
+    "Ninjutsu": "Ninjutsu",
+    "Genjutsu": "Genjutsu",
+    "Taijutsu": "Taijutsu",
+    "Kenjutsu": "Kenjutsu",
+    "Fūinjutsu": "Fuinjutsu",
+    "Senjutsu": "Senjutsu",
+}
+
 JUTSU_PATTERNS = [
     ("rasengan", "Ninjutsu"),
     ("shadow clone", "Ninjutsu"),
