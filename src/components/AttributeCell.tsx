@@ -16,6 +16,12 @@ export default function AttributeCell({ label, result }: AttributeCellProps) {
   const isNatureTypes = label === 'Nature Types' && Array.isArray(result.value)
   const isDebutArc = label === 'Debut Arc'
 
+  const rawStr = Array.isArray(result.value)
+    ? result.value.join(', ')
+    : (result.value ?? '')
+  const isLongContent =
+    rawStr.length > 35 || (Array.isArray(result.value) && result.value.length >= 3)
+
   let displayValue: React.ReactNode
 
   if (isNatureTypes && Array.isArray(result.value)) {
@@ -41,13 +47,13 @@ export default function AttributeCell({ label, result }: AttributeCellProps) {
       )
     }
   } else if (isDebutArc && result.feedback === 'wrong' && result.direction) {
-    const arrowChar = result.direction === 'before' ? '↑' : '↓'
+    const arrowChar = result.direction === 'before' ? '↓' : '↑'
     const raw = Array.isArray(result.value)
       ? result.value.length > 0 ? result.value.join(', ') : '—'
       : result.value || '—'
     displayValue = (
       <div className="relative flex items-center justify-center w-full">
-        <span className="absolute text-5xl opacity-40 font-black select-none">{arrowChar}</span>
+        <span className="absolute text-8xl font-black select-none opacity-90 text-red-950">{arrowChar}</span>
         <span className="relative text-xs font-bold text-center leading-tight break-words w-full">{raw}</span>
       </div>
     )
@@ -59,7 +65,11 @@ export default function AttributeCell({ label, result }: AttributeCellProps) {
 
   return (
     <div className={`flex flex-col items-center justify-center w-full h-20 overflow-hidden rounded p-2 whitespace-normal ${feedbackColors[result.feedback]}`}>
-      <span className="text-sm font-semibold text-center leading-tight break-words w-full">{displayValue}</span>
+      <span
+        className={`${isLongContent ? 'text-xs' : 'text-sm'} font-semibold text-center leading-tight break-words w-full`}
+      >
+        {displayValue}
+      </span>
     </div>
   )
 }

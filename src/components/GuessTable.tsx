@@ -23,7 +23,7 @@ export default function GuessTable({ guesses }: GuessTableProps) {
             <th className="w-28 text-sm font-semibold px-1 pb-1">Jutsu Types</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="font-semibold">
           {guesses.map((result, i) => (
             <GuessRow key={`${result.character.id}-${i}`} result={result} isNew={i === 0} />
           ))}

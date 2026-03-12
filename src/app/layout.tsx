@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bangers, Inter } from "next/font/google";
+import { Bangers, Noto_Sans } from "next/font/google";
 import "./globals.css";
 
 const bangers = Bangers({
@@ -8,7 +8,7 @@ const bangers = Bangers({
   subsets: ["latin"],
 });
 
-const inter = Inter({
+const notoSans = Noto_Sans({
   weight: ["400", "600", "700"],
   variable: "--font-sans",
   subsets: ["latin"],
@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${bangers.variable} ${inter.variable} antialiased`}
+        className={`${bangers.variable} ${notoSans.variable} antialiased`}
       >
         {children}
       </body>
