@@ -131,7 +131,8 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    background: radial-gradient(ellipse at top, oklch(0.97 0.02 85) 0%, oklch(1 0 0) 60%);
   }
   html {
     @apply font-sans;
