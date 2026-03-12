@@ -8,11 +8,10 @@ interface GuessRowProps {
 }
 
 const ATTRIBUTES: { label: string; key: keyof Omit<GuessResult, 'character'> }[] = [
-  { label: 'Village', key: 'village' },
+  { label: 'Affiliations', key: 'village' },
   { label: 'Gender', key: 'gender' },
   { label: 'Species', key: 'species' },
   { label: 'Rank', key: 'rank' },
-  { label: 'Status', key: 'status' },
   { label: 'Debut Arc', key: 'debutArc' },
   { label: 'Nature Types', key: 'natureTypes' },
   { label: 'Kekkei Genkai', key: 'kekkeiGenkai' },
