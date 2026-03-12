@@ -3,6 +3,8 @@ __pycache__/
 *$py.class
 scraper/venv/
 
+data/characters-raw.json
+
 # Next.js
 .next/
 node_modules/
