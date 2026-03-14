@@ -9,7 +9,7 @@
 import { readFileSync, writeFileSync, mkdirSync } from "fs";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
-import type { Character, RawCharacter } from "../src/types/character";
+import type { Character, RawCharacter, ArcEntry } from "../src/types/character";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const dataDir = resolve(__dirname, "../data");
@@ -17,13 +17,17 @@ const dataDir = resolve(__dirname, "../data");
 const BORUTO_SENTINEL = "__boruto__";
 const ALLOWED_SERIES = new Set(["naruto", "shippuden"]);
 
-interface ArcEntry {
-  id: string;
-  name: string;
-  manga_chapters: string;
-  series: string;
-  canonical: boolean;
-}
+const VALID_RANKS = new Set<string>([
+  "Academy Student",
+  "Genin",
+  "Chunin",
+  "Jonin",
+  "Anbu",
+  "Kage",
+  "N/A",
+]);
+const VALID_STATUSES = new Set<string>(["Alive", "Deceased"]);
+const VALID_GENDERS = new Set<string>(["Male", "Female", "Unknown"]);
 
 function loadCanonArcNames(): Set<string> {
   const { arcs } = JSON.parse(
@@ -49,9 +53,12 @@ function filterCharacter(
 ): { character: Character } | { skipReason: SkipReason } {
   if (raw.debutArc === BORUTO_SENTINEL) return { skipReason: "boruto" };
   if (!raw.name) return { skipReason: "missing_data" };
-  if (raw.status === null) return { skipReason: "missing_data" };
+  if (raw.status === null || !VALID_STATUSES.has(raw.status))
+    return { skipReason: "missing_data" };
   if (raw.debutArc === null) return { skipReason: "missing_data" };
   if (!canonArcNames.has(raw.debutArc)) return { skipReason: "filler" };
+  if (!VALID_RANKS.has(raw.rank)) return { skipReason: "missing_data" };
+  if (!VALID_GENDERS.has(raw.gender)) return { skipReason: "missing_data" };
 
   return {
     character: {
@@ -95,6 +102,8 @@ function main(): void {
     seenIds.add(character.id);
     characters.push(character);
   }
+
+  characters.sort((a, b) => a.id.localeCompare(b.id));
 
   console.log(`Input:             ${rawData.length}`);
   console.log(`Skipped (boruto):  ${counts.boruto}`);
