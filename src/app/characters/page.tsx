@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { getPaginatedCharacters } from '@/lib/characters';
 import { CharacterCard } from '@/components/CharacterCard';
 import { CharacterActions } from '@/components/CharacterActions';
@@ -16,6 +17,14 @@ export default async function CharactersPage({ searchParams }: Props) {
 
   return (
     <main className="container mx-auto px-4 py-8">
+      <div className="flex items-center gap-4 mb-6">
+        <Link
+          href="/"
+          className="px-4 py-2 rounded-md text-sm font-medium border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors"
+        >
+          ← Back to game
+        </Link>
+      </div>
       <h1 className="text-2xl font-bold mb-2">Characters</h1>
       <p className="text-muted-foreground mb-6">{total} characters</p>
 

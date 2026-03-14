@@ -15,12 +15,8 @@ const feedbackColors = {
 export default function AttributeCell({ label, result }: AttributeCellProps) {
   const isNatureTypes = label === 'Nature Types' && Array.isArray(result.value)
   const isDebutArc = label === 'Debut Arc'
-
-  const rawStr = Array.isArray(result.value)
-    ? result.value.join(', ')
-    : (result.value ?? '')
-  const isLongContent =
-    rawStr.length > 35 || (Array.isArray(result.value) && result.value.length >= 3)
+  const isJutsuTypes = label === 'Jutsu Types' && Array.isArray(result.value)
+  const isLongJutsuList = isJutsuTypes && result.value.length >= 4
 
   let displayValue: React.ReactNode
 
@@ -35,11 +31,13 @@ export default function AttributeCell({ label, result }: AttributeCellProps) {
             return (
               <span
                 key={nature}
-                className={`inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white ${icon.className}`}
+                className={`relative group/nature inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white ${icon.className}`}
                 style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
-                title={nature}
               >
                 {icon.symbol}
+                <span className="absolute bottom-full mb-1 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 group-hover/nature:opacity-100 transition-opacity duration-75 bg-popover text-popover-foreground text-xs font-semibold px-2 py-1 rounded shadow-lg border whitespace-nowrap">
+                  {nature}
+                </span>
               </span>
             )
           })}
@@ -52,10 +50,24 @@ export default function AttributeCell({ label, result }: AttributeCellProps) {
       ? result.value.length > 0 ? result.value.join(', ') : '—'
       : result.value || '—'
     displayValue = (
-      <div className="relative flex items-center justify-center w-full">
-        <span className="absolute text-8xl font-black select-none opacity-90 text-red-950">{arrowChar}</span>
-        <span className="relative text-xs font-bold text-center leading-tight break-words w-full">{raw}</span>
+      <div className="flex flex-col items-center justify-center w-full gap-0.5">
+        <span className="text-3xl font-black text-white opacity-70 leading-none select-none">{arrowChar}</span>
+        <span className="text-xs font-bold text-center leading-tight break-words w-full">{raw}</span>
       </div>
+    )
+  } else if (isLongJutsuList && Array.isArray(result.value)) {
+    const shown = result.value.slice(0, 2)
+    const restCount = result.value.length - 2
+    const fullList = result.value.join(', ')
+    displayValue = (
+      <span className="group relative inline-block w-full">
+        <span className="block truncate">
+          {shown.join(', ')} +{restCount} more
+        </span>
+        <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 z-50 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-75 bg-popover text-popover-foreground text-xs font-semibold px-2 py-1 rounded shadow-lg border max-w-48 break-words whitespace-normal text-center">
+          {fullList}
+        </span>
+      </span>
     )
   } else {
     displayValue = Array.isArray(result.value)
@@ -64,12 +76,8 @@ export default function AttributeCell({ label, result }: AttributeCellProps) {
   }
 
   return (
-    <div className={`flex flex-col items-center justify-center w-full h-20 overflow-hidden rounded p-2 whitespace-normal ${feedbackColors[result.feedback]}`}>
-      <span
-        className={`${isLongContent ? 'text-xs' : 'text-sm'} font-semibold text-center leading-tight break-words w-full`}
-      >
-        {displayValue}
-      </span>
+    <div className={`flex flex-col items-center justify-center w-full h-20 overflow-hidden rounded p-2 whitespace-normal shadow-sm transition-transform duration-100 hover:scale-[1.03] ${feedbackColors[result.feedback]}`}>
+      <span className="text-sm font-semibold text-center leading-tight break-words w-full">{displayValue}</span>
     </div>
   )
 }
