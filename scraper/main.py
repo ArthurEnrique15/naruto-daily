@@ -31,6 +31,8 @@ def run_full_scrape(dry_run: bool, limit: int | None = None) -> int:
     print(f"Fetched {len(titles)} character page titles")
 
     characters: list[dict] = []
+    # Note: deduplication here is redundant since filter-characters.ts also deduplicates,
+    # but kept to ensure characters-raw.json itself has no duplicates.
     seen_ids: set[str] = set()
     skipped_missing = 0
 
