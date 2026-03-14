@@ -14,8 +14,6 @@ export default function GuessTable({ guesses }: GuessTableProps) {
             <th className="w-24 text-sm font-semibold text-left px-1 pb-1">Character</th>
             <th className="w-28 text-sm font-semibold px-1 pb-1">Affiliations</th>
             <th className="w-28 text-sm font-semibold px-1 pb-1">Gender</th>
-            <th className="w-28 text-sm font-semibold px-1 pb-1">Species</th>
-            <th className="w-28 text-sm font-semibold px-1 pb-1">Rank</th>
             <th className="w-32 text-sm font-semibold px-1 pb-1">Debut Arc</th>
             <th className="w-40 text-sm font-semibold px-1 pb-1">Nature Types</th>
             <th className="w-28 text-sm font-semibold px-1 pb-1">Kekkei Genkai</th>
