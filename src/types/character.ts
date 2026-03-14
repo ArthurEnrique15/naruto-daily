@@ -39,3 +39,12 @@ export interface RawCharacter {
   gender: string;
   species: string[];
 }
+
+/** Arc entry as stored in data/canon-arcs.json */
+export interface ArcEntry {
+  id: string;
+  name: string;
+  manga_chapters: string;
+  series: string;
+  canonical: boolean;
+}
