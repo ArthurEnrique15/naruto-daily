@@ -1,9 +1,10 @@
 import { getTodayDateString } from '@/lib/daily'
 
-interface GameState {
+export interface GameState {
   date: string
   guessIds: string[]
   solved: boolean
+  usedClues?: string[]
 }
 
 const KEY = 'nd_game_state'
