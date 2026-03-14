@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Character } from '@/types/character'
 import { GuessResult } from '@/types/game'
 import { getDailyCharacter, getRandomCharacter, getTodayDateString } from '@/lib/daily'
@@ -10,6 +10,7 @@ import { loadGameState, saveGameState, clearGameState } from '@/lib/storage'
 import GuessInput from '@/components/GuessInput'
 import GuessTable from '@/components/GuessTable'
 import DevBanner from '@/components/DevBanner'
+import CluePanel from '@/components/CluePanel'
 
 interface GameBoardProps {
   characters: Character[]
@@ -27,26 +28,24 @@ function restoreGuesses(characters: Character[], guessIds: string[]): GuessResul
 }
 
 const DISPLAYED_ATTRS: (keyof Omit<GuessResult, 'character'>)[] = [
-  'village', 'gender', 'species', 'rank', 'debutArc', 'natureTypes', 'kekkeiGenkai', 'jutsuTypes',
+  'village', 'gender', 'debutArc', 'natureTypes', 'kekkeiGenkai', 'jutsuTypes',
 ]
 
 function allAttributesCorrect(result: GuessResult): boolean {
   return DISPLAYED_ATTRS.every((key) => result[key].feedback === 'correct')
 }
 
+function loadSavedGuesses(characters: Character[]): GuessResult[] {
+  const state = loadGameState()
+  return state ? restoreGuesses(characters, state.guessIds) : []
+}
+
 export default function GameBoard({ characters, isDev }: GameBoardProps) {
   const [target, setTarget] = useState<Character>(() => getDailyCharacter(characters))
-  const [guesses, setGuesses] = useState<GuessResult[]>([])
-  const [solved, setSolved] = useState<boolean>(false)
+  const [guesses, setGuesses] = useState<GuessResult[]>(() => loadSavedGuesses(characters))
+  const [solved, setSolved] = useState<boolean>(() => loadGameState()?.solved ?? false)
+  const [usedClues, setUsedClues] = useState<string[]>(() => loadGameState()?.usedClues ?? [])
   const [sameAttributesWarning, setSameAttributesWarning] = useState(false)
-
-  useEffect(() => {
-    const state = loadGameState()
-    if (state) {
-      setGuesses(restoreGuesses(characters, state.guessIds))
-      setSolved(state.solved ?? false)
-    }
-  }, [])
 
   function handleGuess(char: Character) {
     setSameAttributesWarning(false)
@@ -62,6 +61,18 @@ export default function GameBoard({ characters, isDev }: GameBoardProps) {
       date: getTodayDateString(),
       guessIds: newGuesses.map((g) => g.character.id),
       solved: nowSolved,
+      usedClues,
+    })
+  }
+
+  function handleRevealClue(clueKey: string) {
+    const newUsedClues = [...usedClues, clueKey]
+    setUsedClues(newUsedClues)
+    saveGameState({
+      date: getTodayDateString(),
+      guessIds: guesses.map((g) => g.character.id),
+      solved,
+      usedClues: newUsedClues,
     })
   }
 
@@ -70,18 +81,21 @@ export default function GameBoard({ characters, isDev }: GameBoardProps) {
     setTarget(next)
     setGuesses([])
     setSolved(false)
+    setUsedClues([])
     clearGameState()
   }
 
   function handleReset() {
     setGuesses([])
     setSolved(false)
+    setUsedClues([])
     clearGameState()
   }
 
   const guessedIds = new Set(guesses.map((g) => g.character.id))
   const guessCount = guesses.length
   const plural = guessCount === 1 ? '' : 'es'
+  const missCount = solved ? guessCount - 1 : guessCount
 
   return (
     <div className="flex flex-col items-center gap-6 w-full max-w-7xl">
@@ -97,12 +111,12 @@ export default function GameBoard({ characters, isDev }: GameBoardProps) {
           You got it in {guessCount} guess{plural}!
         </p>
       )}
-      {guesses.length >= 5 && !solved && (
-        <div className="w-full max-w-md px-4 py-2 rounded-lg bg-muted border border-border text-center">
-          <span className="text-muted-foreground">Vital Status Clue: </span>
-          <span className="font-bold">{target.status}</span>
-        </div>
-      )}
+      <CluePanel
+        missCount={missCount}
+        target={target}
+        usedClues={usedClues}
+        onReveal={handleRevealClue}
+      />
       {sameAttributesWarning && (
         <div className="w-full max-w-md px-4 py-2 rounded-lg bg-yellow-100 dark:bg-yellow-900/30 border border-yellow-300 dark:border-yellow-700 text-center text-sm">
           This character has the exact same attributes as today&apos;s answer — but they&apos;re not the same person!
