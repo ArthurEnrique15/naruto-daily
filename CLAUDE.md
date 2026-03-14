@@ -68,7 +68,13 @@ npm run type-check   # TypeScript strict check (tsc --noEmit)
 # Only run for specific characters or with a limited character count:
 npm run scrape           # Full scrape → data/characters-raw.json (slow, network)
 npm run filter-data      # Filter raw → data/characters.json (fast, local)
+npm run build-data       # Full pipeline: scrape + filter
 npm run validate-data    # Validate characters.json schema
+
+# Agent-safe scraping (NEVER run full scrape to validate implementations):
+npm run scrape-test                                        # limit 5 characters
+cd scraper && python main.py --limit 5                    # equivalent
+cd scraper && python main.py --characters "Naruto Uzumaki,Sasuke Uchiha"
 ```
 
 ## UI & React Best Practices
