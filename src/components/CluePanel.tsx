@@ -37,18 +37,37 @@ interface CluePanelProps {
   onReveal: (clueKey: string) => void
 }
 
-interface AvailableClueCardProps {
+interface ClueCardProps {
   label: string
+  missCount: number
+  threshold: number
+  revealed: boolean
+  content: string
   onReveal: () => void
 }
 
-function AvailableClueCard({ label, onReveal }: AvailableClueCardProps) {
+function ClueCard({ label, missCount, threshold, revealed, content, onReveal }: ClueCardProps) {
+  const unlocked = missCount >= threshold
+  const remaining = threshold - missCount
+
+  if (revealed) {
+    return (
+      <div className="w-full max-w-md px-4 py-2 rounded-lg bg-muted border border-border text-center">
+        <span className="text-muted-foreground">{label}: </span>
+        <span className="font-bold">{content}</span>
+      </div>
+    )
+  }
+
   return (
     <div className="w-full max-w-md px-4 py-3 rounded-lg bg-muted border border-border flex items-center justify-between gap-4">
-      <span className="text-muted-foreground text-sm">{label} hint available</span>
+      <span className="text-muted-foreground text-sm">
+        {unlocked ? `${label} hint available` : `${label} available in ${remaining} guess${remaining === 1 ? '' : 'es'}`}
+      </span>
       <button
         onClick={onReveal}
-        className="shrink-0 text-sm font-semibold px-3 py-1 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+        disabled={!unlocked}
+        className="shrink-0 text-sm font-semibold px-3 py-1 rounded-md bg-primary text-primary-foreground transition-colors disabled:opacity-40 disabled:cursor-not-allowed hover:enabled:bg-primary/90"
       >
         Reveal
       </button>
@@ -56,39 +75,20 @@ function AvailableClueCard({ label, onReveal }: AvailableClueCardProps) {
   )
 }
 
-interface RevealedClueCardProps {
-  label: string
-  content: string
-}
-
-function RevealedClueCard({ label, content }: RevealedClueCardProps) {
-  return (
-    <div className="w-full max-w-md px-4 py-2 rounded-lg bg-muted border border-border text-center">
-      <span className="text-muted-foreground">{label}: </span>
-      <span className="font-bold">{content}</span>
-    </div>
-  )
-}
-
 export default function CluePanel({ missCount, target, usedClues, onReveal }: CluePanelProps) {
-  const visibleClues = CLUES.filter((c) => missCount >= c.threshold)
-
-  if (visibleClues.length === 0) return null
-
   return (
     <div className="flex flex-col items-center gap-2 w-full">
-      {visibleClues.map((clue) => {
-        if (usedClues.includes(clue.key)) {
-          return <RevealedClueCard key={clue.key} label={clue.label} content={clue.content(target)} />
-        }
-        return (
-          <AvailableClueCard
-            key={clue.key}
-            label={clue.label}
-            onReveal={() => onReveal(clue.key)}
-          />
-        )
-      })}
+      {CLUES.map((clue) => (
+        <ClueCard
+          key={clue.key}
+          label={clue.label}
+          missCount={missCount}
+          threshold={clue.threshold}
+          revealed={usedClues.includes(clue.key)}
+          content={clue.content(target)}
+          onReveal={() => onReveal(clue.key)}
+        />
+      ))}
     </div>
   )
 }
