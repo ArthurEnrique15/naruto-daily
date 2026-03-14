@@ -2,9 +2,14 @@
 
 ## Overview
 
-The scraper collects character data from Narutopedia (naruto.fandom.com) via the MediaWiki API
-and outputs `data/characters.json`. It also cross-references `data/canon-arcs.json` to filter
-out filler-only characters.
+The scraper collects character data from Narutopedia (naruto.fandom.com) via the MediaWiki API.
+The pipeline has two steps:
+
+1. **Scraper (Python)** — extracts ALL characters from the wiki, no filtering → `data/characters-raw.json`
+2. **Filter script (TypeScript)** — applies game-eligibility rules → `data/characters.json`
+
+`characters-raw.json` is gitignored (intermediate output). The filter script uses `data/canon-arcs.json`
+to exclude Boruto, filler-only, and characters with missing required data.
 
 ## Data Source
 
@@ -30,25 +35,39 @@ Two complementary filters prevent Boruto characters from leaking in:
 
 ## Flow
 
+### Step 1: Scraper (Python)
+
+```
+1. Fetch character list
+   └── MediaWiki API: list all members of Category:Characters
+
+2. For each character page:
+   a. Fetch infobox data (MediaWiki API parse or HTML)
+   b. Extract attributes → normalize (no filtering)
+   c. Include all parseable characters (Boruto, filler, missing status/debutArc included)
+
+3. Build characters list
+   └── Sort by id (alphabetical)
+
+4. Write data/characters-raw.json
+```
+
+### Step 2: Filter (TypeScript)
+
 ```
 1. Load canon-arcs.json
    ├── Validate: every canonical arc must have series ∈ {"naruto", "shippuden"}
    └── Build set of canonical arc names
 
-2. Fetch character list
-   └── MediaWiki API: list all members of Category:Characters
+2. Read data/characters-raw.json
 
-3. For each character page:
-   a. Fetch infobox data (MediaWiki API parse or HTML)
-   b. Extract attributes → normalize → validate
-   c. Check debutArc against canonical arc set
-      ├── If debut arc is canonical → include character
-      └── If debut arc is NOT canonical (or unknown) → skip
+3. For each raw character:
+   a. Skip if debutArc is "__boruto__" (Boruto-only)
+   b. Skip if status or debutArc is null (missing data)
+   c. Skip if debutArc not in canonical arc set (filler)
+   d. Skip duplicates by id
 
-4. Build characters list
-   └── Sort by id (alphabetical)
-
-5. Write data/characters.json
+4. Write data/characters.json (game-ready)
 ```
 
 ## Attribute Extraction
@@ -84,37 +103,51 @@ Two complementary filters prevent Boruto characters from leaking in:
 | `gender` | No | Use `"Unknown"` |
 | `species` | No | Default to `["Human"]` |
 
-## Running the Scraper
+## Running the Pipeline
 
 ### Setup
 
 ```bash
+# Python scraper (for step 1)
 cd scraper
 python -m venv venv
 source venv/bin/activate      # Windows: venv\Scripts\activate
 pip install -r requirements.txt
+
+# Node (for step 2) — from project root
+npm install
 ```
 
-### Commands
+### Commands (from project root)
 
 ```bash
-# Full scrape — writes data/characters.json
-python main.py
+# Full scrape — writes data/characters-raw.json (slow, network)
+npm run scrape
 
+# Filter raw → game-ready — writes data/characters.json (fast, local)
+npm run filter-data
+
+# Validate characters.json against schema
+npm run validate-data
+```
+
+### Scraper-only options (from `scraper/`)
+
+```bash
 # Dry run — prints output without writing files
 python main.py --dry-run
 
+# Limit to first N characters (for testing)
+python main.py --limit 5
+
 # Scrape a single character (for testing)
 python main.py --character "Naruto Uzumaki"
-
-# Validate existing characters.json against schema
-python main.py --validate-only
 ```
 
 ### Output
 
-- Writes `../data/characters.json` relative to `scraper/`
-- Prints a summary: total fetched, skipped (boruto), skipped (filler), skipped (missing data), written
+- **Step 1**: Writes `data/characters-raw.json` (gitignored). Summary: fetched, skipped (missing data), written
+- **Step 2**: Writes `data/characters.json`. Summary: input count, skipped (boruto/filler/missing/dup), written
 - Exits with code `0` on success, `1` on critical error
 
 ## Dependencies
@@ -140,9 +173,12 @@ No external databases or auth required — all public MediaWiki API endpoints.
 To update `characters.json` (e.g. after adding new arcs to `canon-arcs.json`):
 
 1. Update `data/canon-arcs.json` if needed
-2. Run `python main.py`
-3. Review the diff in `characters.json` before committing
-4. **Do not manually edit `characters.json`**
+2. Run `npm run scrape` (writes `characters-raw.json`)
+3. Run `npm run filter-data` (writes `characters.json`)
+4. Review the diff in `characters.json` before committing
+5. **Do not manually edit `characters.json`**
+
+To iterate on filter rules without re-scraping: edit `scripts/filter-characters.ts` and run `npm run filter-data`.
 
 ## Known Limitations
 

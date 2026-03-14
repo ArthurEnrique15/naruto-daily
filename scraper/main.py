@@ -13,16 +13,12 @@ import parser
 
 RATE_LIMIT_SECONDS = 1
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
-OUTPUT_PATH = DATA_DIR / "characters.json"
+RAW_OUTPUT_PATH = DATA_DIR / "characters-raw.json"
+FILTERED_OUTPUT_PATH = DATA_DIR / "characters.json"
 
 
 def run_full_scrape(dry_run: bool, limit: int | None = None) -> int:
     arcs_data = api.load_canon_arcs_data()
-    canon_arcs = {a["name"] for a in arcs_data if a.get("canonical", False)}
-    if not canon_arcs:
-        print("Error: No canonical arcs found. Ensure data/canon-arcs.json exists.", file=sys.stderr)
-        return 1
-
     overrides_path = DATA_DIR / "jutsu-type-overrides.json"
     jutsu_overrides: dict[str, list[str]] = {}
     if overrides_path.exists():
@@ -35,9 +31,9 @@ def run_full_scrape(dry_run: bool, limit: int | None = None) -> int:
     print(f"Fetched {len(titles)} character page titles")
 
     characters: list[dict] = []
+    # Note: deduplication here is redundant since filter-characters.ts also deduplicates,
+    # but kept to ensure characters-raw.json itself has no duplicates.
     seen_ids: set[str] = set()
-    skipped_boruto = 0
-    skipped_filler = 0
     skipped_missing = 0
 
     for i, title in enumerate(titles):
@@ -49,17 +45,9 @@ def run_full_scrape(dry_run: bool, limit: int | None = None) -> int:
                 skipped_missing += 1
                 continue
 
-            char, skip_reason = parser.parse_character(wikitext, title, canon_arcs, arcs_data, jutsu_overrides)
-            if skip_reason == "boruto":
-                print(f"  [{i + 1}/{len(titles)}] {title}: skipped (boruto)")
-                skipped_boruto += 1
-                continue
-            if skip_reason == "filler":
-                print(f"  [{i + 1}/{len(titles)}] {title}: skipped (filler)")
-                skipped_filler += 1
-                continue
-            if skip_reason == "missing_data":
-                print(f"  [{i + 1}/{len(titles)}] {title}: skipped (missing data)")
+            char, skip_reason = parser.parse_character(wikitext, title, arcs_data, jutsu_overrides)
+            if skip_reason:
+                print(f"  [{i + 1}/{len(titles)}] {title}: skipped ({skip_reason})")
                 skipped_missing += 1
                 continue
 
@@ -77,14 +65,12 @@ def run_full_scrape(dry_run: bool, limit: int | None = None) -> int:
 
     print(f"\nSummary:")
     print(f"  Fetched: {len(titles)}")
-    print(f"  Skipped (boruto): {skipped_boruto}")
-    print(f"  Skipped (filler): {skipped_filler}")
     print(f"  Skipped (missing data): {skipped_missing}")
     print(f"  Written: {len(characters)}")
 
     if not dry_run:
         DATA_DIR.mkdir(parents=True, exist_ok=True)
-        with open(OUTPUT_PATH, "w") as f:
+        with open(RAW_OUTPUT_PATH, "w") as f:
             json.dump(characters, f, indent=2)
 
     return 0
@@ -92,8 +78,6 @@ def run_full_scrape(dry_run: bool, limit: int | None = None) -> int:
 
 def run_single_character(name: str) -> int:
     arcs_data = api.load_canon_arcs_data()
-    canon_arcs = {a["name"] for a in arcs_data if a.get("canonical", False)}
-
     overrides_path = DATA_DIR / "jutsu-type-overrides.json"
     jutsu_overrides: dict[str, list[str]] = {}
     if overrides_path.exists():
@@ -109,7 +93,7 @@ def run_single_character(name: str) -> int:
     print(wikitext)
     print("=== PARSED CHARACTER ===")
 
-    char, skip_reason = parser.parse_character(wikitext, name, canon_arcs, arcs_data, jutsu_overrides)
+    char, skip_reason = parser.parse_character(wikitext, name, arcs_data, jutsu_overrides)
     if char:
         print(json.dumps(char, indent=2))
         return 0
@@ -119,11 +103,11 @@ def run_single_character(name: str) -> int:
 
 
 def run_validate_only() -> int:
-    if not OUTPUT_PATH.exists():
-        print(f"Error: {OUTPUT_PATH} does not exist.", file=sys.stderr)
+    if not FILTERED_OUTPUT_PATH.exists():
+        print(f"Error: {FILTERED_OUTPUT_PATH} does not exist.", file=sys.stderr)
         return 1
 
-    with open(OUTPUT_PATH) as f:
+    with open(FILTERED_OUTPUT_PATH) as f:
         data = json.load(f)
 
     if not isinstance(data, list):

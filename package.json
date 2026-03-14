@@ -7,7 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "scrape": "cd scraper && python main.py",
+    "scrape-test": "cd scraper && python main.py --limit 5",
+    "filter-data": "npx tsx scripts/filter-characters.ts",
+    "build-data": "npm run scrape && npm run filter-data",
+    "validate-data": "cd scraper && python main.py --validate-only"
   },
   "dependencies": {
     "@base-ui/react": "^1.2.0",
@@ -29,6 +34,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",
+    "tsx": "^4",
     "typescript": "^5"
   }
 }

@@ -245,7 +245,6 @@ def _extract_species(params: dict[str, str]) -> list[str]:
 def parse_character(
     wikitext: str,
     page_title: str,
-    canon_arcs: set[str],
     arcs_data: list[dict],
     jutsu_overrides: dict[str, list[str]],
 ) -> tuple[dict[str, Any] | None, str | None]:
@@ -261,17 +260,7 @@ def parse_character(
         name = page_title
 
     status = _extract_status(params)
-    if status is None:
-        return None, "missing_data"
-
     debut_arc = _extract_debut_arc(params, arcs_data)
-    if debut_arc == _BORUTO_SENTINEL:
-        return None, "boruto"
-    if not debut_arc:
-        return None, "missing_data"
-
-    if debut_arc not in canon_arcs:
-        return None, "filler"
 
     character = {
         "id": _slug(page_title),
