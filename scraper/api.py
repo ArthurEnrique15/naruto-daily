@@ -6,6 +6,7 @@ import requests
 API_URL = "https://naruto.fandom.com/api.php"
 USER_AGENT = "NarutoDailyScraper/1.0 (https://github.com/naruto-daily)"
 RATE_LIMIT_SECONDS = 1
+BATCH_SIZE = 50
 
 _session: requests.Session | None = None
 
@@ -83,6 +84,49 @@ def fetch_infobox_content(character_name: str) -> str | None:
 
     content = revisions[0].get("slots", {}).get("main", {}).get("*", "")
     return content if content else None
+
+
+def fetch_infobox_content_batch(character_names: list[str]) -> dict[str, str | None]:
+    """
+    Fetch infobox wikitext for up to BATCH_SIZE characters in a single API request.
+    Returns a dict mapping character_name -> wikitext (or None if missing/empty).
+    """
+    session = _get_session()
+    infobox_titles = [f"Infobox:{name}" for name in character_names]
+    params = {
+        "action": "query",
+        "titles": "|".join(infobox_titles),
+        "prop": "revisions",
+        "rvprop": "content",
+        "rvslots": "main",
+        "format": "json",
+    }
+
+    resp = session.get(API_URL, params=params)
+    resp.raise_for_status()
+    data = resp.json()
+
+    pages = data.get("query", {}).get("pages", {})
+
+    # Build reverse map: "Infobox:Name" -> "Name"
+    title_to_name = {f"Infobox:{name}": name for name in character_names}
+
+    results: dict[str, str | None] = {name: None for name in character_names}
+    for page in pages.values():
+        page_title = page.get("title", "")
+        char_name = title_to_name.get(page_title)
+        if char_name is None:
+            continue
+        if "missing" in page:
+            continue
+        revisions = page.get("revisions", [])
+        if not revisions:
+            continue
+        content = revisions[0].get("slots", {}).get("main", {}).get("*", "")
+        if content:
+            results[char_name] = content
+
+    return results
 
 
 def resolve_image_url(image_name: str) -> str:
