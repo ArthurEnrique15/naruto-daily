@@ -51,9 +51,9 @@ export default function AttributeCell({ label, result }: AttributeCellProps) {
       ? result.value.length > 0 ? result.value.join(', ') : '—'
       : result.value || '—'
     displayValue = (
-      <div className="flex flex-col items-center justify-center w-full gap-0.5">
-        <ArrowIcon className="text-white opacity-90 shrink-0" size={40} strokeWidth={2.5} />
-        <span className="text-xs font-bold text-center leading-tight break-words w-full">{raw}</span>
+      <div className="relative flex items-center justify-center w-full h-full">
+        <ArrowIcon className="absolute text-red-900 opacity-60" size={64} strokeWidth={3} />
+        <span className="relative text-xs font-bold text-center leading-tight break-words w-full z-10">{raw}</span>
       </div>
     )
   } else if (isLongJutsuList && Array.isArray(result.value)) {
@@ -77,7 +77,7 @@ export default function AttributeCell({ label, result }: AttributeCellProps) {
   }
 
   return (
-    <div className={`flex flex-col items-center justify-center w-full ${isDebutArc ? 'min-h-20' : 'h-20 overflow-hidden'} rounded p-2 whitespace-normal shadow-sm transition-transform duration-100 hover:scale-[1.03] ${feedbackColors[result.feedback]}`}>
+    <div className={`flex flex-col items-center justify-center w-full h-20 overflow-hidden rounded p-2 whitespace-normal shadow-sm transition-transform duration-100 hover:scale-[1.03] ${feedbackColors[result.feedback]}`}>
       <span className="text-sm font-semibold text-center leading-tight break-words w-full">{displayValue}</span>
     </div>
   )
