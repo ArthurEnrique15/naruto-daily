@@ -6,6 +6,7 @@ import requests
 API_URL = "https://naruto.fandom.com/api.php"
 USER_AGENT = "NarutoDailyScraper/1.0 (https://github.com/naruto-daily)"
 RATE_LIMIT_SECONDS = 1
+BATCH_SIZE = 50
 
 _session: requests.Session | None = None
 
@@ -85,6 +86,49 @@ def fetch_infobox_content(character_name: str) -> str | None:
     return content if content else None
 
 
+def fetch_infobox_content_batch(character_names: list[str]) -> dict[str, str | None]:
+    """
+    Fetch infobox wikitext for up to BATCH_SIZE characters in a single API request.
+    Returns a dict mapping character_name -> wikitext (or None if missing/empty).
+    """
+    session = _get_session()
+    infobox_titles = [f"Infobox:{name}" for name in character_names]
+    params = {
+        "action": "query",
+        "titles": "|".join(infobox_titles),
+        "prop": "revisions",
+        "rvprop": "content",
+        "rvslots": "main",
+        "format": "json",
+    }
+
+    resp = session.get(API_URL, params=params)
+    resp.raise_for_status()
+    data = resp.json()
+
+    pages = data.get("query", {}).get("pages", {})
+
+    # Build reverse map: "Infobox:Name" -> "Name"
+    title_to_name = {f"Infobox:{name}": name for name in character_names}
+
+    results: dict[str, str | None] = {name: None for name in character_names}
+    for page in pages.values():
+        page_title = page.get("title", "")
+        char_name = title_to_name.get(page_title)
+        if char_name is None:
+            continue
+        if "missing" in page:
+            continue
+        revisions = page.get("revisions", [])
+        if not revisions:
+            continue
+        content = revisions[0].get("slots", {}).get("main", {}).get("*", "")
+        if content:
+            results[char_name] = content
+
+    return results
+
+
 def resolve_image_url(image_name: str) -> str:
     if not image_name or image_name.strip() == "":
         return "/placeholder.png"
@@ -122,6 +166,71 @@ def resolve_image_url(image_name: str) -> str:
     return url if url else "/placeholder.png"
 
 
+def resolve_image_url_batch(image_names: list[str]) -> dict[str, str]:
+    """
+    Fetch CDN URLs for up to BATCH_SIZE images in a single API request.
+    Returns a dict mapping original image_name -> url (or /placeholder.png).
+    """
+    results: dict[str, str] = {}
+    # Pre-process: strip ";" variants, add File: prefix
+    name_to_file: dict[str, str] = {}
+    for name in image_names:
+        if not name or not name.strip():
+            results[name] = "/placeholder.png"
+            continue
+        clean = name.split(";")[0].strip()
+        file_title = clean if clean.startswith("File:") else f"File:{clean}"
+        name_to_file[name] = file_title
+
+    if not name_to_file:
+        return results
+
+    # Reverse map: file_title -> list of original names (multiple names may map to same file)
+    file_to_names: dict[str, list[str]] = {}
+    for name, file_title in name_to_file.items():
+        file_to_names.setdefault(file_title, []).append(name)
+
+    session = _get_session()
+    file_titles = list(file_to_names.keys())
+
+    for batch_start in range(0, len(file_titles), BATCH_SIZE):
+        batch = file_titles[batch_start : batch_start + BATCH_SIZE]
+        params = {
+            "action": "query",
+            "titles": "|".join(batch),
+            "prop": "imageinfo",
+            "iiprop": "url",
+            "format": "json",
+        }
+        resp = session.get(API_URL, params=params)
+        resp.raise_for_status()
+        pages = resp.json().get("query", {}).get("pages", {})
+
+        found: dict[str, str] = {}
+        for page in pages.values():
+            title = page.get("title", "")
+            imageinfo = page.get("imageinfo", [])
+            if imageinfo:
+                url = imageinfo[0].get("url", "")
+                if url and not url.startswith("http"):
+                    url = "https:" + url
+                found[title] = url if url else "/placeholder.png"
+
+        for file_title in batch:
+            url = found.get(file_title, "/placeholder.png")
+            for name in file_to_names[file_title]:
+                results[name] = url
+
+        if batch_start + BATCH_SIZE < len(file_titles):
+            time.sleep(RATE_LIMIT_SECONDS)
+
+    # Fill any remaining with placeholder
+    for name in image_names:
+        results.setdefault(name, "/placeholder.png")
+
+    return results
+
+
 def fetch_jutsu_types_for_character(character_name: str) -> list[str]:
     """
     Query Narutopedia SMW for all jutsu a character uses and return
@@ -148,6 +257,43 @@ def fetch_jutsu_types_for_character(character_name: str) -> list[str]:
                 if mapped:
                     types.add(mapped)
     return sorted(types)
+
+
+def fetch_jutsu_types_batch(character_names: list[str]) -> dict[str, list[str]]:
+    """
+    Fetch jutsu types for multiple characters using individual SMW queries,
+    sleeping once per BATCH_SIZE characters instead of once per character.
+    Returns dict mapping character_name -> sorted list of jutsu types.
+    """
+    import constants
+    results: dict[str, list[str]] = {name: [] for name in character_names}
+    session = _get_session()
+
+    for i, name in enumerate(character_names):
+        resp = session.get(API_URL, params={
+            "action": "ask",
+            "query": f"[[User_tech.Page::{name}]]|?Jutsu_classification|limit=500",
+            "format": "json",
+        })
+        resp.raise_for_status()
+        smw_results = resp.json().get("query", {}).get("results", {})
+        types: set[str] = set()
+        if isinstance(smw_results, dict):
+            for v in smw_results.values():
+                classifs = [c.get("fulltext", "") for c in v.get("printouts", {}).get("Jutsu classification", [])]
+                if "Cooperation Ninjutsu" in classifs:
+                    continue
+                for classif in classifs:
+                    mapped = constants.JUTSU_CLASSIFICATION_MAP.get(classif)
+                    if mapped:
+                        types.add(mapped)
+        results[name] = sorted(types)
+
+        # Sleep once per BATCH_SIZE queries, not per query
+        if (i + 1) % BATCH_SIZE == 0 and i + 1 < len(character_names):
+            time.sleep(RATE_LIMIT_SECONDS)
+
+    return results
 
 
 def load_canon_arcs_data() -> list[dict]:

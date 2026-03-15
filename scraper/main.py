@@ -36,16 +36,50 @@ def run_full_scrape(dry_run: bool, limit: int | None = None) -> int:
     seen_ids: set[str] = set()
     skipped_missing = 0
 
+    # Pre-fetch all infoboxes in batches
+    print(f"Fetching infoboxes in batches of {api.BATCH_SIZE}...")
+    infobox_cache: dict[str, str | None] = {}
+    total_batches = -(-len(titles) // api.BATCH_SIZE)
+    for batch_start in range(0, len(titles), api.BATCH_SIZE):
+        batch = titles[batch_start : batch_start + api.BATCH_SIZE]
+        batch_results = api.fetch_infobox_content_batch(batch)
+        infobox_cache.update(batch_results)
+        print(f"  Fetched batch {batch_start // api.BATCH_SIZE + 1}/{total_batches}")
+        time.sleep(RATE_LIMIT_SECONDS)
+
+    # Pre-fetch image URLs in batches
+    print(f"Fetching image URLs in batches of {api.BATCH_SIZE}...")
+    image_names: list[str] = []
+    for title in titles:
+        wikitext = infobox_cache.get(title)
+        if wikitext:
+            name = parser.extract_image_name(wikitext)
+            if name:
+                image_names.append(name)
+    image_cache = api.resolve_image_url_batch(image_names)
+    print(f"  Fetched {len(image_names)} image URLs")
+    time.sleep(api.RATE_LIMIT_SECONDS)
+
+    # Pre-fetch jutsu types in batches
+    print(f"Fetching jutsu types in batches of {api.BATCH_SIZE}...")
+    jutsu_cache: dict[str, list[str]] = {}
+    total_jutsu_batches = -(-len(titles) // api.BATCH_SIZE)
+    for batch_start in range(0, len(titles), api.BATCH_SIZE):
+        batch = titles[batch_start : batch_start + api.BATCH_SIZE]
+        batch_results = api.fetch_jutsu_types_batch(batch)
+        jutsu_cache.update(batch_results)
+        print(f"  Fetched jutsu batch {batch_start // api.BATCH_SIZE + 1}/{total_jutsu_batches}")
+        time.sleep(api.RATE_LIMIT_SECONDS)
+
     for i, title in enumerate(titles):
         try:
-            time.sleep(RATE_LIMIT_SECONDS)
-            wikitext = api.fetch_infobox_content(title)
+            wikitext = infobox_cache.get(title)
             if not wikitext:
                 print(f"  [{i + 1}/{len(titles)}] {title}: skipped (no infobox)")
                 skipped_missing += 1
                 continue
 
-            char, skip_reason = parser.parse_character(wikitext, title, arcs_data, jutsu_overrides)
+            char, skip_reason = parser.parse_character(wikitext, title, arcs_data, jutsu_overrides, image_cache, jutsu_cache)
             if skip_reason:
                 print(f"  [{i + 1}/{len(titles)}] {title}: skipped ({skip_reason})")
                 skipped_missing += 1
@@ -93,7 +127,11 @@ def run_single_character(name: str) -> int:
     print(wikitext)
     print("=== PARSED CHARACTER ===")
 
-    char, skip_reason = parser.parse_character(wikitext, name, arcs_data, jutsu_overrides)
+    image_name = parser.extract_image_name(wikitext)
+    image_cache = api.resolve_image_url_batch([image_name] if image_name else [])
+    jutsu_cache = api.fetch_jutsu_types_batch([name])
+
+    char, skip_reason = parser.parse_character(wikitext, name, arcs_data, jutsu_overrides, image_cache, jutsu_cache)
     if char:
         print(json.dumps(char, indent=2))
         return 0
