@@ -51,9 +51,9 @@ export default function AttributeCell({ label, result }: AttributeCellProps) {
       ? result.value.length > 0 ? result.value.join(', ') : '—'
       : result.value || '—'
     displayValue = (
-      <div className="flex flex-col items-center justify-center w-full gap-0.5">
-        <ArrowIcon className="text-white opacity-90" size={40} strokeWidth={2.5} />
-        <span className="text-xs font-bold text-center leading-tight break-words w-full">{raw}</span>
+      <div className="relative flex items-center justify-center w-full h-full">
+        <ArrowIcon className="absolute text-red-900 opacity-60" size={64} strokeWidth={3} />
+        <span className="relative text-xs font-bold text-center leading-tight break-words w-full z-10">{raw}</span>
       </div>
     )
   } else if (isLongJutsuList && Array.isArray(result.value)) {
