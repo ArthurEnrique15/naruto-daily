@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Character } from '@/types/character'
 import { GuessResult } from '@/types/game'
 import { getDailyCharacter, getRandomCharacter, getTodayDateString } from '@/lib/daily'
@@ -42,10 +42,17 @@ function loadSavedGuesses(characters: Character[]): GuessResult[] {
 
 export default function GameBoard({ characters, isDev }: GameBoardProps) {
   const [target, setTarget] = useState<Character>(() => getDailyCharacter(characters))
-  const [guesses, setGuesses] = useState<GuessResult[]>(() => loadSavedGuesses(characters))
-  const [solved, setSolved] = useState<boolean>(() => loadGameState()?.solved ?? false)
-  const [usedClues, setUsedClues] = useState<string[]>(() => loadGameState()?.usedClues ?? [])
+  const [guesses, setGuesses] = useState<GuessResult[]>([])
+  const [solved, setSolved] = useState<boolean>(false)
+  const [usedClues, setUsedClues] = useState<string[]>([])
   const [sameAttributesWarning, setSameAttributesWarning] = useState(false)
+
+  useEffect(() => {
+    const state = loadGameState()
+    setGuesses(loadSavedGuesses(characters))
+    setSolved(state?.solved ?? false)
+    setUsedClues(state?.usedClues ?? [])
+  }, [])
 
   function handleGuess(char: Character) {
     setSameAttributesWarning(false)
@@ -122,7 +129,7 @@ export default function GameBoard({ characters, isDev }: GameBoardProps) {
           This character has the exact same attributes as today&apos;s answer — but they&apos;re not the same person!
         </div>
       )}
-      <div className="w-full bg-card border border-border rounded-xl shadow-sm p-6 flex flex-col gap-6">
+      <div className="w-full overflow-x-auto bg-card border border-border rounded-xl shadow-sm p-6 flex flex-col gap-6">
         <GuessInput
           characters={characters}
           guessedIds={guessedIds}

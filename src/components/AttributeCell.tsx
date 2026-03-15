@@ -1,6 +1,7 @@
+import Image from 'next/image'
 import { ArrowBigDown, ArrowBigUp } from 'lucide-react'
 import { AttributeResult } from '@/types/game'
-import { getNatureIcon } from '@/lib/nature-icons'
+import { getNatureIconPath } from '@/lib/nature-icons'
 
 interface AttributeCellProps {
   label: string
@@ -28,15 +29,19 @@ export default function AttributeCell({ label, result }: AttributeCellProps) {
       displayValue = (
         <span className="flex flex-wrap gap-1 justify-center">
           {result.value.map((nature) => {
-            const icon = getNatureIcon(nature)
             return (
               <span
                 key={nature}
-                className={`relative group/nature inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white ${icon.className}`}
-                style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
+                className="relative group/nature inline-flex items-center justify-center"
               >
-                {icon.symbol}
-                <span className="absolute bottom-full mb-1 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 group-hover/nature:opacity-100 transition-opacity duration-75 bg-popover text-popover-foreground text-xs font-semibold px-2 py-1 rounded shadow-lg border whitespace-nowrap">
+                <Image
+                  src={getNatureIconPath(nature)}
+                  alt={nature}
+                  width={28}
+                  height={28}
+                  className="object-contain"
+                />
+                <span className="absolute top-full mt-1 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 group-hover/nature:opacity-100 transition-opacity duration-75 bg-popover text-popover-foreground text-xs font-semibold px-2 py-1 rounded shadow-lg border whitespace-nowrap">
                   {nature}
                 </span>
               </span>
@@ -77,7 +82,7 @@ export default function AttributeCell({ label, result }: AttributeCellProps) {
   }
 
   return (
-    <div className={`flex flex-col items-center justify-center w-full h-20 overflow-hidden rounded p-2 whitespace-normal shadow-sm transition-transform duration-100 hover:scale-[1.03] ${feedbackColors[result.feedback]}`}>
+    <div className={`flex flex-col items-center justify-center w-full h-20 rounded p-2 whitespace-normal shadow-sm transition-transform duration-100 hover:scale-[1.03] ${feedbackColors[result.feedback]}`}>
       <span className="text-sm font-semibold text-center leading-tight break-words w-full">{displayValue}</span>
     </div>
   )
