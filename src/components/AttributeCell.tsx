@@ -81,7 +81,7 @@ export default function AttributeCell({ label, result }: AttributeCellProps) {
   }
 
   return (
-    <div className={`flex flex-col items-center justify-center w-full h-20 overflow-hidden rounded p-2 whitespace-normal shadow-sm transition-transform duration-100 hover:scale-[1.03] ${feedbackColors[result.feedback]}`}>
+    <div className={`flex flex-col items-center justify-center w-full h-20 rounded p-2 whitespace-normal shadow-sm transition-transform duration-100 hover:scale-[1.03] ${feedbackColors[result.feedback]}`}>
       <span className="text-sm font-semibold text-center leading-tight break-words w-full">{displayValue}</span>
     </div>
   )
