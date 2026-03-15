@@ -166,6 +166,71 @@ def resolve_image_url(image_name: str) -> str:
     return url if url else "/placeholder.png"
 
 
+def resolve_image_url_batch(image_names: list[str]) -> dict[str, str]:
+    """
+    Fetch CDN URLs for up to BATCH_SIZE images in a single API request.
+    Returns a dict mapping original image_name -> url (or /placeholder.png).
+    """
+    results: dict[str, str] = {}
+    # Pre-process: strip ";" variants, add File: prefix
+    name_to_file: dict[str, str] = {}
+    for name in image_names:
+        if not name or not name.strip():
+            results[name] = "/placeholder.png"
+            continue
+        clean = name.split(";")[0].strip()
+        file_title = clean if clean.startswith("File:") else f"File:{clean}"
+        name_to_file[name] = file_title
+
+    if not name_to_file:
+        return results
+
+    # Reverse map: file_title -> list of original names (multiple names may map to same file)
+    file_to_names: dict[str, list[str]] = {}
+    for name, file_title in name_to_file.items():
+        file_to_names.setdefault(file_title, []).append(name)
+
+    session = _get_session()
+    file_titles = list(file_to_names.keys())
+
+    for batch_start in range(0, len(file_titles), BATCH_SIZE):
+        batch = file_titles[batch_start : batch_start + BATCH_SIZE]
+        params = {
+            "action": "query",
+            "titles": "|".join(batch),
+            "prop": "imageinfo",
+            "iiprop": "url",
+            "format": "json",
+        }
+        resp = session.get(API_URL, params=params)
+        resp.raise_for_status()
+        pages = resp.json().get("query", {}).get("pages", {})
+
+        found: dict[str, str] = {}
+        for page in pages.values():
+            title = page.get("title", "")
+            imageinfo = page.get("imageinfo", [])
+            if imageinfo:
+                url = imageinfo[0].get("url", "")
+                if url and not url.startswith("http"):
+                    url = "https:" + url
+                found[title] = url if url else "/placeholder.png"
+
+        for file_title, names in file_to_names.items():
+            url = found.get(file_title, "/placeholder.png")
+            for name in names:
+                results[name] = url
+
+        if batch_start + BATCH_SIZE < len(file_titles):
+            time.sleep(RATE_LIMIT_SECONDS)
+
+    # Fill any remaining with placeholder
+    for name in image_names:
+        results.setdefault(name, "/placeholder.png")
+
+    return results
+
+
 def fetch_jutsu_types_for_character(character_name: str) -> list[str]:
     """
     Query Narutopedia SMW for all jutsu a character uses and return
