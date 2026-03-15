@@ -223,6 +223,19 @@ def _extract_gender(params: dict[str, str]) -> str:
     return "Unknown"
 
 
+def _extract_occupation(params: dict[str, str]) -> str | None:
+    raw = params.get("occupations") or params.get("occupation") or ""
+    if not raw:
+        return None
+    raw = re.sub(r"~~[^,]+", "", raw)  # strip anime/movie-only variant markers
+    parts = [p.strip() for p in re.split(r"[,;]", raw) if p.strip()]
+    parts = [
+        p for p in parts
+        if "anime only" not in p.lower() and "movie only" not in p.lower()
+    ]
+    return ", ".join(parts) if parts else None
+
+
 def _extract_species(params: dict[str, str]) -> list[str]:
     result = set()
     raw = params.get("species", "")
@@ -275,6 +288,7 @@ def parse_character(
         "debutArc": debut_arc,
         "gender": _extract_gender(params),
         "species": _extract_species(params),
+        "occupation": _extract_occupation(params),
     }
 
     return character, None

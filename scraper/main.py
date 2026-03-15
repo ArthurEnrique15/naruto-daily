@@ -170,6 +170,11 @@ def run_validate_only() -> int:
                         print(f"  [{i}] {name}: invalid {field} '{v}'", file=sys.stderr)
                         errors += 1
 
+        occ = char.get("occupation")
+        if occ is not None and not isinstance(occ, str):
+            print(f"  [{i}] {name}: occupation must be a string", file=sys.stderr)
+            errors += 1
+
     if errors:
         print(f"\nValidation failed with {errors} error(s).", file=sys.stderr)
         return 1
