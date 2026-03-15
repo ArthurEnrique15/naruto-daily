@@ -32,16 +32,16 @@ export default function AttributeCell({ label, result }: AttributeCellProps) {
             return (
               <span
                 key={nature}
-                className={`relative group/nature inline-flex items-center justify-center w-6 h-6 ${icon.className}`}
-                style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
+                className={`relative group/nature inline-flex items-center justify-center${icon.imagePath ? '' : ` w-6 h-6 ${icon.className}`}`}
+                style={icon.imagePath ? undefined : { clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
               >
                 {icon.imagePath ? (
                   <Image
                     src={icon.imagePath}
                     alt={nature}
-                    width={24}
-                    height={24}
-                    className="w-full h-full object-cover"
+                    width={28}
+                    height={28}
+                    className="object-contain"
                   />
                 ) : (
                   <span className="text-xs font-bold text-white">{nature[0]}</span>
