@@ -7,7 +7,7 @@ interface GuessTableProps {
 
 export default function GuessTable({ guesses }: GuessTableProps) {
   return (
-    <div className="overflow-x-auto w-full">
+    <div className="w-full">
       <table className="table-fixed border-separate border-spacing-2 mx-auto">
         <thead className="sticky top-0 z-10 bg-background">
           <tr>
