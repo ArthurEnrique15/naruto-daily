@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowUp } from 'lucide-react'
+import { ArrowBigDown, ArrowBigUp } from 'lucide-react'
 import { AttributeResult } from '@/types/game'
 import { getNatureIcon } from '@/lib/nature-icons'
 
@@ -46,13 +46,13 @@ export default function AttributeCell({ label, result }: AttributeCellProps) {
       )
     }
   } else if (isDebutArc && result.feedback === 'wrong' && result.direction) {
-    const ArrowIcon = result.direction === 'before' ? ArrowDown : ArrowUp
+    const ArrowIcon = result.direction === 'before' ? ArrowBigDown : ArrowBigUp
     const raw = Array.isArray(result.value)
       ? result.value.length > 0 ? result.value.join(', ') : '—'
       : result.value || '—'
     displayValue = (
       <div className="relative flex items-center justify-center w-full h-full">
-        <ArrowIcon className="absolute text-red-900 opacity-60" size={64} strokeWidth={3} />
+        <ArrowIcon className="absolute text-red-900 opacity-60 fill-red-900" size={64} strokeWidth={2} />
         <span className="relative text-xs font-bold text-center leading-tight break-words w-full z-10">{raw}</span>
       </div>
     )
