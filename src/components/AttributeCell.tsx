@@ -68,7 +68,7 @@ export default function AttributeCell({ label, result }: AttributeCellProps) {
     const fullList = result.value.join(', ')
     displayValue = (
       <span className="group relative inline-block w-full">
-        <span className="block text-left">
+        <span className="block text-center">
           {shown.map((item) => (
             <span key={item} className="block leading-tight">{item},</span>
           ))}
@@ -85,8 +85,11 @@ export default function AttributeCell({ label, result }: AttributeCellProps) {
     const fullList = result.value.join(', ')
     displayValue = (
       <span className="group relative inline-block w-full">
-        <span className="block truncate">
-          {shown.join(', ')} +{restCount} more
+        <span className="block text-center">
+          {shown.map((item) => (
+            <span key={item} className="block leading-tight">{item},</span>
+          ))}
+          <span className="block leading-tight">+{restCount} more</span>
         </span>
         <span className="absolute top-full left-1/2 -translate-x-1/2 mt-1 z-50 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-75 bg-popover text-popover-foreground text-xs font-semibold px-2 py-1 rounded shadow-lg border max-w-48 break-words whitespace-normal text-center">
           {fullList}
