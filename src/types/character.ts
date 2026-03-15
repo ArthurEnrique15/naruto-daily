@@ -39,6 +39,7 @@ export interface RawCharacter {
   debutArc: string | null;
   gender: string;
   species: string[];
+  occupation?: string | null;
 }
 
 /** Arc entry as stored in data/canon-arcs.json */
