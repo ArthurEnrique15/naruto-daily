@@ -74,6 +74,7 @@ function filterCharacter(
       debutArc: raw.debutArc,
       gender: raw.gender as Character["gender"],
       species: raw.species,
+      ...(raw.occupation != null && { occupation: raw.occupation }),
     },
   };
 }

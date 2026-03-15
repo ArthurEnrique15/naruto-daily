@@ -133,6 +133,12 @@ type Species = string
 ### `gender`
 - Use `"Unknown"` for non-humanoid entities (Bijuu, etc.)
 
+### `occupation` (optional string)
+- Free-form occupation description, comma-separated roles e.g. `"Shinobi, Medical-nin"`
+- Sourced directly from the Narutopedia infobox `occupation` parameter
+- `undefined` / omitted when the wiki has no occupation field
+- Anime-only and movie-only variant markers are stripped
+
 ### `species` (array)
 - Pass-through from wiki: values are title-cased as-is (e.g. `["Hawk"]`, `["Artificial Human"]`, `["Toad"]`). Only diacritics and a few synonyms (e.g. "tailed beast" → "Bijuu") are normalized.
 - Multiple tags allowed (e.g. a Jinchuriki is `["Human", "Jinchuriki"]`)

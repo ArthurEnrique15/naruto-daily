@@ -26,7 +26,7 @@ const CLUES: ClueDef[] = [
     key: 'occupation',
     threshold: 8,
     label: 'Occupation',
-    content: (t) => t.occupation ?? '🚧 Coming soon — occupation field not yet scraped',
+    content: (t) => t.occupation ?? 'Unknown',
   },
 ]
 
