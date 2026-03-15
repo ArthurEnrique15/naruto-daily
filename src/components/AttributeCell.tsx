@@ -40,7 +40,7 @@ export default function AttributeCell({ label, result }: AttributeCellProps) {
                   height={28}
                   className="object-contain"
                 />
-                <span className="absolute bottom-full mb-1 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 group-hover/nature:opacity-100 transition-opacity duration-75 bg-popover text-popover-foreground text-xs font-semibold px-2 py-1 rounded shadow-lg border whitespace-nowrap">
+                <span className="absolute top-full mt-1 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 group-hover/nature:opacity-100 transition-opacity duration-75 bg-popover text-popover-foreground text-xs font-semibold px-2 py-1 rounded shadow-lg border whitespace-nowrap">
                   {nature}
                 </span>
               </span>
