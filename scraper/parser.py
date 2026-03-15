@@ -92,12 +92,22 @@ def _extract_name(params: dict[str, str], page_title: str) -> str | None:
     return page_title if page_title else None
 
 
-def _extract_image(params: dict[str, str]) -> str:
+def extract_image_name(wikitext: str) -> str | None:
+    params = _parse_infobox_params(wikitext)
     for key in ("image_name", "imagename", "image"):
         if key in params:
             val = params[key].split(";")[0].strip()
             if val:
-                return api.resolve_image_url(val)
+                return val
+    return None
+
+
+def _extract_image(params: dict[str, str], image_cache: dict[str, str]) -> str:
+    for key in ("image_name", "imagename", "image"):
+        if key in params:
+            val = params[key].split(";")[0].strip()
+            if val:
+                return image_cache.get(val, "/placeholder.png")
     return "/placeholder.png"
 
 
@@ -186,10 +196,10 @@ def _extract_nature_types(params: dict[str, str]) -> list[str]:
     return []
 
 
-def _extract_jutsu_types(page_title: str, slug: str, overrides: dict[str, list[str]]) -> list[str]:
+def _extract_jutsu_types(page_title: str, slug: str, overrides: dict[str, list[str]], jutsu_cache: dict[str, list[str]]) -> list[str]:
     if slug in overrides:
         return sorted(overrides[slug])
-    return api.fetch_jutsu_types_for_character(page_title)
+    return jutsu_cache.get(page_title, [])
 
 
 def _extract_status(params: dict[str, str]) -> str | None:
@@ -260,6 +270,8 @@ def parse_character(
     page_title: str,
     arcs_data: list[dict],
     jutsu_overrides: dict[str, list[str]],
+    image_cache: dict[str, str],
+    jutsu_cache: dict[str, list[str]],
 ) -> tuple[dict[str, Any] | None, str | None]:
     params = _parse_infobox_params(wikitext)
     if not params:
@@ -278,12 +290,12 @@ def parse_character(
     character = {
         "id": _slug(page_title),
         "name": name,
-        "imageUrl": _extract_image(params),
+        "imageUrl": _extract_image(params, image_cache),
         "village": _extract_village(params),
         "rank": _extract_rank(params),
         "kekkeiGenkai": _extract_kekkei_genkai(params),
         "natureTypes": _extract_nature_types(params),
-        "jutsuTypes": _extract_jutsu_types(page_title, _slug(page_title), jutsu_overrides),
+        "jutsuTypes": _extract_jutsu_types(page_title, _slug(page_title), jutsu_overrides, jutsu_cache),
         "status": status,
         "debutArc": debut_arc,
         "gender": _extract_gender(params),
