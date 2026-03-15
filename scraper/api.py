@@ -216,9 +216,9 @@ def resolve_image_url_batch(image_names: list[str]) -> dict[str, str]:
                     url = "https:" + url
                 found[title] = url if url else "/placeholder.png"
 
-        for file_title, names in file_to_names.items():
+        for file_title in batch:
             url = found.get(file_title, "/placeholder.png")
-            for name in names:
+            for name in file_to_names[file_title]:
                 results[name] = url
 
         if batch_start + BATCH_SIZE < len(file_titles):
@@ -261,42 +261,37 @@ def fetch_jutsu_types_for_character(character_name: str) -> list[str]:
 
 def fetch_jutsu_types_batch(character_names: list[str]) -> dict[str, list[str]]:
     """
-    Fetch jutsu types for multiple characters using a single SMW OR query.
+    Fetch jutsu types for multiple characters using individual SMW queries,
+    sleeping once per BATCH_SIZE characters instead of once per character.
     Returns dict mapping character_name -> sorted list of jutsu types.
     """
     import constants
     results: dict[str, list[str]] = {name: [] for name in character_names}
-    char_set = set(character_names)
-
-    or_query = "||".join(character_names)
     session = _get_session()
-    resp = session.get(API_URL, params={
-        "action": "ask",
-        "query": f"[[User_tech.Page::{or_query}]]|?Jutsu_classification|?User_tech.Page|limit=500",
-        "format": "json",
-    })
-    resp.raise_for_status()
-    smw_results = resp.json().get("query", {}).get("results", {})
 
-    type_sets: dict[str, set[str]] = {name: set() for name in character_names}
+    for i, name in enumerate(character_names):
+        resp = session.get(API_URL, params={
+            "action": "ask",
+            "query": f"[[User_tech.Page::{name}]]|?Jutsu_classification|limit=500",
+            "format": "json",
+        })
+        resp.raise_for_status()
+        smw_results = resp.json().get("query", {}).get("results", {})
+        types: set[str] = set()
+        if isinstance(smw_results, dict):
+            for v in smw_results.values():
+                classifs = [c.get("fulltext", "") for c in v.get("printouts", {}).get("Jutsu classification", [])]
+                if "Cooperation Ninjutsu" in classifs:
+                    continue
+                for classif in classifs:
+                    mapped = constants.JUTSU_CLASSIFICATION_MAP.get(classif)
+                    if mapped:
+                        types.add(mapped)
+        results[name] = sorted(types)
 
-    if isinstance(smw_results, dict):
-        for v in smw_results.values():
-            printouts = v.get("printouts", {})
-            classifs = [c.get("fulltext", "") for c in printouts.get("Jutsu classification", [])]
-            if "Cooperation Ninjutsu" in classifs:
-                continue
-            # Determine which batch characters use this jutsu
-            users = [u.get("fulltext", "") for u in printouts.get("User tech.Page", [])]
-            chars_in_batch = [u for u in users if u in char_set]
-            for classif in classifs:
-                mapped = constants.JUTSU_CLASSIFICATION_MAP.get(classif)
-                if mapped:
-                    for char in chars_in_batch:
-                        type_sets[char].add(mapped)
-
-    for name in character_names:
-        results[name] = sorted(type_sets[name])
+        # Sleep once per BATCH_SIZE queries, not per query
+        if (i + 1) % BATCH_SIZE == 0 and i + 1 < len(character_names):
+            time.sleep(RATE_LIMIT_SECONDS)
 
     return results
 
