@@ -259,6 +259,48 @@ def fetch_jutsu_types_for_character(character_name: str) -> list[str]:
     return sorted(types)
 
 
+def fetch_jutsu_types_batch(character_names: list[str]) -> dict[str, list[str]]:
+    """
+    Fetch jutsu types for multiple characters using a single SMW OR query.
+    Returns dict mapping character_name -> sorted list of jutsu types.
+    """
+    import constants
+    results: dict[str, list[str]] = {name: [] for name in character_names}
+    char_set = set(character_names)
+
+    or_query = "||".join(character_names)
+    session = _get_session()
+    resp = session.get(API_URL, params={
+        "action": "ask",
+        "query": f"[[User_tech.Page::{or_query}]]|?Jutsu_classification|?User_tech.Page|limit=500",
+        "format": "json",
+    })
+    resp.raise_for_status()
+    smw_results = resp.json().get("query", {}).get("results", {})
+
+    type_sets: dict[str, set[str]] = {name: set() for name in character_names}
+
+    if isinstance(smw_results, dict):
+        for v in smw_results.values():
+            printouts = v.get("printouts", {})
+            classifs = [c.get("fulltext", "") for c in printouts.get("Jutsu classification", [])]
+            if "Cooperation Ninjutsu" in classifs:
+                continue
+            # Determine which batch characters use this jutsu
+            users = [u.get("fulltext", "") for u in printouts.get("User tech.Page", [])]
+            chars_in_batch = [u for u in users if u in char_set]
+            for classif in classifs:
+                mapped = constants.JUTSU_CLASSIFICATION_MAP.get(classif)
+                if mapped:
+                    for char in chars_in_batch:
+                        type_sets[char].add(mapped)
+
+    for name in character_names:
+        results[name] = sorted(type_sets[name])
+
+    return results
+
+
 def load_canon_arcs_data() -> list[dict]:
     return _load_canon_arcs_data()
 
