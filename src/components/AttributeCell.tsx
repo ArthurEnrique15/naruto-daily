@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { ArrowBigDown, ArrowBigUp } from 'lucide-react'
 import { AttributeResult } from '@/types/game'
 import { getNatureIconPath } from '@/lib/nature-icons'
 
@@ -50,14 +51,14 @@ export default function AttributeCell({ label, result }: AttributeCellProps) {
       )
     }
   } else if (isDebutArc && result.feedback === 'wrong' && result.direction) {
-    const arrowChar = result.direction === 'before' ? '↓' : '↑'
+    const ArrowIcon = result.direction === 'before' ? ArrowBigDown : ArrowBigUp
     const raw = Array.isArray(result.value)
       ? result.value.length > 0 ? result.value.join(', ') : '—'
       : result.value || '—'
     displayValue = (
-      <div className="flex flex-col items-center justify-center w-full gap-0.5">
-        <span className="text-3xl font-black text-white opacity-70 leading-none select-none">{arrowChar}</span>
-        <span className="text-xs font-bold text-center leading-tight break-words w-full">{raw}</span>
+      <div className="relative flex items-center justify-center w-full h-full">
+        <ArrowIcon className="absolute text-red-950 opacity-80 fill-red-950" size={80} strokeWidth={2} />
+        <span className="relative text-xs font-bold text-center leading-tight break-words w-full z-10">{raw}</span>
       </div>
     )
   } else if (isLongJutsuList && Array.isArray(result.value)) {
