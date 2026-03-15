@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { AttributeResult } from '@/types/game'
 import { getNatureIcon } from '@/lib/nature-icons'
 
@@ -31,10 +32,20 @@ export default function AttributeCell({ label, result }: AttributeCellProps) {
             return (
               <span
                 key={nature}
-                className={`relative group/nature inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white ${icon.className}`}
+                className={`relative group/nature inline-flex items-center justify-center w-6 h-6 ${icon.className}`}
                 style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
               >
-                {icon.symbol}
+                {icon.imagePath ? (
+                  <Image
+                    src={icon.imagePath}
+                    alt={nature}
+                    width={24}
+                    height={24}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <span className="text-xs font-bold text-white">{nature[0]}</span>
+                )}
                 <span className="absolute bottom-full mb-1 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 group-hover/nature:opacity-100 transition-opacity duration-75 bg-popover text-popover-foreground text-xs font-semibold px-2 py-1 rounded shadow-lg border whitespace-nowrap">
                   {nature}
                 </span>
