@@ -129,17 +129,17 @@ export default function GameBoard({ characters, isDev }: GameBoardProps) {
           This character has the exact same attributes as today&apos;s answer — but they&apos;re not the same person!
         </div>
       )}
-      <div className="w-full bg-card border border-border rounded-xl shadow-sm p-6 flex flex-col gap-6">
+      <div className="flex justify-center w-full">
         <GuessInput
           characters={characters}
           guessedIds={guessedIds}
           onGuess={handleGuess}
           disabled={solved}
         />
-        {guesses.length > 0 && (
-          <GuessTable guesses={guesses.slice().reverse()} />
-        )}
       </div>
+      {guesses.length > 0 && (
+        <GuessTable guesses={guesses.slice().reverse()} />
+      )}
     </div>
   )
 }
