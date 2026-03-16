@@ -11,7 +11,7 @@ export default function GuessTable({ guesses }: GuessTableProps) {
       <table className="table-fixed border-separate border-spacing-2 mx-auto">
         <thead className="sticky top-0 z-10 bg-transparent">
           <tr>
-            <th className="w-24 text-sm font-semibold text-left px-1 pb-1">Character</th>
+            <th className="w-24 text-sm font-semibold text-center px-1 pb-1">Character</th>
             <th className="w-28 text-sm font-semibold px-1 pb-1">Affiliations</th>
             <th className="w-28 text-sm font-semibold px-1 pb-1">Gender</th>
             <th className="w-32 text-sm font-semibold px-1 pb-1">Debut Arc</th>
