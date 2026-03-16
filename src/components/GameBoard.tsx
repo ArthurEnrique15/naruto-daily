@@ -137,9 +137,7 @@ export default function GameBoard({ characters, isDev }: GameBoardProps) {
           disabled={solved}
         />
         {guesses.length > 0 && (
-          <div className="overflow-x-auto">
-            <GuessTable guesses={guesses.slice().reverse()} />
-          </div>
+          <GuessTable guesses={guesses.slice().reverse()} />
         )}
       </div>
     </div>
