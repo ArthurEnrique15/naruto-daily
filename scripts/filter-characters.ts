@@ -17,6 +17,15 @@ const dataDir = resolve(__dirname, "../data");
 const BORUTO_SENTINEL = "__boruto__";
 const ALLOWED_SERIES = new Set(["naruto", "shippuden"]);
 
+const BANNED_VILLAGES = new Set<string>([
+  "Allied Shinobi Forces",
+  "Kara",
+]);
+
+const BANNED_JUTSU_TYPES = new Set<string>([
+  "Fūinjutsu",
+]);
+
 const VALID_RANKS = new Set<string>([
   "Academy Student",
   "Genin",
@@ -45,12 +54,21 @@ function loadCanonArcNames(): Set<string> {
   return new Set(arcs.filter((a) => a.canonical).map((a) => a.name));
 }
 
-type SkipReason = "boruto" | "filler" | "missing_data";
+function loadBlacklist(): Set<string> {
+  const { characters } = JSON.parse(
+    readFileSync(resolve(dataDir, "blacklist.json"), "utf-8")
+  ) as { characters: string[] };
+  return new Set(characters);
+}
+
+type SkipReason = "boruto" | "filler" | "missing_data" | "blacklisted";
 
 function filterCharacter(
   raw: RawCharacter,
-  canonArcNames: Set<string>
+  canonArcNames: Set<string>,
+  blacklist: Set<string>
 ): { character: Character } | { skipReason: SkipReason } {
+  if (blacklist.has(raw.id)) return { skipReason: "blacklisted" };
   if (raw.debutArc === BORUTO_SENTINEL) return { skipReason: "boruto" };
   if (!raw.name) return { skipReason: "missing_data" };
   if (raw.status === null || !VALID_STATUSES.has(raw.status))
@@ -65,11 +83,11 @@ function filterCharacter(
       id: raw.id,
       name: raw.name,
       imageUrl: raw.imageUrl,
-      village: raw.village,
+      village: raw.village.filter((v) => !BANNED_VILLAGES.has(v)),
       rank: raw.rank as Character["rank"],
       kekkeiGenkai: raw.kekkeiGenkai,
       natureTypes: raw.natureTypes,
-      jutsuTypes: raw.jutsuTypes,
+      jutsuTypes: raw.jutsuTypes.filter((j) => !BANNED_JUTSU_TYPES.has(j)),
       status: raw.status as Character["status"],
       debutArc: raw.debutArc,
       gender: raw.gender as Character["gender"],
@@ -85,12 +103,13 @@ function main(): void {
   ) as RawCharacter[];
 
   const canonArcNames = loadCanonArcNames();
+  const blacklist = loadBlacklist();
   const characters: Character[] = [];
   const seenIds = new Set<string>();
-  const counts = { boruto: 0, filler: 0, missing_data: 0, duplicate: 0 };
+  const counts = { boruto: 0, filler: 0, missing_data: 0, duplicate: 0, blacklisted: 0 };
 
   for (const raw of rawData) {
-    const result = filterCharacter(raw, canonArcNames);
+    const result = filterCharacter(raw, canonArcNames, blacklist);
     if ("skipReason" in result) {
       counts[result.skipReason]++;
       continue;
@@ -106,12 +125,13 @@ function main(): void {
 
   characters.sort((a, b) => a.id.localeCompare(b.id));
 
-  console.log(`Input:             ${rawData.length}`);
-  console.log(`Skipped (boruto):  ${counts.boruto}`);
-  console.log(`Skipped (filler):  ${counts.filler}`);
-  console.log(`Skipped (missing): ${counts.missing_data}`);
-  console.log(`Skipped (dup):     ${counts.duplicate}`);
-  console.log(`Written:           ${characters.length}`);
+  console.log(`Input:              ${rawData.length}`);
+  console.log(`Skipped (boruto):   ${counts.boruto}`);
+  console.log(`Skipped (filler):   ${counts.filler}`);
+  console.log(`Skipped (missing):  ${counts.missing_data}`);
+  console.log(`Skipped (dup):      ${counts.duplicate}`);
+  console.log(`Skipped (blacklist):${counts.blacklisted}`);
+  console.log(`Written:            ${characters.length}`);
 
   mkdirSync(dataDir, { recursive: true });
   writeFileSync(
