@@ -52,7 +52,7 @@ function ClueCard({ label, missCount, threshold, revealed, content, onReveal }: 
 
   if (revealed) {
     return (
-      <div className="w-full max-w-md px-4 py-2 rounded-lg bg-muted border border-border text-center">
+      <div className="min-w-[200px] px-4 py-2 rounded-lg bg-muted border border-border text-center">
         <span className="text-muted-foreground">{label}: </span>
         <span className="font-bold">{content}</span>
       </div>
@@ -60,7 +60,7 @@ function ClueCard({ label, missCount, threshold, revealed, content, onReveal }: 
   }
 
   return (
-    <div className="w-full max-w-md px-4 py-3 rounded-lg bg-muted border border-border flex items-center justify-between gap-4">
+    <div className="min-w-[200px] px-4 py-3 rounded-lg bg-muted border border-border flex items-center justify-between gap-4">
       <span className="text-muted-foreground text-sm">
         {unlocked ? `${label} hint available` : `${label} available in ${remaining} guess${remaining === 1 ? '' : 'es'}`}
       </span>
@@ -77,7 +77,7 @@ function ClueCard({ label, missCount, threshold, revealed, content, onReveal }: 
 
 export default function CluePanel({ missCount, target, usedClues, onReveal }: CluePanelProps) {
   return (
-    <div className="flex flex-col items-center gap-2 w-full">
+    <div className="flex flex-row flex-wrap justify-center gap-2 w-full">
       {CLUES.map((clue) => (
         <ClueCard
           key={clue.key}

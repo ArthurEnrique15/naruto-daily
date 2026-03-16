@@ -19,24 +19,24 @@ const ATTRIBUTES: { label: string; key: keyof Omit<GuessResult, 'character'> }[]
 export default function GuessRow({ result, isNew }: GuessRowProps) {
   return (
     <tr>
-      <td className="p-1">
+      <td className="p-1 relative z-20 hover:z-[60] group">
         <div
-          className={`relative group flex items-center justify-center ${isNew ? 'animate-reveal' : ''}`}
+          className={`flex items-center justify-center ${isNew ? 'animate-reveal' : ''}`}
           style={isNew ? { animationDelay: '0ms' } : undefined}
         >
           <CharacterAvatar imageUrl={result.character.imageUrl} name={result.character.name} className="w-20 h-20" />
-          {/* Styled tooltip */}
-          <div className="absolute bottom-full mb-1 left-1/2 -translate-x-1/2 z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150">
-            <div className="bg-popover text-popover-foreground text-xs font-semibold px-2 py-1 rounded shadow-lg border whitespace-nowrap">
-              {result.character.name}
-            </div>
+        </div>
+        {/* Styled tooltip */}
+        <div className="absolute bottom-full mb-1 left-1/2 -translate-x-1/2 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150">
+          <div className="bg-popover text-popover-foreground text-xs font-semibold px-2 py-1 rounded shadow-lg border whitespace-nowrap">
+            {result.character.name}
           </div>
         </div>
       </td>
       {ATTRIBUTES.map(({ label, key }, index) => (
         <td
           key={key}
-          className={`p-1 whitespace-nowrap ${isNew ? 'animate-reveal' : ''}`}
+          className={`p-1 whitespace-nowrap relative hover:z-[60] ${isNew ? 'animate-reveal' : ''}`}
           style={isNew ? { animationDelay: `${(index + 1) * 200}ms` } : undefined}
         >
           <AttributeCell label={label} result={result[key]} />

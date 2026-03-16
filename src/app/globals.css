@@ -132,6 +132,6 @@
   }
   body {
     @apply text-foreground font-sans;
-    background: radial-gradient(ellipse at top, oklch(0.97 0.02 85) 0%, oklch(1 0 0) 60%);
+    background: url('/background.png') center center / cover no-repeat fixed;
   }
 }
