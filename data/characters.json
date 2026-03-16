@@ -23,7 +23,6 @@
     "name": "A (Fourth Raikage)",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/4/4c/Fourth_Raikage_2.png/revision/latest?cb=20180901014100",
     "village": [
-      "Allied Shinobi Forces",
       "Kumogakure"
     ],
     "rank": "Kage",
@@ -190,7 +189,6 @@
     "kekkeiGenkai": [],
     "natureTypes": [],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Ninjutsu"
     ],
     "status": "Deceased",
@@ -205,7 +203,6 @@
     "name": "Akamaru",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/0/09/Akamaru_p1.png/revision/latest?cb=20140705090523",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "N/A",
@@ -246,7 +243,6 @@
     "name": "Akatsuchi",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/1/16/Akatsuchi_Part_II.png/revision/latest?cb=20190209014302",
     "village": [
-      "Allied Shinobi Forces",
       "Iwagakure"
     ],
     "rank": "Jonin",
@@ -351,9 +347,7 @@
     "name": "Anko Mitarashi",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/b/bd/Anko_Part_I.png/revision/latest?cb=20170412103610",
     "village": [
-      "Allied Shinobi Forces",
-      "Konohagakure",
-      "Ryūchi Cave"
+      "Konohagakure"
     ],
     "rank": "N/A",
     "kekkeiGenkai": [],
@@ -380,8 +374,6 @@
     "name": "Ao",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/7/72/Ao.png/revision/latest?cb=20171014133718",
     "village": [
-      "Allied Shinobi Forces",
-      "Kara",
       "Kirigakure"
     ],
     "rank": "Jonin",
@@ -393,7 +385,6 @@
       "Yin"
     ],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Ninjutsu",
       "Taijutsu"
     ],
@@ -410,7 +401,6 @@
     "name": "Aoba Yamashiro",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/4/42/Aoba.png/revision/latest?cb=20160122113145",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "N/A",
@@ -433,8 +423,7 @@
     "name": "Aoda",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/9/99/Aoda.png/revision/latest?cb=20251110103924",
     "village": [
-      "Konohagakure",
-      "Ryūchi Cave"
+      "Konohagakure"
     ],
     "rank": "N/A",
     "kekkeiGenkai": [],
@@ -493,9 +482,7 @@
     "rank": "N/A",
     "kekkeiGenkai": [],
     "natureTypes": [],
-    "jutsuTypes": [
-      "Fuinjutsu"
-    ],
+    "jutsuTypes": [],
     "status": "Deceased",
     "debutArc": "Pain's Assault",
     "gender": "Male",
@@ -585,7 +572,6 @@
     "name": "Atsui",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/0/0f/Atsui.png/revision/latest?cb=20220224085250",
     "village": [
-      "Allied Shinobi Forces",
       "Kumogakure"
     ],
     "rank": "Chunin",
@@ -924,7 +910,6 @@
     "kekkeiGenkai": [],
     "natureTypes": [],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Ninjutsu"
     ],
     "status": "Deceased",
@@ -976,7 +961,6 @@
     "name": "C",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/7/7a/Shee.png/revision/latest?cb=20160124060948",
     "village": [
-      "Allied Shinobi Forces",
       "Kumogakure"
     ],
     "rank": "Jonin",
@@ -1027,7 +1011,6 @@
     "kekkeiGenkai": [],
     "natureTypes": [],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Ninjutsu"
     ],
     "status": "Deceased",
@@ -1049,7 +1032,6 @@
     "kekkeiGenkai": [],
     "natureTypes": [],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Ninjutsu",
       "Taijutsu"
     ],
@@ -1085,7 +1067,6 @@
     "name": "Chōji Akimichi",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/7/7d/Ch%C5%8Dji_Akimichi.png/revision/latest?cb=20200426204415",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Chunin",
@@ -1111,7 +1092,6 @@
     "name": "Chōjūrō",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/d/d8/Chojuro_2.png/revision/latest?cb=20170913102939",
     "village": [
-      "Allied Shinobi Forces",
       "Kirigakure"
     ],
     "rank": "Kage",
@@ -1176,7 +1156,6 @@
     "name": "Chōza Akimichi",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/a/a8/Ch%C5%8Dza_Akimichi.png/revision/latest?cb=20180304093618",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Jonin",
@@ -1223,7 +1202,6 @@
     "name": "Daen Nara",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/7/76/Daen_Nara.png/revision/latest?cb=20141110131339",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Jonin",
@@ -1283,8 +1261,7 @@
     "name": "Dajimu",
     "imageUrl": "/placeholder.png",
     "village": [
-      "Konohagakure",
-      "Root"
+      "Konohagakure"
     ],
     "rank": "Anbu",
     "kekkeiGenkai": [],
@@ -1346,8 +1323,7 @@
     "name": "Danzō Shimura",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/1/17/Danz%C5%8D.png/revision/latest?cb=20171028185149",
     "village": [
-      "Konohagakure",
-      "Root"
+      "Konohagakure"
     ],
     "rank": "N/A",
     "kekkeiGenkai": [
@@ -1363,7 +1339,6 @@
       "Yin"
     ],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Genjutsu",
       "Ninjutsu"
     ],
@@ -1380,7 +1355,6 @@
     "name": "Darui",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/4/45/Darui.png/revision/latest?cb=20170913102716",
     "village": [
-      "Allied Shinobi Forces",
       "Kumogakure"
     ],
     "rank": "Kage",
@@ -1442,7 +1416,6 @@
     "kekkeiGenkai": [],
     "natureTypes": [],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Ninjutsu"
     ],
     "status": "Alive",
@@ -1492,7 +1465,6 @@
     "name": "Dodai",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/9/92/Dodai_HDshot.png/revision/latest?cb=20170125161312",
     "village": [
-      "Allied Shinobi Forces",
       "Kumogakure"
     ],
     "rank": "Jonin",
@@ -1622,7 +1594,6 @@
     "name": "Ebisu",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/7/77/Ebisu.png/revision/latest?cb=20160626182251",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "N/A",
@@ -1703,7 +1674,6 @@
     "name": "Ensui Nara",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/d/da/Ensui_Nara_Anime.png/revision/latest?cb=20160205052540",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Jonin",
@@ -1726,7 +1696,6 @@
     "name": "F",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/b/be/F_HDShot.png/revision/latest?cb=20130117143137",
     "village": [
-      "Allied Shinobi Forces",
       "Kumogakure"
     ],
     "rank": "N/A",
@@ -1818,8 +1787,7 @@
     "name": "Fū Yamanaka",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/9/95/Fu_1.png/revision/latest?cb=20150207104032",
     "village": [
-      "Konohagakure",
-      "Root"
+      "Konohagakure"
     ],
     "rank": "Anbu",
     "kekkeiGenkai": [],
@@ -1887,8 +1855,7 @@
     "name": "Fukasaku",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/f/fc/Fukusaku.png/revision/latest?cb=20160510201946",
     "village": [
-      "Konohagakure",
-      "Mount Myōboku"
+      "Konohagakure"
     ],
     "rank": "N/A",
     "kekkeiGenkai": [],
@@ -2028,7 +1995,6 @@
     "name": "Gaara",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/2/20/Gaara_in_Part_I.png/revision/latest?cb=20221010023824",
     "village": [
-      "Allied Shinobi Forces",
       "Sunagakure"
     ],
     "rank": "Kage",
@@ -2076,8 +2042,7 @@
     "name": "Gama",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/9/9f/Gama.png/revision/latest?cb=20150123151452",
     "village": [
-      "Konohagakure",
-      "Mount Myōboku"
+      "Konohagakure"
     ],
     "rank": "N/A",
     "kekkeiGenkai": [],
@@ -2099,8 +2064,7 @@
     "name": "Gamabunta",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/f/f6/Gamabunta2.png/revision/latest?cb=20150131220923",
     "village": [
-      "Konohagakure",
-      "Mount Myōboku"
+      "Konohagakure"
     ],
     "rank": "N/A",
     "kekkeiGenkai": [],
@@ -2123,9 +2087,7 @@
     "id": "gamaden",
     "name": "Gamaden",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/b/b0/Gamaden.png/revision/latest?cb=20170411040502",
-    "village": [
-      "Mount Myōboku"
-    ],
+    "village": [],
     "rank": "N/A",
     "kekkeiGenkai": [],
     "natureTypes": [],
@@ -2142,8 +2104,7 @@
     "name": "Gamahiro",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/e/e6/Gamahiro.png/revision/latest?cb=20111105165642",
     "village": [
-      "Konohagakure",
-      "Mount Myōboku"
+      "Konohagakure"
     ],
     "rank": "N/A",
     "kekkeiGenkai": [],
@@ -2161,8 +2122,7 @@
     "name": "Gamaken",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/9/98/Gamaken.png/revision/latest?cb=20210926033239",
     "village": [
-      "Konohagakure",
-      "Mount Myōboku"
+      "Konohagakure"
     ],
     "rank": "N/A",
     "kekkeiGenkai": [],
@@ -2183,9 +2143,7 @@
     "name": "Gamakichi",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/e/e1/Gamakichi.PNG/revision/latest?cb=20240928214248",
     "village": [
-      "Allied Shinobi Forces",
-      "Konohagakure",
-      "Mount Myōboku"
+      "Konohagakure"
     ],
     "rank": "N/A",
     "kekkeiGenkai": [],
@@ -2211,8 +2169,7 @@
     "name": "Gamamaru",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/7/76/Gamamaru_infobox.png/revision/latest?cb=20150404054457",
     "village": [
-      "Konohagakure",
-      "Mount Myōboku"
+      "Konohagakure"
     ],
     "rank": "N/A",
     "kekkeiGenkai": [],
@@ -2234,9 +2191,7 @@
     "id": "gamatama",
     "name": "Gamatama",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/0/08/Gamatama.png/revision/latest?cb=20251223184437",
-    "village": [
-      "Mount Myōboku"
-    ],
+    "village": [],
     "rank": "N/A",
     "kekkeiGenkai": [],
     "natureTypes": [],
@@ -2254,8 +2209,7 @@
     "name": "Gamatatsu",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/8/81/Gamatatsu.png/revision/latest?cb=20240928164231",
     "village": [
-      "Konohagakure",
-      "Mount Myōboku"
+      "Konohagakure"
     ],
     "rank": "N/A",
     "kekkeiGenkai": [],
@@ -2444,7 +2398,6 @@
     "name": "Genma Shiranui",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/9/90/Genma_Shiranui.png/revision/latest?cb=20160122112630",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "N/A",
@@ -2522,8 +2475,7 @@
     "name": "Gerotora",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/f/fa/Gamatora.png/revision/latest?cb=20220218132513",
     "village": [
-      "Konohagakure",
-      "Mount Myōboku"
+      "Konohagakure"
     ],
     "rank": "N/A",
     "kekkeiGenkai": [],
@@ -2811,7 +2763,6 @@
     "name": "Gyūki",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/d/d7/Gyuki.png/revision/latest?cb=20140817221249",
     "village": [
-      "Allied Shinobi Forces",
       "Kumogakure"
     ],
     "rank": "N/A",
@@ -2833,8 +2784,7 @@
     "name": "Hagoromo Ōtsutsuki",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/6/62/Hagoromo.png/revision/latest?cb=20220323114624",
     "village": [
-      "Land of Ancestors",
-      "Mount Myōboku"
+      "Land of Ancestors"
     ],
     "rank": "N/A",
     "kekkeiGenkai": [],
@@ -2849,7 +2799,6 @@
       "Yin-Yang"
     ],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Ninjutsu",
       "Senjutsu"
     ],
@@ -2892,7 +2841,6 @@
     "name": "Hakui (medic)",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/5/59/Hakui_medic.png/revision/latest?cb=20150501103957",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "N/A",
@@ -2973,8 +2921,7 @@
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/e/e8/Hamura.png/revision/latest?cb=20170924134057",
     "village": [
       "Land of Ancestors",
-      "Moon",
-      "Mount Myōboku"
+      "Moon"
     ],
     "rank": "N/A",
     "kekkeiGenkai": [
@@ -3034,7 +2981,6 @@
     "name": "Hana Inuzuka",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/9/97/Hana_Inuzuka.png/revision/latest?cb=20150818182327",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Chunin",
@@ -3103,7 +3049,6 @@
     "name": "Harine",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/e/e2/Harine.png/revision/latest?cb=20141110140858",
     "village": [
-      "Konoha Orphanage",
       "Konohagakure"
     ],
     "rank": "N/A",
@@ -3122,7 +3067,6 @@
     "name": "Hashirama Senju",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/7/7e/Hashirama_Senju.png/revision/latest?cb=20160124040430",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Kage",
@@ -3139,7 +3083,6 @@
       "Yin"
     ],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Genjutsu",
       "Kenjutsu",
       "Ninjutsu",
@@ -3235,7 +3178,6 @@
     "name": "Hiashi Hyūga",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/e/ee/Hiashi_Hyuga.png/revision/latest?cb=20150109142633",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Jonin",
@@ -3378,7 +3320,6 @@
     "name": "Hinata Hyūga",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/9/97/Hinata.png/revision/latest?cb=20141010104729",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Chunin",
@@ -3406,7 +3347,6 @@
     "name": "Hiruzen Sarutobi",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/e/e4/Hiruzen_Sarutobi.png/revision/latest?cb=20160125204719",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Kage",
@@ -3421,7 +3361,6 @@
       "Yin"
     ],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Ninjutsu"
     ],
     "status": "Deceased",
@@ -3459,7 +3398,6 @@
     "name": "Hoheto Hyūga",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/c/c4/Hoheto.png/revision/latest?cb=20160307034250",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Jonin",
@@ -3589,8 +3527,7 @@
     "name": "Hyō",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/9/99/Hy%C5%8D.png/revision/latest?cb=20230416220154",
     "village": [
-      "Konohagakure",
-      "Root"
+      "Konohagakure"
     ],
     "rank": "Anbu",
     "kekkeiGenkai": [],
@@ -3775,7 +3712,6 @@
     "name": "Ino Yamanaka",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/d/dd/Ino.png/revision/latest?cb=20170622102745",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Chunin",
@@ -3805,7 +3741,6 @@
     "name": "Inoichi Yamanaka",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/d/d2/Inoichi_Yamanaka.png/revision/latest?cb=20150409122740",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Jonin",
@@ -3847,7 +3782,6 @@
     "name": "Iroha Hyūga",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/9/98/Iroha_Hyuga.png/revision/latest?cb=20160115172032",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Jonin",
@@ -3868,7 +3802,6 @@
     "name": "Iruka Umino",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/b/bc/Iruka.png/revision/latest?cb=20161013212102",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Chunin",
@@ -3879,7 +3812,6 @@
       "Yin"
     ],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Genjutsu",
       "Ninjutsu",
       "Taijutsu"
@@ -3997,7 +3929,6 @@
       "Yin"
     ],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Genjutsu",
       "Kenjutsu",
       "Ninjutsu",
@@ -4052,7 +3983,6 @@
     "name": "Ittan",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/e/ea/Ittan_Anime.png/revision/latest?cb=20160307035546",
     "village": [
-      "Allied Shinobi Forces",
       "Iwagakure"
     ],
     "rank": "Chunin",
@@ -4112,7 +4042,6 @@
     "name": "Iwashi Tatami",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/7/7c/Iwashi_Tatami.png/revision/latest?cb=20240901205727",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Chunin",
@@ -4152,7 +4081,6 @@
     "name": "Izumo Kamizuki",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/5/5d/Izumo_Kamizuki.png/revision/latest?cb=20140111135444",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Chunin",
@@ -4313,8 +4241,7 @@
     "name": "Jiraiya",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/2/21/Profile_Jiraiya.PNG/revision/latest?cb=20160115173538",
     "village": [
-      "Konohagakure",
-      "Mount Myōboku"
+      "Konohagakure"
     ],
     "rank": "Jonin",
     "kekkeiGenkai": [],
@@ -4327,7 +4254,6 @@
       "Yin"
     ],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Ninjutsu",
       "Senjutsu",
       "Taijutsu"
@@ -4503,11 +4429,8 @@
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/c/c9/Kabuto_Part_1.png/revision/latest?cb=20170906101523",
     "village": [
       "Akatsuki",
-      "Konoha Orphanage",
       "Konohagakure",
-      "Otogakure",
-      "Root",
-      "Ryūchi Cave"
+      "Otogakure"
     ],
     "rank": "Genin",
     "kekkeiGenkai": [
@@ -4522,7 +4445,6 @@
       "Yin"
     ],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Genjutsu",
       "Kenjutsu",
       "Ninjutsu",
@@ -4710,9 +4632,7 @@
     "name": "Kakashi Hatake",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/2/27/Kakashi_Hatake.png/revision/latest?cb=20251019002845",
     "village": [
-      "Allied Shinobi Forces",
-      "Konohagakure",
-      "Root"
+      "Konohagakure"
     ],
     "rank": "Kage",
     "kekkeiGenkai": [
@@ -4728,7 +4648,6 @@
       "Yin"
     ],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Genjutsu",
       "Kenjutsu",
       "Ninjutsu",
@@ -4859,7 +4778,6 @@
     "name": "Kankurō",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/7/7d/Kankur%C5%8D1.png/revision/latest?cb=20150125171209",
     "village": [
-      "Allied Shinobi Forces",
       "Sunagakure"
     ],
     "rank": "Jonin",
@@ -4905,7 +4823,6 @@
     "name": "Kanpu",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/1/19/Kanpu.png/revision/latest?cb=20141107152405",
     "village": [
-      "Konoha Orphanage",
       "Konohagakure"
     ],
     "rank": "N/A",
@@ -4957,7 +4874,6 @@
       "Yin"
     ],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Ninjutsu",
       "Taijutsu"
     ],
@@ -4973,7 +4889,6 @@
     "name": "Karui",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/c/c3/Karui.png/revision/latest?cb=20170714025704",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure",
       "Kumogakure"
     ],
@@ -5035,7 +4950,6 @@
     "name": "Kasuga Nara",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/9/97/Kasuga_Nara.png/revision/latest?cb=20141110131123",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Chunin",
@@ -5076,9 +4990,7 @@
     "name": "Katsuyu",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/5/59/Katsuyu_Summoned.png/revision/latest?cb=20150131221131",
     "village": [
-      "Allied Shinobi Forces",
-      "Konohagakure",
-      "Shikkotsu Forest"
+      "Konohagakure"
     ],
     "rank": "N/A",
     "kekkeiGenkai": [],
@@ -5133,7 +5045,6 @@
     "name": "Keiri",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/4/41/Keiri.png/revision/latest?cb=20141107153730",
     "village": [
-      "Konoha Orphanage",
       "Konohagakure"
     ],
     "rank": "N/A",
@@ -5153,7 +5064,6 @@
     "name": "Kiba Inuzuka",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/0/03/Kiba.png/revision/latest?cb=20180124105049",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Chunin",
@@ -5219,7 +5129,6 @@
     "name": "Killer B",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/6/63/Killer_B.png/revision/latest?cb=20180425141557",
     "village": [
-      "Allied Shinobi Forces",
       "Kumogakure"
     ],
     "rank": "N/A",
@@ -5231,7 +5140,6 @@
       "Yang"
     ],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Kenjutsu",
       "Ninjutsu",
       "Taijutsu"
@@ -5371,7 +5279,6 @@
     "name": "Kiri (ninja)",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/8/82/Kiri.png/revision/latest?cb=20160307033139",
     "village": [
-      "Allied Shinobi Forces",
       "Kirigakure"
     ],
     "rank": "Chunin",
@@ -5440,7 +5347,6 @@
     "name": "Kitsuchi",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/1/14/Kitsuchi1.png/revision/latest?cb=20160115195913",
     "village": [
-      "Allied Shinobi Forces",
       "Iwagakure"
     ],
     "rank": "Jonin",
@@ -5483,7 +5389,6 @@
     "name": "Kō Hyūga",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/5/5a/K%C5%8D.png/revision/latest?cb=20160115165008",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Jonin",
@@ -5711,8 +5616,7 @@
     "name": "Konohamaru Sarutobi",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/8/89/Konohamaru_p1.png/revision/latest?cb=20150122131608",
     "village": [
-      "Konohagakure",
-      "Mount Myōboku"
+      "Konohagakure"
     ],
     "rank": "Jonin",
     "kekkeiGenkai": [],
@@ -5724,7 +5628,6 @@
       "Yang"
     ],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Ninjutsu",
       "Taijutsu"
     ],
@@ -5777,7 +5680,6 @@
     "name": "Kotetsu Hagane",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/8/81/Kotetsu_Hagane.png/revision/latest?cb=20160115135316",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Chunin",
@@ -5856,7 +5758,6 @@
     "name": "Kurama",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/7/7b/Kurama2.png/revision/latest?cb=20140818171718",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "N/A",
@@ -5889,7 +5790,6 @@
       "Yin"
     ],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Genjutsu",
       "Kenjutsu",
       "Ninjutsu",
@@ -5927,7 +5827,6 @@
     "name": "Kurotsuchi",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/2/29/Kurotsuchi_Part_II.png/revision/latest?cb=20170913104850",
     "village": [
-      "Allied Shinobi Forces",
       "Iwagakure"
     ],
     "rank": "Kage",
@@ -6025,7 +5924,6 @@
       "Yin"
     ],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Ninjutsu",
       "Taijutsu"
     ],
@@ -6041,7 +5939,6 @@
     "name": "Kussaku",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/a/a5/Kussaku.png/revision/latest?cb=20141124212317",
     "village": [
-      "Allied Shinobi Forces",
       "Kirigakure"
     ],
     "rank": "N/A",
@@ -6202,7 +6099,6 @@
     "name": "Mabui",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/d/d3/Mabui.png/revision/latest?cb=20160226234939",
     "village": [
-      "Allied Shinobi Forces",
       "Kumogakure"
     ],
     "rank": "Jonin",
@@ -6260,7 +6156,6 @@
       "Yin-Yang"
     ],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Genjutsu",
       "Ninjutsu",
       "Senjutsu",
@@ -6279,7 +6174,6 @@
     "name": "Maen Nara",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/0/08/Maen_Nara.png/revision/latest?cb=20141110130918",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "N/A",
@@ -6324,7 +6218,6 @@
     "name": "Makaro Akimichi",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/4/4f/Makaro_Akimichi.png/revision/latest?cb=20141107143226",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Chunin",
@@ -6347,14 +6240,12 @@
     "name": "Maki",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/2/21/Maki.png/revision/latest?cb=20160115141031",
     "village": [
-      "Allied Shinobi Forces",
       "Sunagakure"
     ],
     "rank": "Jonin",
     "kekkeiGenkai": [],
     "natureTypes": [],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Ninjutsu"
     ],
     "status": "Alive",
@@ -6431,8 +6322,7 @@
     "name": "Manda",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/e/e0/Manda_Summoned.png/revision/latest?cb=20150131221107",
     "village": [
-      "Otogakure",
-      "Ryūchi Cave"
+      "Otogakure"
     ],
     "rank": "N/A",
     "kekkeiGenkai": [],
@@ -6517,7 +6407,6 @@
     "name": "Maruten Akimichi",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/5/5a/Maruten_Akimichi.png/revision/latest?cb=20220211075943",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "N/A",
@@ -6583,7 +6472,6 @@
     "name": "Matsuri",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/4/43/Matsuri_p1.png/revision/latest?cb=20150216104105",
     "village": [
-      "Allied Shinobi Forces",
       "Sunagakure"
     ],
     "rank": "Genin",
@@ -6666,7 +6554,6 @@
     "name": "Mei Terumī",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/6/6f/Mei.png/revision/latest?cb=20170927110950",
     "village": [
-      "Allied Shinobi Forces",
       "Kirigakure"
     ],
     "rank": "Kage",
@@ -6812,7 +6699,6 @@
     "name": "Mifune",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/e/ee/Mifune.png/revision/latest?cb=20150514152216",
     "village": [
-      "Allied Shinobi Forces",
       "Land of Iron"
     ],
     "rank": "N/A",
@@ -6873,7 +6759,6 @@
     "name": "Might Guy",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/3/31/Might_Guy.png/revision/latest?cb=20150401084456",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Jonin",
@@ -6918,9 +6803,7 @@
     "name": "Minato Namikaze",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/7/71/Minato_Namikaze.png/revision/latest?cb=20160125175116",
     "village": [
-      "Allied Shinobi Forces",
-      "Konohagakure",
-      "Mount Myōboku"
+      "Konohagakure"
     ],
     "rank": "Kage",
     "kekkeiGenkai": [],
@@ -6932,7 +6815,6 @@
       "Yin"
     ],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Ninjutsu",
       "Senjutsu",
       "Taijutsu"
@@ -7104,8 +6986,7 @@
     "name": "Mizunoto",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/b/b4/Mizunoto.png/revision/latest?cb=20140521184617",
     "village": [
-      "Konohagakure",
-      "Root"
+      "Konohagakure"
     ],
     "rank": "Anbu",
     "kekkeiGenkai": [],
@@ -7188,7 +7069,6 @@
     "name": "Monkey King: Enma",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/a/aa/Enma.png/revision/latest?cb=20160131185005",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "N/A",
@@ -7215,7 +7095,6 @@
     "kekkeiGenkai": [],
     "natureTypes": [],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Ninjutsu"
     ],
     "status": "Deceased",
@@ -7230,7 +7109,6 @@
     "name": "Morio",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/c/cb/Morio.png/revision/latest?cb=20121115183752",
     "village": [
-      "Allied Shinobi Forces",
       "Iwagakure"
     ],
     "rank": "Chunin",
@@ -7249,7 +7127,6 @@
     "name": "Moroi",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/e/ed/Moroi_HDShot.png/revision/latest?cb=20220211075146",
     "village": [
-      "Allied Shinobi Forces",
       "Kumogakure"
     ],
     "rank": "N/A",
@@ -7269,7 +7146,6 @@
     "name": "Motoi",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/5/55/Motoi.png/revision/latest?cb=20150518130039",
     "village": [
-      "Allied Shinobi Forces",
       "Kumogakure"
     ],
     "rank": "Chunin",
@@ -7294,7 +7170,6 @@
     "name": "Mozuku",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/1/16/Mozuku.png/revision/latest?cb=20150129150038",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Chunin",
@@ -7389,7 +7264,6 @@
     "name": "Musai",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/6/6a/Musai.PNG/revision/latest?cb=20211024040232",
     "village": [
-      "Allied Shinobi Forces",
       "Kumogakure"
     ],
     "rank": "N/A",
@@ -7408,7 +7282,6 @@
     "name": "Muta Aburame",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/1/1f/Aburame_Muta.png/revision/latest?cb=20160115101249",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "N/A",
@@ -7464,7 +7337,6 @@
       "Yang"
     ],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Genjutsu",
       "Ninjutsu",
       "Taijutsu"
@@ -7490,7 +7362,6 @@
       "Water"
     ],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Ninjutsu"
     ],
     "status": "Alive",
@@ -7541,9 +7412,7 @@
     "name": "Naruto Uzumaki",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/d/d6/Naruto_Part_I.png/revision/latest?cb=20251228135525",
     "village": [
-      "Allied Shinobi Forces",
-      "Konohagakure",
-      "Mount Myōboku"
+      "Konohagakure"
     ],
     "rank": "Kage",
     "kekkeiGenkai": [
@@ -7560,7 +7429,6 @@
       "Yin-Yang"
     ],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Ninjutsu",
       "Senjutsu",
       "Taijutsu"
@@ -7614,7 +7482,6 @@
     "name": "Neji Hyūga",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/7/7e/Neji_Part_I.png/revision/latest?cb=20160118081119",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Jonin",
@@ -7732,9 +7599,7 @@
     "name": "Nonō Yakushi",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/0/07/Non%C5%8D.png/revision/latest?cb=20220220023039",
     "village": [
-      "Konoha Orphanage",
-      "Konohagakure",
-      "Root"
+      "Konohagakure"
     ],
     "rank": "Anbu",
     "kekkeiGenkai": [],
@@ -7755,14 +7620,12 @@
     "name": "Nonota",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/5/53/Nonota_HDShot.png/revision/latest?cb=20211024040432",
     "village": [
-      "Allied Shinobi Forces",
       "Sunagakure"
     ],
     "rank": "N/A",
     "kekkeiGenkai": [],
     "natureTypes": [],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Ninjutsu"
     ],
     "status": "Alive",
@@ -7797,7 +7660,6 @@
       "Yin-Yang"
     ],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Genjutsu",
       "Kenjutsu",
       "Ninjutsu",
@@ -7860,7 +7722,6 @@
     "name": "Okisuke",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/e/e3/Okisuke.png/revision/latest?cb=20220211064142",
     "village": [
-      "Allied Shinobi Forces",
       "Land of Iron"
     ],
     "rank": "N/A",
@@ -7899,7 +7760,6 @@
     "name": "Omoi",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/9/9f/Omoi_Part_II.png/revision/latest?cb=20200919231029",
     "village": [
-      "Allied Shinobi Forces",
       "Kumogakure"
     ],
     "rank": "Jonin",
@@ -7925,7 +7785,6 @@
     "name": "Ōnoki",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/6/67/%C5%8Cnoki.png/revision/latest?cb=20181203071043",
     "village": [
-      "Allied Shinobi Forces",
       "Iwagakure"
     ],
     "rank": "Kage",
@@ -7956,9 +7815,7 @@
     "village": [
       "Akatsuki",
       "Konohagakure",
-      "Otogakure",
-      "Root",
-      "Ryūchi Cave"
+      "Otogakure"
     ],
     "rank": "Anbu",
     "kekkeiGenkai": [
@@ -7975,7 +7832,6 @@
       "Yin"
     ],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Genjutsu",
       "Kenjutsu",
       "Ninjutsu",
@@ -8169,7 +8025,6 @@
     "name": "Raidō Namiashi",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/d/d1/Raid%C5%8D_Namiashi_mugshot.png/revision/latest?cb=20160115134651",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "N/A",
@@ -8216,7 +8071,6 @@
     "name": "Ranka",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/d/da/Ranka1.png/revision/latest?cb=20160223214313",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Chunin",
@@ -8264,7 +8118,6 @@
     "name": "Rashii",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/4/4b/Rashii.png/revision/latest?cb=20150722210409",
     "village": [
-      "Allied Shinobi Forces",
       "Kumogakure"
     ],
     "rank": "Jonin",
@@ -8372,7 +8225,6 @@
       "Yang"
     ],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Ninjutsu",
       "Taijutsu"
     ],
@@ -8388,7 +8240,6 @@
     "name": "Rock Lee",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/9/97/Rock_Lee_Part_I.png/revision/latest?cb=20181229065526",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Jonin",
@@ -8465,7 +8316,6 @@
       "Wind"
     ],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Ninjutsu"
     ],
     "status": "Deceased",
@@ -8539,7 +8389,6 @@
     "name": "Sagan",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/f/fb/Sagan.png/revision/latest?cb=20130801161433",
     "village": [
-      "Allied Shinobi Forces",
       "Iwagakure"
     ],
     "rank": "N/A",
@@ -8560,9 +8409,7 @@
     "name": "Sai",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/0/07/Sai_Infobox.png/revision/latest?cb=20180314110836",
     "village": [
-      "Allied Shinobi Forces",
-      "Konohagakure",
-      "Root"
+      "Konohagakure"
     ],
     "rank": "Anbu",
     "kekkeiGenkai": [],
@@ -8573,7 +8420,6 @@
       "Yang"
     ],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Kenjutsu",
       "Ninjutsu",
       "Taijutsu"
@@ -8677,7 +8523,6 @@
     ],
     "natureTypes": [],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Ninjutsu",
       "Senjutsu",
       "Taijutsu"
@@ -8715,9 +8560,7 @@
     "name": "Sakura Haruno",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/6/64/Sakura_Part_1.png/revision/latest?cb=20170726101444",
     "village": [
-      "Allied Shinobi Forces",
-      "Konohagakure",
-      "Shikkotsu Forest"
+      "Konohagakure"
     ],
     "rank": "Jonin",
     "kekkeiGenkai": [],
@@ -8729,7 +8572,6 @@
       "Yin"
     ],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Genjutsu",
       "Ninjutsu",
       "Taijutsu"
@@ -8747,7 +8589,6 @@
     "name": "Samui",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/2/23/Samui.png/revision/latest?cb=20230111063822",
     "village": [
-      "Allied Shinobi Forces",
       "Kumogakure"
     ],
     "rank": "Jonin",
@@ -8770,7 +8611,6 @@
     "name": "Santa Yamanaka",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/c/cd/Santa_Yamanaka.png/revision/latest?cb=20120607114251",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Jonin",
@@ -8886,8 +8726,7 @@
     "village": [
       "Akatsuki",
       "Konohagakure",
-      "Otogakure",
-      "Ryūchi Cave"
+      "Otogakure"
     ],
     "rank": "Genin",
     "kekkeiGenkai": [
@@ -8902,7 +8741,6 @@
       "Yin"
     ],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Genjutsu",
       "Kenjutsu",
       "Ninjutsu",
@@ -9055,7 +8893,6 @@
     "name": "Shibi Aburame",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/b/b3/Shibi.png/revision/latest?cb=20150315114902",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Jonin",
@@ -9152,7 +8989,6 @@
     "name": "Shikaku Nara",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/e/e0/Shikaku_Nara.png/revision/latest?cb=20210802192328",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Jonin",
@@ -9176,7 +9012,6 @@
     "name": "Shikamaru Nara",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/4/44/Shikamaru_Part_I.png/revision/latest?cb=20170419112314",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Kage",
@@ -9224,8 +9059,7 @@
     "name": "Shima",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/6/69/Shima.png/revision/latest?cb=20220223133940",
     "village": [
-      "Konohagakure",
-      "Mount Myōboku"
+      "Konohagakure"
     ],
     "rank": "N/A",
     "kekkeiGenkai": [],
@@ -9292,8 +9126,7 @@
     "name": "Shin",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/1/13/Shin_Revived.png/revision/latest?cb=20210818012050",
     "village": [
-      "Konohagakure",
-      "Root"
+      "Konohagakure"
     ],
     "rank": "Anbu",
     "kekkeiGenkai": [],
@@ -9348,7 +9181,6 @@
     "name": "Shino Aburame",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/9/9c/Shino.png/revision/latest?cb=20160924021327",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Jonin",
@@ -9458,7 +9290,6 @@
     "name": "Shitō Akimichi",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/0/04/Shit%C5%8D_Akimichi.png/revision/latest?cb=20160217120955",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Jonin",
@@ -9481,7 +9312,6 @@
     "name": "Shizune",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/0/0a/Shizune_Infobox.png/revision/latest?cb=20170726101304",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Jonin",
@@ -9712,7 +9542,6 @@
     "name": "Suzaku Nara",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/6/67/Suzaku_Nara.png/revision/latest?cb=20160127045728",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Jonin",
@@ -9792,7 +9621,6 @@
     "name": "Tajiki",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/2/26/Tajik_mugshot.png/revision/latest?cb=20120531131010",
     "village": [
-      "Allied Shinobi Forces",
       "Kumogakure"
     ],
     "rank": "Chunin",
@@ -9940,7 +9768,6 @@
     "name": "Tango",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/9/91/Tango.png/revision/latest?cb=20160307033323",
     "village": [
-      "Allied Shinobi Forces",
       "Kumogakure"
     ],
     "rank": "Jonin",
@@ -10064,7 +9891,6 @@
     "name": "Temari",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/b/bb/Temari_newshot.png/revision/latest?cb=20180131102406",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure",
       "Sunagakure"
     ],
@@ -10090,7 +9916,6 @@
     "name": "Temui",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/2/26/Temui.png/revision/latest?cb=20220211080531",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "N/A",
@@ -10140,7 +9965,6 @@
     "name": "Tenga",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/4/48/Tenga_anime.png/revision/latest?cb=20160115102011",
     "village": [
-      "Allied Shinobi Forces",
       "Kumogakure"
     ],
     "rank": "N/A",
@@ -10160,14 +9984,12 @@
     "name": "Tenten",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/d/da/Tenten_Part_1.png/revision/latest?cb=20180510203032",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Chunin",
     "kekkeiGenkai": [],
     "natureTypes": [],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Ninjutsu",
       "Taijutsu"
     ],
@@ -10184,8 +10006,7 @@
     "name": "Tera",
     "imageUrl": "/placeholder.png",
     "village": [
-      "Konohagakure",
-      "Root"
+      "Konohagakure"
     ],
     "rank": "Anbu",
     "kekkeiGenkai": [],
@@ -10203,8 +10024,7 @@
     "name": "Terai",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/4/4a/Terai.png/revision/latest?cb=20160115170653",
     "village": [
-      "Konohagakure",
-      "Root"
+      "Konohagakure"
     ],
     "rank": "Anbu",
     "kekkeiGenkai": [],
@@ -10222,7 +10042,6 @@
     "name": "Terubō",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/f/f7/Terubo.png/revision/latest?cb=20141110141019",
     "village": [
-      "Konoha Orphanage",
       "Konohagakure"
     ],
     "rank": "N/A",
@@ -10259,7 +10078,6 @@
     "name": "Tetsu",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/5/59/Tetsu2.png/revision/latest?cb=20210923200356",
     "village": [
-      "Allied Shinobi Forces",
       "Kirigakure"
     ],
     "rank": "N/A",
@@ -10378,8 +10196,7 @@
     "name": "Three Giant Snakes",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/6/6b/Three_Ginat_Snakes.png/revision/latest?cb=20120918111656",
     "village": [
-      "Otogakure",
-      "Ryūchi Cave"
+      "Otogakure"
     ],
     "rank": "N/A",
     "kekkeiGenkai": [],
@@ -10399,7 +10216,6 @@
     "name": "Three Haimaru Brothers",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/2/2c/Haimaru_brothers.png/revision/latest?cb=20140705145936",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "N/A",
@@ -10502,7 +10318,6 @@
     "name": "Tobirama Senju",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/b/be/Tobirama_Senju.png/revision/latest?cb=20160115192559",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Kage",
@@ -10571,7 +10386,6 @@
     "name": "Tokuma Hyūga",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/d/d4/Tokuma_Hy%C5%ABga.png/revision/latest?cb=20191007150753",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "N/A",
@@ -10649,7 +10463,6 @@
     "name": "Tonton",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/b/b7/Tonton.png/revision/latest?cb=20150130150127",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "N/A",
@@ -10697,7 +10510,6 @@
       "Wind"
     ],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Ninjutsu"
     ],
     "status": "Deceased",
@@ -10712,8 +10524,7 @@
     "name": "Torune Aburame",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/3/35/Torune_Anime.png/revision/latest?cb=20150209195934",
     "village": [
-      "Konohagakure",
-      "Root"
+      "Konohagakure"
     ],
     "rank": "Anbu",
     "kekkeiGenkai": [],
@@ -10828,9 +10639,7 @@
     "name": "Tsunade",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/b/b3/Tsunade_infobox2.png/revision/latest?cb=20230315211457",
     "village": [
-      "Allied Shinobi Forces",
-      "Konohagakure",
-      "Shikkotsu Forest"
+      "Konohagakure"
     ],
     "rank": "Kage",
     "kekkeiGenkai": [],
@@ -10843,7 +10652,6 @@
       "Yin"
     ],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Genjutsu",
       "Ninjutsu",
       "Taijutsu"
@@ -11009,8 +10817,6 @@
     "name": "Urushi",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/f/f7/Urushi_Part_II.png/revision/latest?cb=20131114130417",
     "village": [
-      "Allied Shinobi Forces",
-      "Konoha Orphanage",
       "Konohagakure"
     ],
     "rank": "Chunin",
@@ -11099,7 +10905,6 @@
     "kekkeiGenkai": [],
     "natureTypes": [],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Ninjutsu",
       "Taijutsu"
     ],
@@ -11132,9 +10937,7 @@
     "id": "white-snake-sage",
     "name": "White Snake Sage",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/d/d4/Snake_Sage.png/revision/latest?cb=20181014121520",
-    "village": [
-      "Ryūchi Cave"
-    ],
+    "village": [],
     "rank": "N/A",
     "kekkeiGenkai": [],
     "natureTypes": [
@@ -11327,9 +11130,7 @@
     "name": "Yamato",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/f/f7/Yamato_newshot.png/revision/latest?cb=20180920062234",
     "village": [
-      "Allied Shinobi Forces",
-      "Konohagakure",
-      "Root"
+      "Konohagakure"
     ],
     "rank": "Anbu",
     "kekkeiGenkai": [
@@ -11341,7 +11142,6 @@
       "Yang"
     ],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Ninjutsu",
       "Taijutsu"
     ],
@@ -11434,14 +11234,12 @@
     "name": "Yūgao Uzuki",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/f/f3/Y%C5%ABgao_Uzuki.png/revision/latest?cb=20240908170745",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Anbu",
     "kekkeiGenkai": [],
     "natureTypes": [],
     "jutsuTypes": [
-      "Fuinjutsu",
       "Kenjutsu",
       "Ninjutsu",
       "Taijutsu"
@@ -11563,7 +11361,6 @@
     "name": "Zaji",
     "imageUrl": "https://static.wikia.nocookie.net/naruto/images/3/3b/Zaji.png/revision/latest?cb=20160307033020",
     "village": [
-      "Allied Shinobi Forces",
       "Konohagakure"
     ],
     "rank": "Chunin",
