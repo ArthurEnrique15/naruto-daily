@@ -18,7 +18,6 @@ export interface Character {
   gender: Gender;
   species: string[];
   occupation?: string;
-  deletedAt?: string; // ISO timestamp, set when character is soft-deleted
 }
 
 /**

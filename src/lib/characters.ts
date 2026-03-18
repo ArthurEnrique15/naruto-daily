@@ -12,24 +12,11 @@ export function getAllCharacters(): Character[] {
   return cachedCharacters;
 }
 
-export function clearCharactersCache(): void {
-  cachedCharacters = null;
-}
-
-export function getActiveCharacters(): Character[] {
-  return getAllCharacters().filter((c) => !c.deletedAt);
-}
-
-export function getDeletedCharacters(): Character[] {
-  return getAllCharacters().filter((c) => !!c.deletedAt);
-}
-
 export function getPaginatedCharacters(
   page: number,
-  tab: 'active' | 'deleted' = 'active',
   pageSize: number = 12
 ): { characters: Character[]; totalPages: number; total: number } {
-  const source = tab === 'deleted' ? getDeletedCharacters() : getActiveCharacters();
+  const source = getAllCharacters();
   const total = source.length;
   const totalPages = Math.ceil(total / pageSize);
   const safePage = Math.max(1, Math.min(page, totalPages || 1));
