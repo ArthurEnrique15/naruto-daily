@@ -123,6 +123,7 @@ export default function GameBoard({ characters, isDev }: GameBoardProps) {
         target={target}
         usedClues={usedClues}
         onReveal={handleRevealClue}
+        gameOver={solved}
       />
       {sameAttributesWarning && (
         <div className="w-full max-w-md px-4 py-2 rounded-lg bg-yellow-100 dark:bg-yellow-900/30 border border-yellow-300 dark:border-yellow-700 text-center text-sm">

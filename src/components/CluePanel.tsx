@@ -35,6 +35,7 @@ interface CluePanelProps {
   target: Character
   usedClues: string[]
   onReveal: (clueKey: string) => void
+  gameOver: boolean
 }
 
 interface ClueCardProps {
@@ -44,10 +45,11 @@ interface ClueCardProps {
   revealed: boolean
   content: string
   onReveal: () => void
+  gameOver: boolean
 }
 
-function ClueCard({ label, missCount, threshold, revealed, content, onReveal }: ClueCardProps) {
-  const unlocked = missCount >= threshold
+function ClueCard({ label, missCount, threshold, revealed, content, onReveal, gameOver }: ClueCardProps) {
+  const unlocked = gameOver || missCount >= threshold
   const remaining = threshold - missCount
 
   if (revealed) {
@@ -62,7 +64,9 @@ function ClueCard({ label, missCount, threshold, revealed, content, onReveal }: 
   return (
     <div className="min-w-[200px] px-4 py-3 rounded-lg bg-muted border border-border flex items-center justify-between gap-4">
       <span className="text-muted-foreground text-sm">
-        {unlocked ? `${label} hint available` : `${label} available in ${remaining} guess${remaining === 1 ? '' : 'es'}`}
+        {!gameOver && !unlocked
+          ? `${label} available in ${remaining} guess${remaining === 1 ? '' : 'es'}`
+          : `${label} hint available`}
       </span>
       <button
         onClick={onReveal}
@@ -75,7 +79,7 @@ function ClueCard({ label, missCount, threshold, revealed, content, onReveal }: 
   )
 }
 
-export default function CluePanel({ missCount, target, usedClues, onReveal }: CluePanelProps) {
+export default function CluePanel({ missCount, target, usedClues, onReveal, gameOver }: CluePanelProps) {
   return (
     <div className="flex flex-row flex-wrap justify-center gap-2 w-full">
       {CLUES.map((clue) => (
@@ -87,6 +91,7 @@ export default function CluePanel({ missCount, target, usedClues, onReveal }: Cl
           revealed={usedClues.includes(clue.key)}
           content={clue.content(target)}
           onReveal={() => onReveal(clue.key)}
+          gameOver={gameOver}
         />
       ))}
     </div>

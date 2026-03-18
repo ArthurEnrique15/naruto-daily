@@ -31,6 +31,7 @@ export function CharacterCard({ character }: CharacterCardProps) {
         <Row label="Nature Types" values={character.natureTypes} />
         <Row label="Kekkei Genkai" values={character.kekkeiGenkai} />
         <Row label="Jutsu Types" values={character.jutsuTypes} />
+        {character.occupation && <Row label="Occupation" values={[character.occupation]} />}
       </CardContent>
     </Card>
   );
