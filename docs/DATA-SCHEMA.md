@@ -33,8 +33,7 @@ type KKGCategory = 'Dojutsu' | 'Nature Transformation' | 'Body Enhancement' | 'O
 type NatureType = 'Fire' | 'Wind' | 'Lightning' | 'Water' | 'Earth' |
                   'Yin' | 'Yang' | 'Yin-Yang'
 
-type JutsuType = 'Ninjutsu' | 'Genjutsu' | 'Taijutsu' | 'Fuinjutsu' |
-                 'Senjutsu' | 'Kenjutsu'
+type JutsuType = 'Ninjutsu' | 'Genjutsu' | 'Taijutsu' | 'Senjutsu' | 'Kenjutsu'
 
 type Status = 'Alive' | 'Deceased'
 
